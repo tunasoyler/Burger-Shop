@@ -13,6 +13,7 @@ namespace MVC.Models.Context
         public DbSet<Coupon> Coupons { get; set; }
         public DbSet<Extra> Extras { get; set; }
         public DbSet<ExtraCategory> ExtraCategories { get; set; }
+        public DbSet<ComplaintSuggestion> ComplaintSuggestions { get; set; }
 
         public BurgerDbContext(DbContextOptions<BurgerDbContext> dbContext) : base(dbContext)
         {
