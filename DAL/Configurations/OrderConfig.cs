@@ -14,6 +14,8 @@ namespace DAL.Configurations
     {
         public void Configure(EntityTypeBuilder<Order> builder)
         {
+            builder.HasKey(x => x.Id);
+
             builder
             .HasMany(o => o.OrderDetails)
             .WithOne(od => od.Order)
