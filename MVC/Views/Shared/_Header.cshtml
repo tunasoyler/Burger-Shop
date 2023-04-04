@@ -6,7 +6,7 @@
 				<div class="main-menu-wrap">
 					<!-- logo -->
 					<div class="site-logo">
-						<a href="index.html">
+						<a asp-action="GetHome" asp-controller="Home">
 							<img src="~/fruitkha-1.0.0/assets/img/hamburger.png" alt="">
 						</a>
 					</div>
@@ -18,7 +18,7 @@
 								<a asp-action="GetHome" asp-controller="Home">Anasayfa</a>
 							</li>
 							<li><a asp-action="GetAbout" asp-controller="About">Hakkımızda</a></li>
-							<li><a href="~/fruitkha-1.0.0/contact.html">İletişim</a></li>
+							<li><a asp-action="GetContact" asp-controller="Contact">İletişim</a></li>
 							<li>
 								<a href="~/fruitkha-1.0.0/shop.html">Menüler</a>
 							</li>
