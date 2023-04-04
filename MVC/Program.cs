@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using MVC.Models.Context;
 using System;
-using static MVC.Models.Context.BurgerDbContext;
+using static MVC.Models.Context.BurgerContext;
 
 namespace MVC
 {
@@ -15,12 +15,15 @@ namespace MVC
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
-            builder.Services.AddDbContext<BurgerDbContext>(options =>
-            {
-                options.UseSqlServer(builder.Configuration.GetConnectionString("connectionString"));
-            });
+            builder.Services.AddDbContext<BurgerContext>();
 
-            builder.Services.AddIdentity<AppUser, AppRole>().AddEntityFrameworkStores<BurgerDbContext>();
+            builder.Services.AddIdentity<AppUser, AppRole>().AddEntityFrameworkStores<BurgerContext>();
+
+            //builder.Services.Configure<IdentityOptions>(opt =>
+            //{
+            //    opt.User.RequireUniqueEmail = true;
+            //});
+
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.

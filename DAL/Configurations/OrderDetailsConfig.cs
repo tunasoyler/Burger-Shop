@@ -17,11 +17,7 @@ namespace DAL.Configurations
 
             builder.HasKey(od => new { od.MenuId, od.OrderId, od.ExtraId });
 
-            builder
-            .HasOne(od => od.Order)
-            .WithMany(o => o.OrderDetails)
-            .HasForeignKey(od => od.OrderId)
-            .OnDelete(DeleteBehavior.Restrict);
+            
 
             builder
             .HasOne(od => od.Menu)

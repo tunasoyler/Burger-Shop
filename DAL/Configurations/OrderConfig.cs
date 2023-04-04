@@ -22,17 +22,7 @@ namespace DAL.Configurations
             .HasForeignKey(od => od.OrderId)
             .OnDelete(DeleteBehavior.Restrict); 
 
-            builder
-            .HasOne(o => o.Coupon)
-            .WithMany()
-            .HasForeignKey(o => o.CouponId)
-            .OnDelete(DeleteBehavior.Restrict);
-
-            builder
-            .HasOne(o => o.User)
-            .WithMany()
-            .HasForeignKey(o => o.UserId)
-            .OnDelete(DeleteBehavior.Restrict);
+            
 
 
         }

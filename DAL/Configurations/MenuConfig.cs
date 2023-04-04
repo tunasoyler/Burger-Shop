@@ -37,10 +37,6 @@ namespace DAL.Configurations
             builder.Property(x => x.CreatedTime).HasConversion(typeof(DateTime)).HasDefaultValue(DateTime.Now);
             builder.Property(x => x.ModifiedTime).HasConversion(typeof(DateTime)).HasDefaultValue(DateTime.Now);
 
-            builder.HasMany(m => m.OrderDetails)
-                .WithOne(od => od.Menu)
-                .HasForeignKey(od => od.MenuId)
-                .OnDelete(DeleteBehavior.Restrict);
         }
     }
 }

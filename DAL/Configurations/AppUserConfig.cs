@@ -24,8 +24,8 @@ namespace DAL.Configurations
             builder.Property(u => u.MemberSince).HasConversion(typeof(DateTime)).HasDefaultValue(DateTime.Now);
 
             builder.HasMany(u => u.Orders)
-               .WithOne(o => o.User)
-               .HasForeignKey(o => o.UserId)
+               .WithOne(o => o.AppUser)
+               .HasForeignKey(o => o.AppUserId)
                .OnDelete(DeleteBehavior.Restrict);
         }
     }
