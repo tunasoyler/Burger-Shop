@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Entity.Concrete
 {
-    public class AppRole : IdentityRole
+    public class AppRole : IdentityRole<Guid>
     {
         public DateTime CreatedDate { get; set; }
         public DateTime ModifiedDate { get; set; }
