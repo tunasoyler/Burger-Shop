@@ -23,7 +23,7 @@ namespace Entity.Concrete
         public int ExtraSnackId{ get; set; }
         public ExtraSauce ExtraSauce { get; set; }
         public int ExtraSauceId{ get; set; }
-        public decimal Price { get; set; }
-        public int Amount { get; set; } 
+        public decimal UnitPrice { get; set; }
+        public int Quantity { get; set; } 
     }
 }
