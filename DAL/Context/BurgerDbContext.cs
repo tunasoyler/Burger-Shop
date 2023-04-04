@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace MVC.Models.Context
 {
-    public class BurgerDbContext : IdentityDbContext<AppUser>
+    public class BurgerDbContext : IdentityDbContext<AppUser,AppRole,Guid>
     {
         public DbSet<Menu> Menus { get; set; }
         public DbSet<Order> Orders { get; set; }
