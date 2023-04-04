@@ -17,5 +17,7 @@ namespace Entity.Concrete
         public int ExtraId{ get; set; }
         public decimal UnitPrice { get; set; }
         public int Quantity { get; set; } 
+
+        public decimal UnitPriceDecimal { get; set;}
     }
 }
