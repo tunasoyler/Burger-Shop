@@ -7,14 +7,11 @@ namespace MVC.Models.Context
     {
 
         public class AppIdentityDbContext : IdentityDbContext<AppUser>
-        {
-            public AppIdentityDbContext
-                (DbContextOptions<AppIdentityDbContext> opt) : base(opt)
+        {           
+
+            public AppIdentityDbContext(DbContextOptions options) : base(options)
             {
-
             }
-
-
         }
     }
 }

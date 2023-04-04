@@ -1,6 +1,8 @@
-﻿namespace MVC.Models.Context
+﻿using Microsoft.AspNetCore.Identity;
+
+namespace MVC.Models.Context
 {
-    public class AppUser
+    public class AppUser : IdentityUser
     {
     }
 }
