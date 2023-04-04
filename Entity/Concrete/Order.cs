@@ -9,7 +9,7 @@ namespace Entity.Concrete
 {
     public class Order : BaseEntity
     {
-        public ICollection<OrderDetails> OrderDetails { get; set; }
+        public ICollection<OrderDetails> OrderDetails { get; set; }        
         public Coupon? Coupon { get; set; }
         public int CouponId { get; set; }
         public AppUser User { get; set; }

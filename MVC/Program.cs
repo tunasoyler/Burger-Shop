@@ -1,5 +1,9 @@
+using Entity.Concrete;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using MVC.Models.Context;
+using System;
+using static MVC.Models.Context.BurgerDbContext;
 
 namespace MVC
 {
@@ -11,11 +15,12 @@ namespace MVC
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
-            //builder.Services.AddDbContext<BurgerDbContext>(options =>
-            //{
-            //    options.UseSqlServer(builder.Configuration.GetConnectionString("connectionString"));
-            //});
+            builder.Services.AddDbContext<BurgerDbContext>(options =>
+            {
+                options.UseSqlServer(builder.Configuration.GetConnectionString("connectionString"));
+            });
 
+            builder.Services.AddIdentity<AppUser, AppRole>().AddEntityFrameworkStores<BurgerDbContext>();
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.
