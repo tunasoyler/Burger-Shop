@@ -11,10 +11,10 @@ namespace MVC
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
-            //builder.Services.AddDbContext<BurgerDbContext>(options =>
-            //{
-            //    options.UseSqlServer(builder.Configuration.GetConnectionString("connectionString"));
-            //});
+            builder.Services.AddDbContext<BurgerDbContext>(options =>
+            {
+                options.UseSqlServer(builder.Configuration.GetConnectionString("connectionString"));
+            });
 
             var app = builder.Build();
 
