@@ -11,14 +11,11 @@ namespace Entity.Concrete
         public decimal Price { get; set; }
         public string Description { get; set; }
         public byte[] Image { get; set; }
-        public ICollection<Ingredient> Ingredients { get; set; }
-        public ICollection<Order> Orders { get; set; }
+        public ICollection<OrderDetails> OrderDetails { get; set; }
         public Menu Menu { get; set; }
         public Burger()
         {
-            Orders = new HashSet<Order>();
-            Ingredients = new HashSet<Ingredient>();
+            OrderDetails = new HashSet<OrderDetails>();
         }
-
     }
 }

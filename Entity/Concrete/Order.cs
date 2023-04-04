@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MVC.Models.Context;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,16 +9,15 @@ namespace Entity.Concrete
 {
     public class Order : BaseEntity
     {
-        public ICollection<Menu> Menus { get; set; }
-        public ICollection<Burger> Burgers { get; set; }
-        public ICollection<Beverage> Beverages { get; set; }
-        public ICollection<ExtraSauce> ExtraSauces { get; set; }
-        public ICollection<ExtraSauce> ExtraSnacks { get; set; }
-        public ICollection<Desert> Deserts { get; set; }
+        public ICollection<OrderDetails> OrderDetails { get; set; }
         public Coupon? Coupon { get; set; }
+        public int CouponId { get; set; }
+        public AppUser User { get; set; }
+        public int UserId { get; set; }
+        public decimal OrderTotal { get; set; }
         public Order()
         {
-            Menus = new HashSet<Menu>();
+            OrderDetails = new HashSet<OrderDetails>();
         }
     }
 }
