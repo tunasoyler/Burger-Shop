@@ -9,20 +9,12 @@ namespace Entity.Concrete
     public class OrderDetails 
     {
         public int Id { get; set; }
-        public Order order { get; set; }
+        public Order Order { get; set; }
         public int OrderId { get; set; }
-        public Menu menu { get; set; }
+        public Menu Menu { get; set; }
         public int MenuId { get; set; }
-        public Beverage beverage { get; set; }
-        public int BeverageId { get; set; }
-        public Ingredient Ingredient { get; set; }
-        public int IngredientId { get; set; }
-        public Desert desert { get; set; }  
-        public int DesertId { get ; set; }
-        public ExtraSnack ExtraSnack { get; set; }
-        public int ExtraSnackId{ get; set; }
-        public ExtraSauce ExtraSauce { get; set; }
-        public int ExtraSauceId{ get; set; }
+        public Extra Extra { get; set; }
+        public int ExtraId{ get; set; }
         public decimal UnitPrice { get; set; }
         public int Quantity { get; set; } 
     }

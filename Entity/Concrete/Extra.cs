@@ -6,18 +6,17 @@ using System.Threading.Tasks;
 
 namespace Entity.Concrete
 {
-    public class Beverage :BaseEntity
+    public class Extra : BaseEntity
     {
+        public ICollection<OrderDetails> OrderDetails { get; set; }
+        public ExtraCategory ExtraCategory { get; set; }
+        public int ExtraCategoryId { get; set; }
         public decimal Price { get; set; }
         public string Description { get; set; }
         public byte[] Image { get; set; }
-        public ICollection<Menu> Menus { get; set; }
-        public ICollection<OrderDetails> OrderDetails { get; set; }
-        public Beverage()
+        public Extra()
         {
-            OrderDetails= new List<OrderDetails>();
-            Menus = new HashSet<Menu>();
+            OrderDetails = new List<OrderDetails>();
         }
-
     }
 }
