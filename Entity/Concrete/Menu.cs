@@ -13,6 +13,7 @@ namespace Entity.Concrete
         public ICollection<ExtraSauce> ExtraSauces {  get; set; }
         public ICollection<ExtraSauce> ExtraSnacks {  get; set; }
         public ICollection<Desert> Deserts {  get; set; }
+        public byte[] Image { get; set; }
 
     }
 }

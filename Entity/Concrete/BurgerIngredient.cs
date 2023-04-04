@@ -10,5 +10,6 @@ namespace Entity.Concrete
     {
         public int BurgerId { get; set; }
         public int IngredientId { get; set; }
+
     }
 }
