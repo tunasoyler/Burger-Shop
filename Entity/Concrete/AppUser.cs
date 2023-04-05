@@ -8,14 +8,12 @@ namespace MVC.Models.Context
     {
         public string FirstName { get; set; }
         public string LastName { get; set; }
-        public bool State { get; set; }
-        public string AddressLine { get; set; }
-        public string City { get; set; }
-        public string Country { get; set; }
-        public DateTime MemberSince { get; set; }
+        public DateTime MemberSince { get; set; }= DateTime.Now;
         public ICollection<Order> Orders { get; set; }
+        public ICollection<AppUserAddress> AppUserAddress { get; set; }
         public AppUser()
         {
+            AppUserAddress= new HashSet<AppUserAddress>();
             Orders = new HashSet<Order>();
         }
     }
