@@ -11,6 +11,7 @@ namespace MVC.Controllers
     {
         ContactManager contactManager;
         BurgerContext db;
+        //huseyin
         public ContactController(BurgerContext _db, ContactManager contactManager)
         {
             db = _db;
