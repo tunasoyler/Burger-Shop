@@ -66,7 +66,7 @@
                     <img src="~/fruitkha-1.0.0/assets/img/double-whopper-menu.png" />
                     <h3>Beef'n Cheddar Menü</h3>
                     <p class="product-price"> 130 TL </p>
-                    <a href="cart.html" class="cart-btn"><i class="fas fa-shopping-cart"></i> Sepete Ekle</a>
+                    <a asp-action="GetShoppingCart" asp-controller="ShoppingCart" class="cart-btn"><i class="fas fa-shopping-cart"></i> Sepete Ekle</a>
                 </div>
             </div>
             <div class="col-lg-4 col-md-6 text-center">
@@ -77,7 +77,7 @@
                     <img src="~/fruitkha-1.0.0/assets/img/plant-based-whopper-menu.png" />
                     <h3>Vegan Burger</h3>
                     <p class="product-price"> 150 TL </p>
-                    <a href="cart.html" class="cart-btn"><i class="fas fa-shopping-cart"></i> Sepete Ekle</a>
+                    <a asp-action="GetShoppingCart" asp-controller="ShoppingCart" class="cart-btn"><i class="fas fa-shopping-cart"></i> Sepete Ekle</a>
                 </div>
             </div>
             <div class="col-lg-4 col-md-6 offset-md-3 offset-lg-0 text-center">
@@ -88,7 +88,7 @@
                     <img src="~/fruitkha-1.0.0/assets/img/fish-royale-menu.png" />
                     <h3>Fish Royale Menü</h3>
                     <p class="product-price">100 TL</p>
-                    <a href="cart.html" class="cart-btn"><i class="fas fa-shopping-cart"></i> Sepete Ekle</a>
+                    <a asp-action="GetShoppingCart" asp-controller="ShoppingCart" class="cart-btn"><i class="fas fa-shopping-cart"></i> Sepete Ekle</a>
                 </div>
             </div>
         </div>
@@ -110,7 +110,7 @@
                     <h2>Biz <span class="orange-text">Sakura'yız</span></h2>
                     <p>Baharın insanın içini kıpır kıpır eden duygusunu ve ferahlığını yemek ile buluşturduk.Sadece karnınızı doyurmakla kalmıyorsunuz.Aynı zamanda içinizde sevgiyi de hissediyorsunuz.</p>
                     <p>Özel ekmeğimiz ve imza soslarımızla uzun yıllardır yemek yemeyi karnınızı doyurmanın ötesine taşıyoruz.</p>
-                    <a href="about.html" class="boxed-btn mt-4">Daha Fazla</a>
+                    <a asp-action="GetAbout" asp-controller="About" class="boxed-btn mt-4">Daha Fazla</a>
                 </div>
             </div>
         </div>
@@ -123,7 +123,7 @@
         <h3>Ramazan Fırsatları! </h3>
         <div class="sale-percent">50% <span>İndirim</span></div>
         <h2>Kupon Kodu:<span class="orange-text">Sakura2023</span></h2>
-        <a href="shop.html" class="cart-btn btn-lg">Şimdi Sipariş Ver!</a>
+        <a asp-action="GetMenus" asp-controller="Menus" class="cart-btn btn-lg">Şimdi Sipariş Ver!</a>
     </div>
 </section>
 <!-- end shop banner -->
