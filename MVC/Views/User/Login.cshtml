@@ -3,7 +3,7 @@
     Layout = "~/Views/Shared/_Layout2.cshtml";
 }
 
-if(TempData["result"] != null)
+@if(TempData["result"] != null)
 {
 <script>
     alert("Hesabınız başarıyla oluşturuldu.");

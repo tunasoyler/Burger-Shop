@@ -30,6 +30,7 @@ namespace MVC.Controllers
 		{
 			return View();
 		}
+		[HttpPost]
 		public async Task<IActionResult> Register(UserVM userVM)
 		{
 			if (ModelState.IsValid)
