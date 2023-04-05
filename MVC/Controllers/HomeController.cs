@@ -33,7 +33,7 @@ namespace MVC.Controllers
         }
        public IActionResult GetHome()
         {
-            var menuList = menuManager.GetList();
+            var menuList = menuManager.GetList().Take(3).ToList();
             return View(menuList);
         }
     }

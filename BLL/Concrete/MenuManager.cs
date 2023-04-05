@@ -36,11 +36,7 @@ namespace BLL.Concrete
         }
 
 
-        //public void GetFirstThree(Menu menudal)
-        //{
-        //    using var c = new BurgerContext();
-        //    c.
-        //}
+        
 
 
 
