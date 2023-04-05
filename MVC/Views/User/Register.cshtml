@@ -3,7 +3,10 @@
     ViewData["Title"] = "Üye Ol";
     Layout = "~/Views/Shared/_Layout2.cshtml";
 }
-
+@if (TempData["Error"] != null)
+{
+    <div class="alert alert-danger">@TempData["Error"]</div>
+}
 <main class="main-content mt-0">
     <section>
         <div class="page-header min-vh-100" style="background-color:#F0F0F0">
