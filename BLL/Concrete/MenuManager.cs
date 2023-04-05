@@ -27,5 +27,7 @@ namespace BLL.Concrete
         {
             _menudal.Insert(menudal);
         }
+
+       
     }
 }
