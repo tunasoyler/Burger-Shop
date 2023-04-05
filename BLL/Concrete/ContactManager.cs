@@ -9,18 +9,24 @@ using System.Threading.Tasks;
 
 namespace BLL.Concrete
 {
-	public class ContactManager :IContactService
-	{
-		IComplaintSuggestion _complaintSuggestion;
+    public class ContactManager : IContactService
+    {
+        IComplaintSuggestion _s;
+        public ContactManager(IComplaintSuggestion s)
+        {
+            _s = s;
+        }
 
-		public ContactManager(IComplaintSuggestion complaintSuggestion)
-		{
-			_complaintSuggestion = complaintSuggestion;
-		}
+        public void ContactAdd(ComplaintSuggestion c)
+        {
+            _s.Insert(c);
+        }
 
-		public void AddMessage(ComplaintSuggestion message)
-		{
-			_complaintSuggestion.Insert(message);
-		}
-	}
+        public List<ComplaintSuggestion> GetList()
+        {
+            return _s.List();
+        }
+
+    
+    }
 }

@@ -23,6 +23,10 @@ namespace MVC.Models.Context
 
         }
 
+        public BurgerContext()
+        {
+        }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
@@ -33,14 +37,14 @@ namespace MVC.Models.Context
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
 
-			//Tuna
-			base.OnConfiguring(optionsBuilder);
-            optionsBuilder.UseSqlServer("Data Source=DESKTOP-BVE8G4S;Database=BurgerMVCDb;Trusted_Connection=True;MultipleActiveResultSets=true");
+            //Tuna
+            //base.OnConfiguring(optionsBuilder);
+            //optionsBuilder.UseSqlServer("Data Source=DESKTOP-BVE8G4S;Database=BurgerMVCDb;Trusted_Connection=True;MultipleActiveResultSets=true");
 
 
             //Huseyin
-            //base.OnConfiguring(optionsBuilder);
-            //optionsBuilder.UseSqlServer("Server=DESKTOP-FJAHODS;Database=BurgerMVCDb;Trusted_Connection=True;MultipleActiveResultSets=true");
+            base.OnConfiguring(optionsBuilder);
+            optionsBuilder.UseSqlServer("Server=DESKTOP-FJAHODS;Database=BurgerMVCDb;Trusted_Connection=True;MultipleActiveResultSets=true");
 
 
             //Beste
@@ -48,8 +52,6 @@ namespace MVC.Models.Context
             //optionsBuilder.UseSqlServer("Data Source=DESKTOP-Q56AEMU\\MSSQLKD14;Database=BurgerMVCDb;User ID=sa;Password=Beste1998.");
 
         }
-
-        
     }
 }
 
