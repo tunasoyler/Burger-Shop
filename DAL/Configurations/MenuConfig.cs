@@ -36,6 +36,7 @@ namespace DAL.Configurations
             builder.Property(x => x.Name).IsRequired().HasMaxLength(30);
             builder.Property(x => x.CreatedTime).HasConversion(typeof(DateTime)).HasDefaultValue(DateTime.Now);
             builder.Property(x => x.ModifiedTime).HasConversion(typeof(DateTime)).HasDefaultValue(DateTime.Now);
+            builder.Property(x => x.MenuCategory).IsRequired().HasMaxLength(30);
 
         }
     }

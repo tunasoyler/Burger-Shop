@@ -8,7 +8,9 @@ namespace MVC.Controllers
 	{
 		MenuManager menuManager = new MenuManager(new EfMenuDal());
 
-		public IActionResult Index()
+      
+
+        public IActionResult Index()
 		{
 			return View();
 		}
