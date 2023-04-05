@@ -47,14 +47,16 @@ namespace SeedData
 
 
             List<Menu> menus = new List<Menu>() {
-                new Menu {  Name = "Whooper", Price = 50, Image = ReadFile("Resources/bigmac.png"), Description="Whooper sevenlere özel." },
-                new Menu {  Name = "Big Mac", Price = 70, Image = ReadFile("Resources/bigmac.png"), Description="Big Mac sevenlere özel." },
-                new Menu {  Name = "Sakura Special", Price = 80, Image = ReadFile("Resources/bigmac.png"), Description="Sakura sevenlere özel." },
-                new Menu {  Name = "Doktor Burger", Price = 100, Image = ReadFile("Resources/bigmac.png"), Description="Doktor sevenlere özel." } };
+                new Menu {  Name = "Whooper", Price = 50, Image = ReadFile("Resources/bigmac.png"), Description="Whooper sevenlere özel.", MenuCategory="etmenu" },
+                new Menu {  Name = "Big Mac", Price = 70, Image = ReadFile("Resources/bigmac.png"), Description="Big Mac sevenlere özel.", MenuCategory="etmenu" },
+                new Menu {  Name = "Sakura Special", Price = 80, Image = ReadFile("Resources/bigmac.png"), Description="Sakura sevenlere özel." , MenuCategory="balikmenu"},
+                new Menu {  Name = "Doktor Burger", Price = 100, Image = ReadFile("Resources/bigmac.png"), Description="Doktor sevenlere özel.", MenuCategory="tavukmenu" },
+            new Menu {  Name = "Vegan Burger", Price = 300, Image = ReadFile("Resources/bigmac.png"), Description="Veganlara özel.", MenuCategory="veganmenu" }};
+
             
 
 
-        Console.WriteLine(menus.Count);
+        Console.WriteLine(menus.Count + "items will be added.");
             foreach (var item in menus)
             {
                 MenuManager menuManager = new MenuManager(new EfMenuDal());

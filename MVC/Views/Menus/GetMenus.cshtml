@@ -33,15 +33,15 @@
                         <li data-filter=".etmenu">Et Menüler</li>
                         <li data-filter=".tavukmenu">Tavuk Menüler</li>
                         <li data-filter=".balikmenu">Balık Menüler</li>
-                        <li data-filter=".vegan">Vegan Menüler</li>
+                        <li data-filter=".veganmenu">Vegan Menüler</li>
                     </ul>
                 </div>
             </div>
         </div>
 
-        @foreach (var item in Model)
-        {
-            <div class="row product-lists">
+        <div class="row product-lists">
+            @foreach (var item in Model)
+            {
                 <div class="col-lg-4 col-md-6 text-center @item.MenuCategory">
                     <div class="single-product-item">
                         <div class="product-image">
@@ -52,15 +52,15 @@
                                 }
                                 <img src="@imageUrl" alt="Image" />
                             </a>
-                        </div>                        
+                        </div>
                         <h3>@item.Name</h3>
                         <p class="product-price"> @item.Price TL</p>
                         <p class="product-description"> @item.Description</p>
                         <a href="cart.html" class="cart-btn"><i class="fas fa-shopping-cart"></i> Sepete Ekle</a>
                     </div>
                 </div>
-            </div>
-        }
+            }
+        </div>
 
     </div>
     <!-- end products -->

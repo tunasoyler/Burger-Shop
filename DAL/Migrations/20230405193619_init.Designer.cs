@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DAL.Migrations
 {
     [DbContext(typeof(BurgerContext))]
-    [Migration("20230405184934_migT")]
-    partial class migT
+    [Migration("20230405193619_init")]
+    partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -167,7 +167,7 @@ namespace DAL.Migrations
                     b.Property<DateTime>("CreatedTime")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2023, 4, 5, 21, 49, 34, 367, DateTimeKind.Local).AddTicks(3665));
+                        .HasDefaultValue(new DateTime(2023, 4, 5, 22, 36, 19, 668, DateTimeKind.Local).AddTicks(560));
 
                     b.Property<string>("Description")
                         .IsRequired()
@@ -183,7 +183,7 @@ namespace DAL.Migrations
                     b.Property<DateTime>("ModifiedTime")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2023, 4, 5, 21, 49, 34, 367, DateTimeKind.Local).AddTicks(3869));
+                        .HasDefaultValue(new DateTime(2023, 4, 5, 22, 36, 19, 668, DateTimeKind.Local).AddTicks(768));
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -244,7 +244,7 @@ namespace DAL.Migrations
                     b.Property<DateTime>("CreatedTime")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2023, 4, 5, 21, 49, 34, 367, DateTimeKind.Local).AddTicks(6001));
+                        .HasDefaultValue(new DateTime(2023, 4, 5, 22, 36, 19, 668, DateTimeKind.Local).AddTicks(2933));
 
                     b.Property<string>("Description")
                         .IsRequired()
@@ -254,10 +254,15 @@ namespace DAL.Migrations
                     b.Property<byte[]>("Image")
                         .HasColumnType("varbinary(max)");
 
+                    b.Property<string>("MenuCategory")
+                        .IsRequired()
+                        .HasMaxLength(30)
+                        .HasColumnType("nvarchar(30)");
+
                     b.Property<DateTime>("ModifiedTime")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2023, 4, 5, 21, 49, 34, 367, DateTimeKind.Local).AddTicks(6212));
+                        .HasDefaultValue(new DateTime(2023, 4, 5, 22, 36, 19, 668, DateTimeKind.Local).AddTicks(3153));
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -529,7 +534,7 @@ namespace DAL.Migrations
                     b.Property<DateTime>("MemberSince")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2023, 4, 5, 21, 49, 34, 367, DateTimeKind.Local).AddTicks(731));
+                        .HasDefaultValue(new DateTime(2023, 4, 5, 22, 36, 19, 667, DateTimeKind.Local).AddTicks(7513));
 
                     b.Property<string>("NormalizedEmail")
                         .HasMaxLength(256)
