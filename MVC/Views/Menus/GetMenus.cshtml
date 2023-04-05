@@ -1,4 +1,4 @@
-﻿
+﻿@model IEnumerable<MenuVM>
 @{
     ViewData["Title"] = "GetMenus";
     Layout = "~/Views/Shared/_Layout2.cshtml";
@@ -7,48 +7,52 @@
 
 <!-- breadcrumb-section -->
 <div class="breadcrumb-section breadcrumb-bg">
-	<div class="container">
-		<div class="row">
-			<div class="col-lg-8 offset-lg-2 text-center">
-				<div class="breadcrumb-text">
-					<p>Bahar Tadında Hamburger</p>
-					<h1>Menülerimiz</h1>
-				</div>
-			</div>
-		</div>
-	</div>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 offset-lg-2 text-center">
+                <div class="breadcrumb-text">
+                    <p>Bahar Tadında Hamburger</p>
+                    <h1>Menülerimiz</h1>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 <!-- end breadcrumb section -->
 <!-- products -->
 <div class="product-section mt-150 mb-150">
-	<div class="container">
+    <div class="container">
 
-		<div class="row">
-			<div class="col-md-12">
-				<div class="product-filters">
-					<ul>
-						<li class="active" data-filter="*">All</li>
-						<li data-filter=".etmenu">Et Menüler</li>
-						<li data-filter=".tavukmenu">Tavuk Menüler</li>
-						<li data-filter=".balikmenu">Balık Menüler</li>
-						<li data-filter=".vegan">Vegan Menüler</li>
-					</ul>
-				</div>
-			</div>
-		</div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="product-filters">
+                    <ul>
+                        <li class="active" data-filter="*">Tümü</li>
+                        <li data-filter=".etmenu">Et Menüler</li>
+                        <li data-filter=".tavukmenu">Tavuk Menüler</li>
+                        <li data-filter=".balikmenu">Balık Menüler</li>
+                        <li data-filter=".vegan">Vegan Menüler</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
 
-		<div class="row product-lists">
-			<div class="col-lg-4 col-md-6 text-center etmenu">
-				<div class="single-product-item">
-					<div class="product-image">
-						<a href="single-product.html"><img src="assets/img/products/product-img-1.jpg" alt=""></a>
-					</div>
-					<h3>Romesco Burger</h3>
-					<p class="product-price"> 78,50 TL </p>
-					<p class="product-description"> description </p>
-					<a href="cart.html" class="cart-btn"><i class="fas fa-shopping-cart"></i> Sepete Ekle</a>
-				</div>
-			</div>
-	</div>
-</div>
-<!-- end products -->
+        @foreach (var item in Model)
+        {
+            <div class="row product-lists">
+                <div class="col-lg-4 col-md-6 text-center etmenu">
+                    <div class="single-product-item">
+                        <div class="product-image">
+                            <a href="single-product.html"><img src="assets/img/products/product-img-1.jpg" alt=""></a>
+                        </div>
+                        <h3>@item.Name.ToUpper()</h3>
+                        <p class="product-price"> @item.Price + "TL"</p>
+                        <p class="product-description"> @item.Description</p>
+                        <a href="cart.html" class="cart-btn"><i class="fas fa-shopping-cart"></i> Sepete Ekle</a>
+                    </div>
+                </div>
+            </div>
+        }
+
+    </div>
+    <!-- end products -->

@@ -11,7 +11,6 @@ namespace Entity.Concrete
     {       
         public byte[]? Image { get; set; }
         public string Description { get; set; }
-        public Size Size { get; set; }
         public decimal Price { get; set; }
         public ICollection<OrderDetails> OrderDetails { get; set; }
         public Menu()

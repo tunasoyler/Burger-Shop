@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Entity.Enums;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,6 +16,7 @@ namespace Entity.Concrete
         public int MenuId { get; set; }
         public Extra Extra { get; set; }
         public int? ExtraId { get; set; }
+        public Size Size { get; set; }
         public decimal UnitPrice { get; set; }
         public int Quantity { get; set; }
     }
