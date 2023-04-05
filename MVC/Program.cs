@@ -42,8 +42,13 @@ namespace MVC
             app.UseAuthentication();
             app.UseAuthorization();
 
+            app.MapAreaControllerRoute(
+                name: "Admin",
+                areaName: "Admin",
+                pattern: "{AdminArea}/{controller=Home}/{action=GetHome}/{id?}");
+
             app.MapControllerRoute(
-                name: "default",
+                name: "default",                
                 pattern: "{controller=Home}/{action=GetHome}/{id?}");
 
             app.Run();
