@@ -55,8 +55,8 @@ namespace SeedData
             Console.WriteLine(menus.Count);
             foreach (var item in menus)
             {
-                //MenuManager menuManager = new MenuManager(context);
-                //menuManager.MenuAdd(item);
+                MenuManager menuManager = new MenuManager(context);
+                menuManager.MenuAdd(item);
                 Console.WriteLine("process...");
                 
             }
