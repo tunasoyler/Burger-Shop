@@ -20,5 +20,9 @@ namespace MVC.Controllers
 		{
 			return View();
 		}
+		public IActionResult Reset()
+		{
+			return View();
+		}
 	}
 }
