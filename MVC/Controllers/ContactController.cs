@@ -9,13 +9,14 @@ namespace MVC.Controllers
 {
     public class ContactController : Controller
     {
-        ContactManager contactManager = new ContactManager(new EfComplaintSuggestionDal());
+        ContactManager contactManager;
         BurgerContext db;
-        public ContactController(BurgerContext _db)
+        public ContactController(BurgerContext _db, ContactManager contactManager)
         {
             db = _db;
+            this.contactManager = contactManager;
         }
-		public IActionResult Index()
+        public IActionResult Index()
         {
             return View();
         }
