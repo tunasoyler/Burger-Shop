@@ -27,7 +27,7 @@ namespace MVC.Controllers
 		}
 		public IActionResult Login(string returnUrl)
 		{
-			returnUrl = returnUrl is null ? "/Home/Index" : returnUrl;
+			returnUrl = returnUrl is null ? "/Home/GetHome" : returnUrl;
 			return View(new LoginVM() { ReturnUrl=returnUrl});
 		}
 		[HttpPost]
