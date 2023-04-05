@@ -24,6 +24,8 @@ namespace DAL.Configurations
                .WithOne(o => o.AppUser)
                .HasForeignKey(o => o.AppUserId)
                .OnDelete(DeleteBehavior.Restrict);
+
+            builder.HasMany(x => x.AppUserAddress).WithOne(x => x.appUser).HasForeignKey(x => x.AppUserId).OnDelete(DeleteBehavior.Restrict);
         }
     }
 }
