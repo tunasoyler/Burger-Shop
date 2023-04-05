@@ -1,6 +1,7 @@
 ﻿using BLL.Abstract;
 using DAL.Abstract;
 using Entity.Concrete;
+using MVC.Models.Context;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,6 +26,7 @@ namespace BLL.Concrete
 
         public void MenuAdd(Menu menudal)
         {
+
             _menudal.Insert(menudal);
         }
     }

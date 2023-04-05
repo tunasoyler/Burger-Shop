@@ -14,9 +14,10 @@ namespace DAL.Concrete.Repositories
     {
         BurgerContext _db;
         DbSet<T> _object;
-        public GenericRepository()
+        public GenericRepository(BurgerContext db)
         {
             _object = _db.Set<T>();
+            _db = db;
         }
 
 

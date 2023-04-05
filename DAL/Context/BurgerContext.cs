@@ -23,6 +23,7 @@ namespace MVC.Models.Context
 
         }
 
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
@@ -33,8 +34,8 @@ namespace MVC.Models.Context
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
 
-            //Tuna
-            base.OnConfiguring(optionsBuilder);
+			//Tuna
+			base.OnConfiguring(optionsBuilder);
             optionsBuilder.UseSqlServer("Data Source=DESKTOP-BVE8G4S;Database=BurgerMVCDb;Trusted_Connection=True;MultipleActiveResultSets=true");
 
 
@@ -48,6 +49,8 @@ namespace MVC.Models.Context
             //optionsBuilder.UseSqlServer("Data Source=DESKTOP-Q56AEMU\\MSSQLKD14;Database=BurgerMVCDb;User ID=sa;Password=Beste1998.");
 
         }
+
+        
     }
 }
 

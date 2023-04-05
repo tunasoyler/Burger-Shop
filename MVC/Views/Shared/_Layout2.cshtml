@@ -31,6 +31,18 @@
 	<!-- responsive -->
 	<link rel="stylesheet" href="~/fruitkha-1.0.0/assets/css/responsive.css">
 
+	<!--     Fonts and icons     -->
+	<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900|Roboto+Slab:400,700" />
+	<!-- Nucleo Icons -->
+	<link href="~/material-dashboard-2/assets/css/nucleo-icons.css" rel="stylesheet" />
+	<link href="~/material-dashboard-2/assets/css/nucleo-svg.css" rel="stylesheet" />
+	<!-- Font Awesome Icons -->
+	<script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
+	<!-- Material Icons -->
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
+	<!-- CSS Files -->
+	<link id="pagestyle" href="~/material-dashboard-2/assets/css/material-dashboard.css?v=3.0.0" rel="stylesheet" />
+
 </head>
 <body>
 
@@ -67,5 +79,22 @@
 	<!-- main js -->
 	<script src="~/fruitkha-1.0.0/assets/js/main.js"></script>
 
+	<script src="~/material-dashboard-2/assets/js/core/popper.min.js"></script>
+  <script src="~/material-dashboard-2/assets/js/core/bootstrap.min.js"></script>
+	<script src="~/material-dashboard-2/assets/js/plugins/perfect-scrollbar.min.js"></script>
+	<script src="~/material-dashboard-2/assets/js/plugins/smooth-scrollbar.min.js"></script>
+  <script>
+    var win = navigator.platform.indexOf('Win') > -1;
+    if (win && document.querySelector('#sidenav-scrollbar')) {
+      var options = {
+        damping: '0.5'
+      }
+      Scrollbar.init(document.querySelector('#sidenav-scrollbar'), options);
+    }
+  </script>
+  <!-- Github buttons -->
+  <script async defer src="https://buttons.github.io/buttons.js"></script>
+  <!-- Control Center for Material Dashboard: parallax effects, scripts for the example pages etc -->
+	<script src="~/material-dashboard-2/assets/js/material-dashboard.min.js?v=3.0.0"></script>
 </body>
 </html>
