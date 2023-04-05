@@ -1,0 +1,38 @@
+﻿
+@using MVC.Models.Context;
+@model IEnumerable<AppUser>
+@{
+    ViewData["Title"] = "GetUser";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h1 class="bg-info text-white">Tüm Kullanıcılar </h1>
+
+<a asp-action="Create" asp-controller="Admin" class="btn btn-secondary">Create</a>
+
+<table class="table table-sm table-bordered">
+    <tr>
+        <th>User ID</th>
+        <th>User Name</th>
+        <th>Email</th>
+        <th>Update</th>
+        <th>Delete</th>
+    </tr>
+    @foreach (AppUser user in Model)
+    {
+        <tr>
+            <td>@user.Id</td>
+            <td>@user.UserName</td>
+            <td>@user.Email</td>
+            <td>
+                <a class="btn btn-sm btn-primary" asp-action="Update" asp-controller="Admin" asp-route-id="@user.Id">Update</a>
+                </td>
+                <td>
+                    <form asp-action="Delete" asp-controller="Admin" asp-route-id="@user.Id" method="post">
+                        <button type="submit" class="btn btn-sm btn-danger">Delete</button>
+                    </form>
+                </td>
+        </tr>
+    }
+
+</table>

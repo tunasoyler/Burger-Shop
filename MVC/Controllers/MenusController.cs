@@ -1,16 +1,23 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using BLL.Concrete;
+using DAL.EntityFramework;
+using Microsoft.AspNetCore.Mvc;
 
 namespace MVC.Controllers
 {
 	public class MenusController : Controller
 	{
-		public IActionResult Index()
+		MenuManager menuManager = new MenuManager(new EfMenuDal());
+
+      
+
+        public IActionResult Index()
 		{
 			return View();
 		}
 		public IActionResult GetMenus()
 		{
-			return View();
+			var menuList = menuManager.GetList();
+			return View(menuList);
 		}
 	}
 }
