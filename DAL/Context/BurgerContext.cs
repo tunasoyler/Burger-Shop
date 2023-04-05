@@ -38,13 +38,13 @@ namespace MVC.Models.Context
         {
 
             //Tuna
-            //base.OnConfiguring(optionsBuilder);
-            //optionsBuilder.UseSqlServer("Data Source=DESKTOP-BVE8G4S;Database=BurgerMVCDb;Trusted_Connection=True;MultipleActiveResultSets=true");
-
-
-            //Huseyin
             base.OnConfiguring(optionsBuilder);
-            optionsBuilder.UseSqlServer("Server=DESKTOP-FJAHODS;Database=BurgerMVCDb;Trusted_Connection=True;MultipleActiveResultSets=true");
+            optionsBuilder.UseSqlServer("Data Source=DESKTOP-BVE8G4S;Database=BurgerMVCDb;Trusted_Connection=True;MultipleActiveResultSets=true");
+
+
+            ////Huseyin
+            //base.OnConfiguring(optionsBuilder);
+            //optionsBuilder.UseSqlServer("Server=DESKTOP-FJAHODS;Database=BurgerMVCDb;Trusted_Connection=True;MultipleActiveResultSets=true");
 
 
             //Beste
