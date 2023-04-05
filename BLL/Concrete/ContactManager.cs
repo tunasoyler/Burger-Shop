@@ -11,22 +11,16 @@ namespace BLL.Concrete
 {
     public class ContactManager : IContactService
     {
-        IComplaintSuggestion _s;
-        public ContactManager(IComplaintSuggestion s)
+        IComplaintSuggestion _complaintSuggestion;
+
+        public ContactManager(IComplaintSuggestion complaintSuggestion)
         {
-            _s = s;
+            _complaintSuggestion = complaintSuggestion;
         }
 
-        public void ContactAdd(ComplaintSuggestion c)
+        public void AddMessage(ComplaintSuggestion message)
         {
-            _s.Insert(c);
+            _complaintSuggestion.Insert(message);
         }
-
-        public List<ComplaintSuggestion> GetList()
-        {
-            return _s.List();
-        }
-
-    
     }
 }

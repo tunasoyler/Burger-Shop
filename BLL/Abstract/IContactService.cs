@@ -1,4 +1,5 @@
-﻿using Entity.Concrete;
+﻿using DAL.Abstract;
+using Entity.Concrete;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +10,6 @@ namespace BLL.Abstract
 {
     public interface IContactService
     {
-        List<ComplaintSuggestion> GetList();
-        public void ContactAdd(ComplaintSuggestion c);
+        void AddMessage(ComplaintSuggestion message);
     }
 }
