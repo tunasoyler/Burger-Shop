@@ -1,0 +1,32 @@
+﻿@using MVC.Models.Context;
+@model AppUser
+@{
+    ViewData["Title"] = "Update";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h1 class="bg-info text-white">Update User</h1>
+<a asp-action="Update" asp-controller="Admin" class="btn btn-secondary">User List</a>
+<div asp-validation-summary="All" class="text-danger"></div>
+
+<form asp-action="Update" asp-controller="Admin" method="post">
+    <div class="form-group">
+        <label asp-for="Id"></label>
+        <input asp-for="Id" class="form-control" disabled />
+    </div>
+    <div class="form-group">
+        <label asp-for="Email"></label>
+        <input asp-for="Email" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label for="Password">Password</label>
+        <input name="Password" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="Email"></label>
+        <input asp-for="Email" class="form-control" />
+    </div>
+    <button type="submit" class="btn btn-primary">Update User</button>
+
+</form>
+

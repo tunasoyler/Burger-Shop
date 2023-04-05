@@ -8,31 +8,33 @@
 
 <h1 class="bg-info text-white">Tüm Kullanıcılar </h1>
 
-<a asp-action="Create" asp-controller="Admin" class="btn btn-secondary">Create</a>
-
-<table class="table table-sm table-bordered">
+@*<a asp-action="Create" asp-controller="Admin" class="btn btn-secondary">Create</a>*@
+<div class="container">
+    <table class=" table table-sm table-bordered">
     <tr>
         <th>User ID</th>
         <th>User Name</th>
         <th>Email</th>
         <th>Update</th>
-        <th>Delete</th>
+        @*<th>Delete</th>*@
     </tr>
-    @foreach (AppUser user in Model)
-    {
-        <tr>
-            <td>@user.Id</td>
-            <td>@user.UserName</td>
-            <td>@user.Email</td>
-            <td>
-                <a class="btn btn-sm btn-primary" asp-action="Update" asp-controller="Admin" asp-route-id="@user.Id">Update</a>
-                </td>
+        @foreach (AppUser user in Model)
+        {
+            <tr>
+                <td>@user.Id</td>
+                <td>@user.UserName</td>
+                <td>@user.Email</td>
                 <td>
-                    <form asp-action="Delete" asp-controller="Admin" asp-route-id="@user.Id" method="post">
-                        <button type="submit" class="btn btn-sm btn-danger">Delete</button>
-                    </form>
-                </td>
-        </tr>
-    }
+                    <a class="btn btn-sm btn-primary" asp-action="Update" asp-controller="Admin" asp-route-id="@user.Id">Update</a>
+                    </td>
+                    <td>
+                        <form asp-action="Delete" asp-controller="Admin" asp-route-id="@user.Id" method="post">
+                           @* <button type="submit" class="btn btn-sm btn-danger">Delete</button>*@
+                        </form>
+                    </td>
+            </tr>
+        }
 
 </table>
+</div>
+
