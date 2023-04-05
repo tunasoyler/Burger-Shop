@@ -3,7 +3,10 @@
     ViewData["Title"] = "GetContact";
     Layout = "~/Views/Shared/_Layout2.cshtml";
 }
-
+@if(TempData["result"]!=null)
+{
+	<div class="alert alert-success">@TempData["result"]</div>
+}
 <!-- breadcrumb-section -->
 	<div class="breadcrumb-section breadcrumb-bg">
 		<div class="container">
@@ -30,7 +33,7 @@
 					</div>
 				 	<div id="form_status"></div>
 					<div class="contact-form">
-						<form type="POST" id="fruitkha-contact" onSubmit="return valid_datas( this );">
+						<form type="POST" id="fruitkha-contact" asp-action="GetContact" asp-controller="Contact">
 							<p>
 								<input type="text" placeholder="İsim" name="name" id="name">
 								<input type="email" placeholder="Email" name="email" id="email">

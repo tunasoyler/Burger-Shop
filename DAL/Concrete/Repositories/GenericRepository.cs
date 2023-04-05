@@ -1,5 +1,6 @@
 ﻿using DAL.Abstract;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
 using MVC.Models.Context;
 using System;
 using System.Collections.Generic;
@@ -14,13 +15,13 @@ namespace DAL.Concrete.Repositories
     {
         BurgerContext _db;
         DbSet<T> _object;
-        public GenericRepository()
-        {
-            _object = _db.Set<T>();
-        }
+		public GenericRepository(BurgerContext db)
+		{
+			_object = _db.Set<T>();
+			_db = db;
+		}
 
-
-        public void Delete(T p)
+		public void Delete(T p)
         {
             _object.Remove(p);
             _db.SaveChanges();
