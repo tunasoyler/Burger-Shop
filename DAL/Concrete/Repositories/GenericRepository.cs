@@ -12,39 +12,43 @@ namespace DAL.Concrete.Repositories
 {
     public class GenericRepository<T> : IRepository<T> where T : class
     {
-        BurgerContext _db;
-        DbSet<T> _object;
-        public GenericRepository()
-        {
-            _object = _db.Set<T>();
-        }
+       //BurgerContext _db;
+       // DbSet<T> _object;
+       // public GenericRepository()
+       // {
+       //     _object = _db.Set<T>();
+       // }
 
 
         public void Delete(T p)
         {
-            _object.Remove(p);
-            _db.SaveChanges();
+            using var c = new BurgerContext();
+           c.Remove(p);
+            c.SaveChanges();
         }
 
         public void Insert(T p)
         {
-            _object.Add(p);
-            _db.SaveChanges();
+            using var c = new BurgerContext();
+            c.Add(p);
+            c.SaveChanges();
         }
 
         public List<T> List()
         {
-            return _object.ToList();
+            using var c = new BurgerContext();
+            return c.Set<T>().ToList();
         }
 
-        public List<T> List(Expression<Func<T, bool>> filter)
-        {
-            return _object.Where(filter).ToList();
-        }
+        //public List<T> List(Expression<Func<T, bool>> filter)
+        //{
+        //    return _object.Where(filter).ToList();
+        //}
 
         public void Update(T p)
         {
-            _db.SaveChanges();
+            using var c = new BurgerContext();
+            c.SaveChanges();
         }
     }
 }

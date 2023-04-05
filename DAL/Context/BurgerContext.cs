@@ -23,6 +23,10 @@ namespace MVC.Models.Context
 
         }
 
+        public BurgerContext()
+        {
+        }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
