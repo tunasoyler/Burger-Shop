@@ -12,7 +12,10 @@ namespace MVC.Controllers
 		{ 
 			return View(); 
 		}
-		
+		public IActionResult Login() 
+		{ 
+
+		}
 		
 	}
 }

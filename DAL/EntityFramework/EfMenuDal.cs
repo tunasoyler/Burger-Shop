@@ -12,9 +12,6 @@ namespace DAL.EntityFramework
 {
     public class EfMenuDal:GenericRepository<Menu>,IMenu
     {
-        public EfMenuDal(BurgerContext db) : base(db)
-        {
-            
-        }
+        
     }
 }

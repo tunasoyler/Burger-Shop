@@ -8,8 +8,8 @@ using System.Threading.Tasks;
 
 namespace BLL.Abstract
 {
-	public interface IContactService
-	{
-		void AddMessage(ComplaintSuggestion message);
-	}
+    public interface IContactService
+    {
+        void AddMessage(ComplaintSuggestion message);
+    }
 }

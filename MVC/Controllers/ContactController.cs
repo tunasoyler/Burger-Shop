@@ -30,8 +30,9 @@ namespace MVC.Controllers
             db.Add(p);
             db.SaveChanges();
             contactManager.AddMessage(p);
-			TempData["result"] = "Your message has been sent successfully.";
-			return RedirectToAction("GetContact");
+            TempData["result"] = "Your message has been sent successfully.";
+            return RedirectToAction("GetContact");
         }
     }
 }
+
