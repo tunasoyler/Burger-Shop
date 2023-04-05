@@ -10,6 +10,8 @@ namespace MVC.Models.Context
     public class BurgerContext : IdentityDbContext<AppUser, AppRole, Guid>
     {
 
+
+
         public DbSet<Menu> Menus { get; set; }
         public DbSet<Order> Orders { get; set; }
         public DbSet<OrderDetails> OrderDetails { get; set; }
@@ -18,38 +20,54 @@ namespace MVC.Models.Context
         public DbSet<ExtraCategory> ExtraCategories { get; set; }
         public DbSet<ComplaintSuggestion> ComplaintSuggestions { get; set; }
 
+
+
         public BurgerContext(DbContextOptions<BurgerContext> dbContext) : base(dbContext)
         {
 
+
+
         }
+
+
 
         public BurgerContext()
         {
         }
 
+
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
             modelBuilder.ApplyConfiguration(new AppUserConfig())
-                .ApplyConfiguration(new CouponConfig()).ApplyConfiguration(new ExtraConfig())
-                .ApplyConfiguration(new MenuConfig()).ApplyConfiguration(new OrderConfig()).ApplyConfiguration(new OrderDetailsConfig()).ApplyConfiguration(new ComplaintSuggestionConfig());
+            .ApplyConfiguration(new CouponConfig()).ApplyConfiguration(new ExtraConfig())
+            .ApplyConfiguration(new MenuConfig()).ApplyConfiguration(new OrderConfig()).ApplyConfiguration(new OrderDetailsConfig()).ApplyConfiguration(new ComplaintSuggestionConfig());
         }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
 
+
+
             //Tuna
-            base.OnConfiguring(optionsBuilder);
-            optionsBuilder.UseSqlServer("Data Source=DESKTOP-BVE8G4S;Database=BurgerMVCDb;Trusted_Connection=True;MultipleActiveResultSets=true");
+            //base.OnConfiguring(optionsBuilder);
+            //optionsBuilder.UseSqlServer("Data Source=DESKTOP-BVE8G4S;Database=BurgerMVCDb;Trusted_Connection=True;MultipleActiveResultSets=true");
 
 
-            ////Huseyin
+
+
+            //Huseyin
             //base.OnConfiguring(optionsBuilder);
             //optionsBuilder.UseSqlServer("Server=DESKTOP-FJAHODS;Database=BurgerMVCDb;Trusted_Connection=True;MultipleActiveResultSets=true");
 
 
+
+
             //Beste
-            //base.OnConfiguring(optionsBuilder);
-            //optionsBuilder.UseSqlServer("Data Source=DESKTOP-Q56AEMU\\MSSQLKD14;Database=BurgerMVCDb;User ID=sa;Password=Beste1998.");
+            base.OnConfiguring(optionsBuilder);
+            optionsBuilder.UseSqlServer("Data Source=DESKTOP-Q56AEMU\\MSSQLKD14;Database=BurgerMVCDb;User ID=sa;Password=Beste1998.");
+
+
 
         }
     }

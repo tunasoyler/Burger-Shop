@@ -10,26 +10,33 @@ using System.Threading.Tasks;
 
 namespace BLL.Concrete
 {
-    public class MenuManager:IMenuService
+    public class MenuManager : IMenuService
     {
         IMenu _menudal;
+
+
 
         public MenuManager(IMenu menudal)
         {
             _menudal = menudal;
         }
 
+
+
         public List<Menu> GetList()
         {
             return _menudal.List();
         }
 
+
+
         public void MenuAdd(Menu menudal)
         {
-
             _menudal.Insert(menudal);
         }
 
-       
+
+
+
     }
 }

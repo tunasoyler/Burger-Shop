@@ -9,14 +9,15 @@ namespace MVC.Controllers
 {
     public class ContactController : Controller
     {
-        ContactManager contactManager;
-        BurgerContext db;
-        public ContactController(BurgerContext _db, ContactManager contactManager)
-        {
-            db = _db;
-            this.contactManager = contactManager;
-        }
-        public IActionResult Index()
+
+        ContactManager contactManager = new ContactManager(new EfComplaintSuggestionDal());
+
+        //public ContactController(BurgerContext _db, ContactManager contactManager)
+        //{
+        //    db = _db;
+        //    this.contactManager = contactManager;
+        //}
+        public IActionResult Index()
         {
             return View();
         }
@@ -27,12 +28,15 @@ namespace MVC.Controllers
         [HttpPost]
         public IActionResult GetContact(ComplaintSuggestion p)
         {
-            db.Add(p);
-            db.SaveChanges();
-            contactManager.AddMessage(p);
+
+            contactManager.ContactAdd(p);
             TempData["result"] = "Your message has been sent successfully.";
             return RedirectToAction("GetContact");
         }
+
+
+
+
     }
 }
 

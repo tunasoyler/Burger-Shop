@@ -12,10 +12,13 @@ namespace MVC.Controllers
 		{ 
 			return View(); 
 		}
-		public IActionResult Login() 
-		{ 
-
+		public IActionResult Login()
+		{
+			return View();
 		}
-		
+		public IActionResult Register()
+		{
+			return View();
+		}
 	}
 }

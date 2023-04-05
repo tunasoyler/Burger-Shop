@@ -10,6 +10,7 @@ namespace BLL.Abstract
 {
     public interface IContactService
     {
-        void AddMessage(ComplaintSuggestion message);
+        List<ComplaintSuggestion> GetList();
+        public void ContactAdd(ComplaintSuggestion c);
     }
 }
