@@ -1,4 +1,5 @@
-﻿@{
+﻿@model LoginVM
+@{
     ViewData["Title"] = "Giriş";
     Layout = "~/Views/Shared/_Layout2.cshtml";
 }
@@ -45,14 +46,16 @@
                             </div>
                         </div>
                         <div class="card-body">
-                            <form role="form" class="text-start">
+                            <form asp-action="Login" method="post" role="form" class="text-start">
+                                <div asp-validation-summary="All" class="text-danger"></div>
+                                <input type="hidden" asp-for="ReturnUrl" class="form-control" />
                                 <div class="input-group input-group-outline my-3">
-                                    <label class="form-label">Mail</label>
-                                    <input type="email" class="form-control">
+                                    <label asp-for="Email" class="form-label">Mail</label>
+                                    <input asp-for="Email" type="email" class="form-control">
                                 </div>
                                 <div class="input-group input-group-outline mb-3">
-                                    <label class="form-label">Şifre</label>
-                                    <input type="password" class="form-control">
+                                    <label asp-for="Password" class="form-label">Şifre</label>
+                                    <input asp-for="Password" type="password" class="form-control">
                                 </div>
                                 <a asp-controller="User" asp-action="Reset" class="text-warning text-gradient font-weight-bold justify-content-end">Şifremi Unuttum!</a>
                                 <div class="form-check form-switch d-flex align-items-center mb-3">
@@ -60,7 +63,7 @@
                                     <label class="form-check-label mb-0 ms-2" for="rememberMe">Beni Hatırla</label>
                                 </div>
                                 <div class="text-center">
-                                    <button type="button" class="btn bg-gradient-warning w-100 my-4 mb-2">Giriş Yap</button>
+                                    <button type="submit" class="btn bg-gradient-warning w-100 my-4 mb-2">Giriş Yap</button>
                                 </div>
                                 <p class="mt-4 text-sm text-center">
                                     Hesabınız yok mu?
