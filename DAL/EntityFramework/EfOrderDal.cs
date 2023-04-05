@@ -12,9 +12,6 @@ namespace DAL.EntityFramework
 {
     public class EfOrderDal:GenericRepository<Order>,IOrder
     {
-        public EfOrderDal(BurgerContext db) : base(db)
-        {
-            
-        }
+       
     }
 }

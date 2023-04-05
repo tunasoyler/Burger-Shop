@@ -12,8 +12,6 @@ namespace DAL.EntityFramework
 {
     public class EfComplaintSuggestionDal:GenericRepository<ComplaintSuggestion>,IComplaintSuggestion
     {
-        public EfComplaintSuggestionDal(BurgerContext db) : base(db)
-        {
-        }
+        
     }
 }

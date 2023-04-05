@@ -12,9 +12,6 @@ namespace DAL.EntityFramework
 {
     public class EfCouponDal:GenericRepository<Coupon>,ICoupon
     {
-        public EfCouponDal(BurgerContext db) : base(db)
-        {
-            
-        }
+        
     }
 }

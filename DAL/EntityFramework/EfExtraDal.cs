@@ -12,9 +12,6 @@ namespace DAL.EntityFramework
 {
     public class EfExtraDal:GenericRepository<Extra>,IExtra
     {
-        public EfExtraDal(BurgerContext db) : base(db)
-        {
-            
-        }
+       
     }
 }

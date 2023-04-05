@@ -12,18 +12,18 @@ namespace DAL.Concrete.Repositories
 {
     public class GenericRepository<T> : IRepository<T> where T : class
     {
-       //BurgerContext _db;
-       // DbSet<T> _object;
-       // public GenericRepository()
-       // {
-       //     _object = _db.Set<T>();
-       // }
+        //BurgerContext _db;
+        // DbSet<T> _object;
+        // public GenericRepository()
+        // {
+        //     _object = _db.Set<T>();
+        // }
 
 
         public void Delete(T p)
         {
             using var c = new BurgerContext();
-           c.Remove(p);
+            c.Remove(p);
             c.SaveChanges();
         }
 
