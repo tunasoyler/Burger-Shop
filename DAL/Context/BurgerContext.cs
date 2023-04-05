@@ -21,7 +21,8 @@ namespace MVC.Models.Context
         public DbSet<ExtraCategory> ExtraCategories { get; set; }
         public DbSet<ComplaintSuggestion> ComplaintSuggestions { get; set; }
         public DbSet<UserAddress> UserAddresses { get; set; }
-
+        public DbSet<AppUserAddress> appUserAddress { get; set; }
+        
 
 
         public BurgerContext(DbContextOptions<BurgerContext> dbContext) : base(dbContext)
