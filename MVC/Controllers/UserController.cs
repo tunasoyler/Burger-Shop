@@ -2,16 +2,19 @@
 using Microsoft.AspNetCore.Mvc;
 using MVC.Models;
 using MVC.Models.Context;
+using SignInResult = Microsoft.AspNetCore.Identity.SignInResult;
 
 namespace MVC.Controllers
 {
 	public class UserController : Controller
 	{
 		private readonly UserManager<AppUser> _usermanager;
+		private readonly SignInManager<AppUser> _signInManager;
 
-        public UserController(UserManager<AppUser> usermanager)
+        public UserController(UserManager<AppUser> usermanager, SignInManager<AppUser> signInManager)
         {
             _usermanager = usermanager;
+            _signInManager = signInManager;
         }
 
         public IActionResult Index()
@@ -22,14 +25,35 @@ namespace MVC.Controllers
 		{ 
 			return View(); 
 		}
-		public IActionResult Login()
+		public IActionResult Login(string returnUrl)
 		{
-			return View();
+			returnUrl = returnUrl is null ? "/Home/Index" : returnUrl;
+			return View(new LoginVM() { ReturnUrl=returnUrl});
+		}
+		[HttpPost]
+		public async Task<IActionResult> Login(LoginVM loginVM)
+		{
+			if(ModelState.IsValid)
+			{
+				AppUser appUser = await _usermanager.FindByEmailAsync(loginVM.Email);
+				if(appUser != null)
+				{
+					await _signInManager.SignOutAsync();
+                    SignInResult result =await _signInManager.PasswordSignInAsync(appUser, loginVM.Password,false,false);
+					if(result.Succeeded)
+					{
+						return Redirect(loginVM.ReturnUrl ?? "/");
+					}
+					ModelState.AddModelError("", "Wrong Credantion Information!");
+				}
+			}
+			return View(loginVM);
 		}
 		public IActionResult Register()
 		{
 			return View();
 		}
+		[HttpPost]
 		public async Task<IActionResult> Register(UserVM userVM)
 		{
 			if (ModelState.IsValid)
@@ -50,15 +74,21 @@ namespace MVC.Controllers
 				}
 				else
 				{
-					foreach(IdentityError error in result.Errors)
-					{
-						ModelState.AddModelError("UserCreateError", error.Description);
-					}
+					Errors(result);
 				}
 			}
 			return View(userVM);
 		}
-		public IActionResult Reset()
+
+        private void Errors(IdentityResult result)
+        {
+            foreach (IdentityError error in result.Errors)
+            {
+                TempData["Error"] = $"{error.Code}-{error.Description}";
+            }
+        }
+
+        public IActionResult Reset()
 		{
 			return View();
 		}
