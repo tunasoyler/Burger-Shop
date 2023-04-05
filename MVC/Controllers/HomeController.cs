@@ -30,6 +30,7 @@ namespace MVC.Controllers
         }
        public IActionResult GetHome()
         {
+
             return View();
         }
     }
