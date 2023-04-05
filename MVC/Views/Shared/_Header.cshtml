@@ -6,25 +6,25 @@
 				<div class="main-menu-wrap">
 					<!-- logo -->
 					<div class="site-logo">
-						<a href="index.html">
+						<a asp-action="GetHome" asp-controller="Home">
 							<img src="~/fruitkha-1.0.0/assets/img/hamburger.png" alt="">
 						</a>
 					</div>
 					<!-- logo -->
 					<!-- menu start -->
-					<nav class="main-menu">
+					<nav class="main-menu ">
 						<ul>
-							<li class="current-list-item">
+							<li>
 								<a asp-action="GetHome" asp-controller="Home">Anasayfa</a>
 							</li>
 							<li><a asp-action="GetAbout" asp-controller="About">Hakkımızda</a></li>
-							<li><a href="~/fruitkha-1.0.0/contact.html">İletişim</a></li>
+							<li><a asp-action="GetContact" asp-controller="Contact">İletişim</a></li>
 							<li>
-								<a href="~/fruitkha-1.0.0/shop.html">Menüler</a>
+								<a asp-action="GetMenus" asp-controller="Menus">Menüler</a>
 							</li>
 							<li>
 								<div class="header-icons">
-									<a class="shopping-cart" href="cart.html"><i class="fas fa-shopping-cart"></i></a>
+									<a class="shopping-cart" asp-action="GetShoppingCart" asp-controller="ShoppingCart"><i class="fas fa-shopping-cart"></i></a>
 									<a class="mobile-hide search-bar-icon" href="#"><i class="fas fa-search"></i></a>
 									<a class="mobile-hide" href="#"><i class="fa fa-user" aria-hidden="true"></i></a>
 								</div>
