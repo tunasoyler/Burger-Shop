@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using BLL.Concrete;
+using DAL.EntityFramework;
+using Microsoft.AspNetCore.Mvc;
 using MVC.Models;
 using System.Diagnostics;
 
@@ -7,6 +9,7 @@ namespace MVC.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        MenuManager menuManager = new MenuManager(new EfMenuDal());
 
         public HomeController(ILogger<HomeController> logger)
         {
@@ -30,8 +33,8 @@ namespace MVC.Controllers
         }
        public IActionResult GetHome()
         {
-
-            return View();
+            var menuList = menuManager.GetList();
+            return View(menuList);
         }
     }
 }
