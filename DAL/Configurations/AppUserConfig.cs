@@ -18,9 +18,6 @@ namespace DAL.Configurations
 
             builder.Property(u => u.FirstName).IsRequired().HasMaxLength(50);
             builder.Property(u => u.LastName).IsRequired().HasMaxLength(50);
-            builder.Property(u => u.AddressLine).IsRequired().HasMaxLength(100);
-            builder.Property(u => u.City).IsRequired().HasMaxLength(50);
-            builder.Property(u => u.Country).IsRequired().HasMaxLength(50);
             builder.Property(u => u.MemberSince).HasConversion(typeof(DateTime)).HasDefaultValue(DateTime.Now);
 
             builder.HasMany(u => u.Orders)

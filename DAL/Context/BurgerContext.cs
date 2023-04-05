@@ -3,6 +3,7 @@ using Entity.Concrete;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Internal;
 
 namespace MVC.Models.Context
 {
@@ -19,6 +20,7 @@ namespace MVC.Models.Context
         public DbSet<Extra> Extras { get; set; }
         public DbSet<ExtraCategory> ExtraCategories { get; set; }
         public DbSet<ComplaintSuggestion> ComplaintSuggestions { get; set; }
+        public DbSet<UserAddress> UserAddresses { get; set; }
 
 
 

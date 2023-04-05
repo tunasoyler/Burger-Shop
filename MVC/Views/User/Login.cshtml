@@ -3,6 +3,12 @@
     Layout = "~/Views/Shared/_Layout2.cshtml";
 }
 
+if(TempData["result"] != null)
+{
+<script>
+    alert("Hesabınız başarıyla oluşturuldu.");
+</script>
+}
 <main class="main-content  mt-0">
     <div class="page-header align-items-start min-vh-100" style="background-image: url('../material-dashboard-2/assets/img/login.jpg');">
         <span class="mask bg-gradient-dark opacity-6"></span>
