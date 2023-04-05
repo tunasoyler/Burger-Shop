@@ -8,6 +8,7 @@ namespace Entity.Concrete
 {
     public class UserAddress
     {
+        public int Id { get; set; }
         public bool State { get; set; }
         public string AddressLine { get; set; }
         public string City { get; set; }
