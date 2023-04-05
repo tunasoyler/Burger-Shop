@@ -13,7 +13,13 @@ namespace DAL.Concrete.Repositories
 {
     public class MenuRepository : IMenu
     {
-        BurgerContext _db;
+        private readonly BurgerContext _db;
+
+        public MenuRepository(BurgerContext db)
+        {
+            _db = db;
+        }
+
         DbSet<Menu> _object;
         public void Delete(Menu p)
         {

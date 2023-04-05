@@ -14,7 +14,7 @@ namespace MVC.Controllers
 		}
 		public IActionResult Login() 
 		{ 
-
+			return View();
 		}
 		
 	}

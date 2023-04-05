@@ -12,11 +12,12 @@ namespace DAL.Concrete.Repositories
 {
     public class GenericRepository<T> : IRepository<T> where T : class
     {
-        BurgerContext _db;
+        private readonly BurgerContext _db;
         DbSet<T> _object;
-        public GenericRepository()
+        public GenericRepository(BurgerContext db)
         {
             _object = _db.Set<T>();
+            _db = db;
         }
 
 

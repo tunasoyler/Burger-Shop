@@ -23,6 +23,7 @@ namespace MVC.Models.Context
 
         }
 
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
@@ -48,6 +49,8 @@ namespace MVC.Models.Context
             //optionsBuilder.UseSqlServer("Data Source=DESKTOP-Q56AEMU\\MSSQLKD14;Database=BurgerMVCDb;User ID=sa;Password=Beste1998.");
 
         }
+
+        
     }
 }
 
