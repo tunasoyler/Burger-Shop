@@ -12,12 +12,20 @@
 }
 
 <h1 class="bg-info text-white">Öneri ve Şikayetler</h1>
-@*@if (TempData["result"] != null)
+@if (TempData["result"] != null)
 {
     <script>
         alert("İşlem başarılı");
     </script>
-}*@
+}
+@if (TempData["resultError"] != null)
+{
+    <script>
+        alert("İşlem başarısız");
+    </script>
+}
+
+
 
 @*<a asp-action="Create" asp-controller="Admin" class="btn btn-secondary">Create</a>*@
 <div class="container">

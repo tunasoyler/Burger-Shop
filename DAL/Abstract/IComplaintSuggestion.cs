@@ -7,8 +7,8 @@ using System.Threading.Tasks;
 
 namespace DAL.Abstract
 {
-    public interface IComplaintSuggestion:IRepository<ComplaintSuggestion>
+    public interface IComplaintSuggestion : IRepository<ComplaintSuggestion>
     {
-        
+       
     }
 }

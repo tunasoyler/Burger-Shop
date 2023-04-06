@@ -1,6 +1,7 @@
 ﻿using BLL.Abstract;
 using DAL.Abstract;
 using Entity.Concrete;
+using Microsoft.AspNetCore.Identity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,7 +25,16 @@ namespace BLL.Concrete
             _s.Insert(c);
         }
 
+        public bool ContactRemove(ComplaintSuggestion c)
+        {
+           bool IsTrue=_s.Delete(c);
+            return IsTrue;
+        }
 
+        public ComplaintSuggestion FindById(int id)
+        {
+           return _s.Find(id);
+        }
 
         public List<ComplaintSuggestion> GetList()
         {
