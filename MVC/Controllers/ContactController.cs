@@ -28,10 +28,17 @@ namespace MVC.Controllers
         [HttpPost]
         public IActionResult GetContact(ComplaintSuggestion p)
         {
-
-            contactManager.ContactAdd(p);
-            TempData["result"] = "Your message has been sent successfully.";
-            return RedirectToAction("GetContact");
+            bool result = contactManager.ContactAdd(p);
+            if (result)
+            {
+                TempData["result"] = "Kayıt Başarılı";
+                return RedirectToAction("GetContact");
+            }
+            else
+            {
+                TempData["resultError"] = "Kayıt Başarısız.";
+                return View(p);
+            }
         }
 
 

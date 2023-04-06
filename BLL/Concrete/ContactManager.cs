@@ -20,9 +20,10 @@ namespace BLL.Concrete
 
 
 
-        public void ContactAdd(ComplaintSuggestion c)
+        public bool ContactAdd(ComplaintSuggestion c)
         {
-            _s.Insert(c);
+            bool IsTrue = _s.Insert(c);
+            return IsTrue;
         }
 
         public bool ContactRemove(ComplaintSuggestion c)
