@@ -16,7 +16,5 @@ namespace MVC.Models
         {
             CartItems = new HashSet<CartItemDTO>();
         }
-    }
-
- 
+    } 
 }

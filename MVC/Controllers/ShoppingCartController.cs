@@ -17,8 +17,28 @@ namespace MVC.Controllers
             this.burgerContext = burgerContext;
         }
 
+        public IActionResult AddToCart(int id)
+        {
 
-        
+            CookieHelper.AddProductToCart(HttpContext, id, 1);
+
+            return RedirectToAction("GetShoppingCart");
+        }
+
+        //public IActionResult RemoveFromCart(int id)
+        //{
+        //    CookieHelper.RemoveProductFromCart(HttpContext, id, 1);
+
+        //    return RedirectToAction("GetShoppingCart");
+        //}
+
+        //public IActionResult ClearCart()
+        //{
+        //    CookieHelper.ClearCart(HttpContext);
+
+        //    return RedirectToAction("GetShoppingCart");
+        //}
+
 
 
 
