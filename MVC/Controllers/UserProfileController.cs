@@ -12,7 +12,6 @@ namespace MVC.Controllers
         }
         public IActionResult ProfileHome()
         {
-            TempData["cookieValue"] = Request.Cookies["IdentityCookie"];
             return View();
         }
     }
