@@ -8,6 +8,22 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Include="bin\Debug\net6.0\Resources\bigmac.png" />
+    <Content Include="bin\Debug\net6.0\Resources\cheese.png" />
+    <Content Include="bin\Debug\net6.0\Resources\bbq.png" />
+    <Content Include="bin\Debug\net6.0\Resources\doktor.png" />
+    <Content Include="bin\Debug\net6.0\Resources\doubleFish.png" />
+    <Content Include="bin\Debug\net6.0\Resources\doyamiyorum.png" />
+    <Content Include="bin\Debug\net6.0\Resources\fishMenu.png" />
+    <Content Include="bin\Debug\net6.0\Resources\ikiliSakura.png" />
+    <Content Include="bin\Debug\net6.0\Resources\klasik.png" />
+    <Content Include="bin\Debug\net6.0\Resources\tavuk.png" />
+    <Content Include="bin\Debug\net6.0\Resources\toplu.png" />
+    <Content Include="bin\Debug\net6.0\Resources\ucluSakura.png" />
+    <Content Include="bin\Debug\net6.0\Resources\vegan.png" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="FluentValidation" Version="11.5.1" />
     <PackageReference Include="FluentValidation.AspNetCore" Version="11.3.0" />
   </ItemGroup>

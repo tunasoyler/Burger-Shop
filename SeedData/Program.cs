@@ -16,7 +16,7 @@ namespace SeedData
 
         static void Main(string[] args)
         {
-            
+
 
             static byte[] ReadFile(string sPath)
             {
@@ -47,22 +47,33 @@ namespace SeedData
 
 
             List<Menu> menus = new List<Menu>() {
-                new Menu {  Name = "Whooper", Price = 50, Image = ReadFile("Resources/bigmac.png"), Description="Whooper sevenlere özel.", MenuCategory="etmenu" },
-                new Menu {  Name = "Big Mac", Price = 70, Image = ReadFile("Resources/bigmac.png"), Description="Big Mac sevenlere özel.", MenuCategory="etmenu" },
-                new Menu {  Name = "Sakura Special", Price = 80, Image = ReadFile("Resources/bigmac.png"), Description="Sakura sevenlere özel." , MenuCategory="balikmenu"},
-                new Menu {  Name = "Doktor Burger", Price = 100, Image = ReadFile("Resources/bigmac.png"), Description="Doktor sevenlere özel.", MenuCategory="tavukmenu" },
-            new Menu {  Name = "Vegan Burger", Price = 300, Image = ReadFile("Resources/bigmac.png"), Description="Veganlara özel.", MenuCategory="veganmenu" }};
+                new Menu {  Name = "BBQ Burger", Price = 80, Image = ReadFile("Resources/bbq.png"), Description="", MenuCategory="etmenu" },
+                new Menu {  Name = "Big Mac", Price = 90, Image = ReadFile("Resources/bigmac.png"), Description="", MenuCategory="etmenu" },
+                new Menu {  Name = "Sakura 2'li Burger", Price = 100, Image = ReadFile("Resources/ikiliSakura.png"), Description="" , MenuCategory="etmenu"},
+                new Menu {  Name = "Sakura 3'lü Burger", Price = 120, Image = ReadFile("Resources/ucluSakura.png"), Description="" , MenuCategory="etmenu"},
+                new Menu {  Name = "Doktor Burger", Price = 100, Image = ReadFile("Resources/doktor.png"), Description="", MenuCategory="etmenu" },
 
-            
+                new Menu {  Name = "Cheese Burger", Price = 70, Image = ReadFile("Resources/cheese.png"), Description="", MenuCategory="etmenu" },
+                new Menu {  Name = "Fish Burger", Price = 80, Image = ReadFile("Resources/fishMenu.png"), Description="", MenuCategory="balikmenu" },
+                new Menu {  Name = "Double Fish Burger", Price = 100, Image = ReadFile("Resources/doubleFish.png"), Description="", MenuCategory="balikmenu" },
+                new Menu {  Name = "Doyamıyorum Menüsü", Price = 150, Image = ReadFile("Resources/doyamiyorum.png"), Description="", MenuCategory="etmenu" },
+                new Menu {  Name = "Tavuk Burger", Price = 70, Image = ReadFile("Resources/tavuk.png"), Description="", MenuCategory="tavukmenu" },                
+                new Menu {  Name = "Izgara Tavuk Burger", Price = 100, Image = ReadFile("Resources/izgaraTavuk.png"), Description="", MenuCategory="tavukmenu" },
+                new Menu {  Name = "Toplu Menü", Price = 140, Image = ReadFile("Resources/toplu.png"), Description="", MenuCategory="etmenu" },
+                new Menu {  Name = "Klasik Menü", Price = 100, Image = ReadFile("Resources/klasik.png"), Description="", MenuCategory="etmenu" },
+
+                new Menu {  Name = "Vegan Burger", Price = 70, Image = ReadFile("Resources/vegan.png"), Description="", MenuCategory="veganmenu" }};
 
 
-        Console.WriteLine(menus.Count + "items will be added.");
+
+
+            Console.WriteLine(menus.Count + "items will be added.");
             foreach (var item in menus)
             {
                 MenuManager menuManager = new MenuManager(new EfMenuDal());
                 menuManager.MenuAdd(item);
                 Console.WriteLine("process...");
-                
+
             }
             Console.WriteLine("DONE");
             Console.ReadKey();
