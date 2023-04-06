@@ -10,7 +10,7 @@ namespace MVC.Controllers
 	{
 		private readonly UserManager<AppUser> _usermanager;
 		private readonly SignInManager<AppUser> _signInManager;
-		HttpCookie
+		
 		
 
         public UserController(UserManager<AppUser> usermanager, SignInManager<AppUser> signInManager)
@@ -47,7 +47,7 @@ namespace MVC.Controllers
 						
 						CookieOptions option = new CookieOptions();
 						option.Expires=DateTime.Now.AddMinutes(30);
-						Response.Cookies.Append((Cookie_Key, loginVM, option);
+						//Response.Cookies.Append((Cookie_Key, loginVM, option);
 						return Redirect(loginVM.ReturnUrl ?? "/");
 					}
 					ModelState.AddModelError("", "Wrong Credantion Information!");
