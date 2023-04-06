@@ -10,6 +10,8 @@ namespace MVC.Controllers
 	{
 		private readonly UserManager<AppUser> _usermanager;
 		private readonly SignInManager<AppUser> _signInManager;
+		
+		
 
         public UserController(UserManager<AppUser> usermanager, SignInManager<AppUser> signInManager)
         {
@@ -42,7 +44,7 @@ namespace MVC.Controllers
                     SignInResult result =await _signInManager.PasswordSignInAsync(appUser, loginVM.Password,loginVM.Remember,false);
 					if(result.Succeeded)
 					{
-						return RedirectToAction("ProfileHome","UserProfile");
+						return Redirect(loginVM.ReturnUrl ?? "/");
 					}
 					ModelState.AddModelError("", "Wrong Credantion Information!");
 				}
