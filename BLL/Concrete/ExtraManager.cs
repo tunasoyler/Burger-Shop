@@ -2,6 +2,8 @@
 using DAL.Abstract;
 using DAL.EntityFramework;
 using Entity.Concrete;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using MVC.Models.Context;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,11 +19,13 @@ namespace BLL.Concrete
         public ExtraManager(IExtra extradal)
         {
             _extradal = extradal;
+
         }
 
         public List<Extra> GetList()
         {
             return _extradal.List();
+            
         }
 
         public bool ExtraAdd(Extra extradal)
@@ -47,6 +51,18 @@ namespace BLL.Concrete
         {
             bool IsTrue = _extradal.Update(extradal);
             return IsTrue;
+        }
+
+        public List<SelectListItem> FillExtraCategory()
+        {
+            using var c = new BurgerContext();
+            List<SelectListItem> classLevelList = c.ExtraCategories.Select(x => new SelectListItem()
+            {
+                Text = x.Name,
+                Value = x.Id.ToString()
+            }).ToList();
+
+            return classLevelList;
         }
     }
 }
