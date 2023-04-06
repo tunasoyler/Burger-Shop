@@ -8,7 +8,7 @@ namespace Entity.Concrete
 {
     public class Coupon : BaseEntity
     {
-        public string CouponCode { get; set; }
+        public string? CouponCode { get; set; }
         public ICollection<Order> Orders { get; set; }
         public Coupon()
         {

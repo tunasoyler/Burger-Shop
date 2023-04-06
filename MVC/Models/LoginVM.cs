@@ -14,5 +14,6 @@ namespace MVC.Models
 
         
         public string? ReturnUrl { get; set; }
+        public bool Remember { get; set; }
     }
 }

@@ -67,13 +67,13 @@ namespace SeedData
 
             List<Extra> extras = new List<Extra>()
             {
-                new Extra {  Name = "Kola",Image = ReadFile("Resources/coke.png"), Price=20,ExtraCategoryId=1},
-                new Extra {  Name = "Sprite",Image = ReadFile("Resources/sprite.png"), Price=20,ExtraCategoryId=1},
-                new Extra {  Name = "Fanta",Image = ReadFile("Resources/fanta.png"), Price=20,ExtraCategoryId=1},
+                new Extra {  Name = "Kola",Image = ReadFile("Resources/coke.png"), Price=20, ExtraCategoryId=1},
+                new Extra {  Name = "Sprite",Image = ReadFile("Resources/sprite.png"), Price=20, ExtraCategoryId=1},
+                new Extra {  Name = "Fanta",Image = ReadFile("Resources/fanta.png"), Price=20, ExtraCategoryId=1},
 
-                new Extra {  Name = "Patates Kızartması",Image = ReadFile("Resources/patates.png"),  Price=25,ExtraCategoryId=2},
-                new Extra {  Name = "Tavuk",Image = ReadFile("Resources/chicken.png"),  Price=40,ExtraCategoryId=2},
-                new Extra {  Name = "Soğan Halkası",Image = ReadFile("Resources/onion.png"),  Price=30,ExtraCategoryId=2},
+                new Extra {  Name = "Patates Kızartması",Image = ReadFile("Resources/patates.png"),  Price=25, ExtraCategoryId=2},
+                new Extra {  Name = "Tavuk",Image = ReadFile("Resources/chicken.png"),  Price=40, ExtraCategoryId=2},
+                new Extra {  Name = "Soğan Halkası",Image = ReadFile("Resources/onion.png"),  Price=30, ExtraCategoryId=2},
 
                 new Extra {  Name = "Ketçap",Image = ReadFile("Resources/ketchup.png"),  Price=5,ExtraCategoryId=3},
                 new Extra {  Name = "Mayonez",Image = ReadFile("Resources/mayonnaise.png"),  Price=5,ExtraCategoryId=3},
@@ -90,15 +90,17 @@ namespace SeedData
               bool result= menuManager.MenuAdd(item);
                 Console.WriteLine("process...");
             }
+            Console.WriteLine("All Menus are added.");
             foreach (var item in extras)
             {
                 ExtraManager extraManager = new ExtraManager(new EfExtraDal());
                bool result= extraManager.ExtraAdd(item);
                 Console.WriteLine("process...");
             }
+            Console.WriteLine("All Extras are added.");
 
 
-            Console.WriteLine("DONE");
+            Console.WriteLine("ALL DONE");
             Console.ReadKey();
         }
     }

@@ -5,7 +5,9 @@
 }
 @if (TempData["Error"] != null)
 {
-    <div class="alert alert-danger">@TempData["Error"]</div>
+    <script>
+        alert(@TempData["Error"]);
+    </script>
 }
 <main class="main-content mt-0">
     <section>
