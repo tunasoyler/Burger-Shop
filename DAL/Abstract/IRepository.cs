@@ -12,7 +12,8 @@ namespace DAL.Abstract
         List<T> List();
         void Insert(T p);
         void Update(T p);
-        void Delete(T p);
+        bool Delete(T p);
+        T Find(int id);
         //List<T> List(Expression<Func<T, bool>> filter);
     }
 }

@@ -1,5 +1,6 @@
 ﻿using BLL.Concrete;
 using DAL.EntityFramework;
+using Entity.Concrete;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using MVC.Models;
@@ -90,6 +91,27 @@ namespace MVC.Controllers
             {
                 ModelState.AddModelError($"{error.Code}-{error.Description}", error.Description);
             }
+        }
+       
+        public async Task<IActionResult> DeleteSuggestion(int id)
+        {
+            //AppUser user = await userManager.FindByIdAsync(id);
+            ComplaintSuggestion complaintSuggestion =  contactManager.FindById(id);
+            if (User != null)
+            {
+                bool result = contactManager.ContactRemove(complaintSuggestion);
+                if (result)
+                {
+                    TempData["result"] = "Your message has been sent successfully.";
+                    return RedirectToAction("GetComplaintSuggestion");
+                }
+                else
+                    TempData["resultError"] = "Your message has been sent successfully.";
+            }
+            else
+                ModelState.AddModelError("ComplaintSuggestionNotFound_Delete", "ComplaintSuggestion Not Found");
+
+            return View("GetComplaintSuggestion");
         }
     }
 }

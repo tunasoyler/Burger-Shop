@@ -22,14 +22,22 @@ namespace DAL.Concrete.Repositories
 
 
 
-        public void Delete(T p)
+        public bool Delete(T p)
         {
             using var c = new BurgerContext();
             c.Remove(p);
-            c.SaveChanges();
+            int IsTrue = c.SaveChanges();
+            if (IsTrue==0)
+                return false;
+            else
+                return true;
         }
 
-
+        public T Find(int id)
+        {
+            using var c = new BurgerContext();
+           return c.Find<T>(id);
+        }
 
         public void Insert(T p)
         {
