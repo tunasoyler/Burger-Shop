@@ -24,5 +24,6 @@ namespace MVC.Models
         [Required(ErrorMessage = "Lütfen E-mailinizi giriniz.")]
         public string Email { get; set; }
         public bool Status { get; set; } = true;
+        public string? NewPassword { get; set; }
     }
 }

@@ -4,7 +4,12 @@
     ViewData["Title"] = "ProfileHome";
     Layout = "~/Views/Shared/_Layout2.cshtml";
 }
-
+@if (TempData["Error"] != null)
+{
+    <script>
+        alert(@TempData["Error"]);
+    </script>
+}
 <!-- breadcrumb-section -->
 <div class="breadcrumb-section breadcrumb-bg">
     <div class="container">
@@ -52,17 +57,17 @@
         <div class="col-sm-12 col-xl-6">
             <div class="bg-light rounded h-100 p-4">
                 <h6 class="mb-4">Şifre İşlemleri</h6>
-                <form>
+                <form asp-action="ChangePassword">
                     <div class="row mb-3">
-                        <label asp-for="PasswordHash" class="col-sm-2 col-form-label">Eski Şifreniz</label>
+                        <label for="password" class="col-sm-2 col-form-label">Eski Şifreniz</label>
                         <div class="col-sm-10">
-                            <input asp-for="PasswordHash" class="form-control" id="inputPassword3">
+                            <input type="password" name="password" class="form-control" >
                         </div>
                     </div>
                      <div class="row mb-3">
-                        <label name="newPassword" class="col-sm-2 col-form-label">Yeni Şifreniz</label>
+                        <label for="newPassword" class="col-sm-2 col-form-label">Yeni Şifreniz</label>
                         <div class="col-sm-10">
-                            <input type="password" class="form-control" id="newPassword">
+                            <input type="password" class="form-control" name="newPassword">
                         </div>
                     </div>
                     <button type="submit" class="btn btn-warning">Güncelle</button>
