@@ -1,7 +1,9 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 
 namespace MVC.Controllers
 {
+    [Authorize]
     public class UserProfileController : Controller
     {
         public IActionResult Index()
@@ -10,6 +12,7 @@ namespace MVC.Controllers
         }
         public IActionResult ProfileHome()
         {
+            TempData["cookieValue"] = Request.Cookies["IdentityCookie"];
             return View();
         }
     }

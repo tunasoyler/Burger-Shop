@@ -27,8 +27,8 @@ namespace MVC.Controllers
 		}
 		public IActionResult Login(string returnUrl)
 		{
-			returnUrl = returnUrl is null ? "/Home/GetHome" : returnUrl;
-			return View(new LoginVM() { ReturnUrl=returnUrl});
+                returnUrl = returnUrl is null ? "/Home/GetHome" : returnUrl;
+                return View(new LoginVM() { ReturnUrl = returnUrl });
 		}
 		[HttpPost]
 		public async Task<IActionResult> Login(LoginVM loginVM)
@@ -39,10 +39,10 @@ namespace MVC.Controllers
 				if(appUser != null)
 				{
 					await _signInManager.SignOutAsync();
-                    SignInResult result =await _signInManager.PasswordSignInAsync(appUser, loginVM.Password,false,false);
+                    SignInResult result =await _signInManager.PasswordSignInAsync(appUser, loginVM.Password,loginVM.Remember,false);
 					if(result.Succeeded)
 					{
-						return Redirect(loginVM.ReturnUrl ?? "/");
+						return RedirectToAction("ProfileHome","UserProfile");
 					}
 					ModelState.AddModelError("", "Wrong Credantion Information!");
 				}
