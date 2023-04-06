@@ -52,15 +52,16 @@ namespace SeedData
                 new Menu {  Name = "Sakura 2'li Burger", Price = 100, Image = ReadFile("Resources/ikiliSakura.png"), Description="" , MenuCategory="etmenu"},
                 new Menu {  Name = "Sakura 3'lü Burger", Price = 120, Image = ReadFile("Resources/ucluSakura.png"), Description="" , MenuCategory="etmenu"},
                 new Menu {  Name = "Doktor Burger", Price = 100, Image = ReadFile("Resources/doktor.png"), Description="", MenuCategory="etmenu" },
-
-                new Menu {  Name = "Cheese Burger", Price = 70, Image = ReadFile("Resources/cheese.png"), Description="", MenuCategory="etmenu" },
-                new Menu {  Name = "Fish Burger", Price = 80, Image = ReadFile("Resources/fishMenu.png"), Description="", MenuCategory="balikmenu" },
-                new Menu {  Name = "Double Fish Burger", Price = 100, Image = ReadFile("Resources/doubleFish.png"), Description="", MenuCategory="balikmenu" },
-                new Menu {  Name = "Doyamıyorum Menüsü", Price = 150, Image = ReadFile("Resources/doyamiyorum.png"), Description="", MenuCategory="etmenu" },
-                new Menu {  Name = "Tavuk Burger", Price = 70, Image = ReadFile("Resources/tavuk.png"), Description="", MenuCategory="tavukmenu" },                
-                new Menu {  Name = "Izgara Tavuk Burger", Price = 100, Image = ReadFile("Resources/izgaraTavuk.png"), Description="", MenuCategory="tavukmenu" },
+                new Menu {  Name = "Cheese Burger", Price = 70, Image = ReadFile("Resources/cheese.png"), Description="", MenuCategory="etmenu" },                
+                new Menu {  Name = "Doyamıyorum Menüsü", Price = 150, Image = ReadFile("Resources/doyamiyorum.png"), Description="", MenuCategory="etmenu" },                
                 new Menu {  Name = "Toplu Menü", Price = 140, Image = ReadFile("Resources/toplu.png"), Description="", MenuCategory="etmenu" },
                 new Menu {  Name = "Klasik Menü", Price = 100, Image = ReadFile("Resources/klasik.png"), Description="", MenuCategory="etmenu" },
+
+                new Menu {  Name = "Fish Burger", Price = 80, Image = ReadFile("Resources/fishMenu.png"), Description="", MenuCategory="balikmenu" },
+                new Menu {  Name = "Double Fish Burger", Price = 100, Image = ReadFile("Resources/doubleFish.png"), Description="", MenuCategory="balikmenu" },
+
+                new Menu {  Name = "Tavuk Burger", Price = 70, Image = ReadFile("Resources/tavuk.png"), Description="", MenuCategory="tavukmenu" },
+                new Menu {  Name = "Izgara Tavuk Burger", Price = 100, Image = ReadFile("Resources/izgaraTavuk.png"), Description="", MenuCategory="tavukmenu" },
 
                 new Menu {  Name = "Vegan Burger", Price = 70, Image = ReadFile("Resources/vegan.png"), Description="", MenuCategory="veganmenu" }};
 
