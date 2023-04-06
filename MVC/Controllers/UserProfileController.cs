@@ -9,9 +9,11 @@ namespace MVC.Controllers
     public class UserProfileController : Controller
     {
         UserManager<AppUser> _userManager;
-        public UserProfileController(UserManager<AppUser> usermanager)
+        private SignInManager<AppUser> _signInManager;
+        public UserProfileController(UserManager<AppUser> usermanager, SignInManager<AppUser> signInManager)
         {
-            _userManager= usermanager;
+            _userManager = usermanager;
+            _signInManager = signInManager;
         }
         public IActionResult Index()
         {
@@ -70,6 +72,11 @@ namespace MVC.Controllers
             {
                 TempData["Error"] = $"{error.Code}-{error.Description}";
             }
+        }
+        public async Task<IActionResult> LogOut()
+        {
+            await _signInManager.SignOutAsync();
+            return RedirectToAction("GetHome", "Home");
         }
     }
 }
