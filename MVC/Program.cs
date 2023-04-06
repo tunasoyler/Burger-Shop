@@ -16,6 +16,7 @@ namespace MVC
             // Add services to the container.
             builder.Services.AddControllersWithViews();
             builder.Services.AddDbContext<BurgerContext>();
+            builder.Services.AddHttpContextAccessor();
 
             builder.Services.AddIdentity<AppUser, AppRole>().AddEntityFrameworkStores<BurgerContext>();
 
