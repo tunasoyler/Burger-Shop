@@ -31,7 +31,7 @@ namespace MVC.Controllers
 		public IActionResult GetShoppingCart()
 		{
 			CartDTO cartDTO = new CartDTO();
-			cartDTO = orderManager.GetOrder(cartDTO);
+			//cartDTO = orderManager.GetOrder(cartDTO);
 			return View();
 		}
 	}
