@@ -12,7 +12,7 @@ namespace BLL.Abstract
     public interface IContactService
     {
         List<ComplaintSuggestion> GetList();
-        public void ContactAdd(ComplaintSuggestion c);
+        public bool ContactAdd(ComplaintSuggestion c);
         public ComplaintSuggestion FindById(int id);
         public bool ContactRemove(ComplaintSuggestion c);
         public bool ContactUpdate(ComplaintSuggestion c);

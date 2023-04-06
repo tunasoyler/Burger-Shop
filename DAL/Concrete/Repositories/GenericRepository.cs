@@ -70,6 +70,7 @@ namespace DAL.Concrete.Repositories
         public bool Update(T p)
         {
             using var c = new BurgerContext();
+            c.Update(p);
             int IsTrue = c.SaveChanges();
             if (IsTrue == 0)
                 return false;
