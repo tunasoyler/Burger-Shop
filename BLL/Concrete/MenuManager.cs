@@ -14,31 +14,20 @@ namespace BLL.Concrete
     {
         IMenu _menudal;
 
-
-
         public MenuManager(IMenu menudal)
         {
             _menudal = menudal;
         }
-
-
 
         public List<Menu> GetList()
         {
             return _menudal.List();
         }
 
-
-
         public void MenuAdd(Menu menudal)
         {
             _menudal.Insert(menudal);
         }
-
-
-        
-
-
 
     }
 }

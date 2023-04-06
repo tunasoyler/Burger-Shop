@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace DAL.Migrations
 {
-    public partial class Init : Migration
+    public partial class mig1 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -92,8 +92,8 @@ namespace DAL.Migrations
                     Price = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     MenuCategory = table.Column<string>(type: "nvarchar(30)", maxLength: 30, nullable: false),
                     Name = table.Column<string>(type: "nvarchar(30)", maxLength: 30, nullable: false),
-                    CreatedTime = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValue: new DateTime(2023, 4, 5, 23, 16, 50, 949, DateTimeKind.Local).AddTicks(1751)),
-                    ModifiedTime = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValue: new DateTime(2023, 4, 5, 23, 16, 50, 949, DateTimeKind.Local).AddTicks(2151)),
+                    CreatedTime = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValue: new DateTime(2023, 4, 6, 12, 14, 42, 928, DateTimeKind.Local).AddTicks(9195)),
+                    ModifiedTime = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValue: new DateTime(2023, 4, 6, 12, 14, 42, 928, DateTimeKind.Local).AddTicks(9379)),
                     State = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
@@ -124,7 +124,7 @@ namespace DAL.Migrations
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     FirstName = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     LastName = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
-                    MemberSince = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValue: new DateTime(2023, 4, 5, 23, 16, 50, 947, DateTimeKind.Local).AddTicks(8898)),
+                    MemberSince = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValue: new DateTime(2023, 4, 6, 12, 14, 42, 928, DateTimeKind.Local).AddTicks(3136)),
                     UserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     NormalizedUserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     Email = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
@@ -177,8 +177,8 @@ namespace DAL.Migrations
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Image = table.Column<byte[]>(type: "varbinary(max)", nullable: false),
                     Name = table.Column<string>(type: "nvarchar(30)", maxLength: 30, nullable: false),
-                    CreatedTime = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValue: new DateTime(2023, 4, 5, 23, 16, 50, 948, DateTimeKind.Local).AddTicks(6452)),
-                    ModifiedTime = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValue: new DateTime(2023, 4, 5, 23, 16, 50, 948, DateTimeKind.Local).AddTicks(6970)),
+                    CreatedTime = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValue: new DateTime(2023, 4, 6, 12, 14, 42, 928, DateTimeKind.Local).AddTicks(6627)),
+                    ModifiedTime = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValue: new DateTime(2023, 4, 6, 12, 14, 42, 928, DateTimeKind.Local).AddTicks(7013)),
                     State = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>

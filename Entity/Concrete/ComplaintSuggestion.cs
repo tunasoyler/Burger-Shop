@@ -8,8 +8,6 @@ namespace Entity.Concrete
 {
     public class ComplaintSuggestion : BaseEntity
     {
-        
-        public string? LastName { get; set; }
         public string? Title { get; set; }
         public string? Comment { get; set; }     
         public string? Email { get; set; }     

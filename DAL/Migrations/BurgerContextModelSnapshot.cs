@@ -165,7 +165,7 @@ namespace DAL.Migrations
                     b.Property<DateTime>("CreatedTime")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2023, 4, 5, 23, 16, 50, 948, DateTimeKind.Local).AddTicks(6452));
+                        .HasDefaultValue(new DateTime(2023, 4, 6, 12, 14, 42, 928, DateTimeKind.Local).AddTicks(6627));
 
                     b.Property<string>("Description")
                         .IsRequired()
@@ -181,7 +181,7 @@ namespace DAL.Migrations
                     b.Property<DateTime>("ModifiedTime")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2023, 4, 5, 23, 16, 50, 948, DateTimeKind.Local).AddTicks(6970));
+                        .HasDefaultValue(new DateTime(2023, 4, 6, 12, 14, 42, 928, DateTimeKind.Local).AddTicks(7013));
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -242,7 +242,7 @@ namespace DAL.Migrations
                     b.Property<DateTime>("CreatedTime")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2023, 4, 5, 23, 16, 50, 949, DateTimeKind.Local).AddTicks(1751));
+                        .HasDefaultValue(new DateTime(2023, 4, 6, 12, 14, 42, 928, DateTimeKind.Local).AddTicks(9195));
 
                     b.Property<string>("Description")
                         .IsRequired()
@@ -260,7 +260,7 @@ namespace DAL.Migrations
                     b.Property<DateTime>("ModifiedTime")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2023, 4, 5, 23, 16, 50, 949, DateTimeKind.Local).AddTicks(2151));
+                        .HasDefaultValue(new DateTime(2023, 4, 6, 12, 14, 42, 928, DateTimeKind.Local).AddTicks(9379));
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -532,7 +532,7 @@ namespace DAL.Migrations
                     b.Property<DateTime>("MemberSince")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2023, 4, 5, 23, 16, 50, 947, DateTimeKind.Local).AddTicks(8898));
+                        .HasDefaultValue(new DateTime(2023, 4, 6, 12, 14, 42, 928, DateTimeKind.Local).AddTicks(3136));
 
                     b.Property<string>("NormalizedEmail")
                         .HasMaxLength(256)

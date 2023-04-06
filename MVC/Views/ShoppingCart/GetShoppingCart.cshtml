@@ -1,112 +1,114 @@
-﻿
-@{
+﻿@{
     ViewData["Title"] = "GetShoppingCart";
     Layout = "~/Views/Shared/_Layout2.cshtml";
 }
 <!-- breadcrumb-section -->
 <div class="breadcrumb-section breadcrumb-bg">
-	<div class="container">
-		<div class="row">
-			<div class="col-lg-8 offset-lg-2 text-center">
-				<div class="breadcrumb-text">
-					<p>Bahar Tadında Hamburger</p>
-					<h1>Sepet</h1>
-				</div>
-			</div>
-		</div>
-	</div>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 offset-lg-2 text-center">
+                <div class="breadcrumb-text">
+                    <p>Bahar Tadında Hamburger</p>
+                    <h1>Sepet</h1>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 <!-- end breadcrumb section -->
 <!-- cart -->
 <div class="cart-section mt-150 mb-150">
-	<div class="container">
-		<div class="row">
-			<div class="col-lg-8 col-md-12">
-				<div class="cart-table-wrap">
-					<table class="cart-table">
-						<thead class="cart-table-head">
-							<tr class="table-head-row">
-								<th class="product-remove"></th>
-								<th class="product-image">Ürün Fotoğrafı</th>
-								<th class="product-name">Ürün Adı</th>
-								<th class="product-price">Fiyat</th>
-								<th class="product-quantity">Miktar</th>
-								<th class="product-total">Toplam Tutar</th>
-							</tr>
-						</thead>
-						<tbody>
-							<tr class="table-body-row">
-								<td class="product-remove"><a href="#"><i class="far fa-window-close"></i></a></td>
-								<td class="product-image"><img src="assets/img/products/product-img-1.jpg" alt=""></td>
-								<td class="product-name">Strawberry</td>
-								<td class="product-price">$85</td>
-								<td class="product-quantity"><input type="number" placeholder="0"></td>
-								<td class="product-total">1</td>
-							</tr>
-							@*<tr class="table-body-row">
-								<td class="product-remove"><a href="#"><i class="far fa-window-close"></i></a></td>
-								<td class="product-image"><img src="assets/img/products/product-img-2.jpg" alt=""></td>
-								<td class="product-name">Berry</td>
-								<td class="product-price">$70</td>
-								<td class="product-quantity"><input type="number" placeholder="0"></td>
-								<td class="product-total">1</td>
-							</tr>
-							<tr class="table-body-row">
-								<td class="product-remove"><a href="#"><i class="far fa-window-close"></i></a></td>
-								<td class="product-image"><img src="assets/img/products/product-img-3.jpg" alt=""></td>
-								<td class="product-name">Lemon</td>
-								<td class="product-price">$35</td>
-								<td class="product-quantity"><input type="number" placeholder="0"></td>
-								<td class="product-total">1</td>
-							</tr>*@
-						</tbody>
-					</table>
-				</div>
-			</div>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-md-12">
+                <div class="cart-table-wrap">
+                    <table class="cart-table">
+                        <thead class="cart-table-head">
+                            <tr class="table-head-row">
+                                <th class="product-remove"></th>
+                                <th class="product-image">Ürün Fotoğrafı</th>
+                                <th class="product-name">Ürün Adı</th>
+                                <th class="product-price">Fiyat</th>
+                                <th class="product-quantity">Miktar</th>
+                                <th class="product-total">Toplam Tutar</th>
+                            </tr>
+                        </thead>
+                        <tbody>                        
+                        <tr class="table-body-row">
+                            <td class="product-remove"><a href="#"><i class="far fa-window-close"></i></a></td>
+                            <td class="product-image"><img src="assets/img/products/product-img-1.jpg" alt=""></td>
+                            <td class="product-name">Strawberry</td>
+                            <td class="product-price">$85</td>
+                            <td class="product-quantity"><input type="number" placeholder="0"></td>
+                            <td class="product-total">1</td>
+                        </tr>
+                            @foreach (var item in Model.Items)
+                            {
+                            <tr>
+                                <td>@item.Product.Name</td>
+                                <td>@item.Product.Price.ToString("c")</td>
+                                <td>@item.Quantity</td>
+                                <td>@item.TotalPrice.ToString("c")</td>
+                            </tr>
+                            }
 
-			<div class="col-lg-4">
-				<div class="total-section">
-					<table class="total-table">
-						<thead class="total-table-head">
-							<tr class="table-total-row">
-								<th>Toplam </th>
-								<th>Fiyat</th>
-							</tr>
-						</thead>
-						<tbody>
-							<tr class="total-data">
-								<td><strong>Ürün Toplam: </strong></td>
-								<td>$500</td>
-							</tr>
-							<tr class="total-data">
-								<td><strong>Teslimat Ücreti: </strong></td>
-								<td>$45</td>
-							</tr>
-							<tr class="total-data">
-								<td><strong>Toplam: </strong></td>
-								<td>$545</td>
-							</tr>
-						</tbody>
-					</table>
-					<div class="cart-buttons">
-						<a href="cart.html" class="boxed-btn">Sepeti Güncelle</a>
-						<br />
-						<br />
-						<a asp-action="GetPayment" asp-controller="Payment" class="boxed-btn black">Ödeme Sayfasına Devam Et</a>
-					</div>
-				</div>
+                            @foreach (var extra in Model.Extras)
+                            {
+                            <tr>
+                                <td>@extra.Name</td>
+                                <td>@extra.Price.ToString("c")</td>
+                                <td>1</td>
+                                <td>@extra.Price.ToString("c")</td>
+                            </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
 
-				<div class="coupon-section">
-					<h3>Kupon Ekle</h3>
-					<div class="coupon-form-wrap">
-						<form asp-action="GetShoppingCart" asp-controller="ShoppingCart">
-							<p><input type="text" placeholder="Kupon Kodu Giriniz"></p>
-							<p><input type="submit" value="Ekle"></p>
-						</form>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
+            <div class="col-lg-4">
+                <div class="total-section">
+                    <table class="total-table">
+                        <thead class="total-table-head">
+                            <tr class="table-total-row">
+                                <th>Toplam </th>
+                                <th>Fiyat</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="total-data">
+                                <td><strong>Ürün Toplam: </strong></td>
+                                <td>$500</td>
+                            </tr>
+                            <tr class="total-data">
+                                <td><strong>Teslimat Ücreti: </strong></td>
+                                <td>$45</td>
+                            </tr>
+                            <tr class="total-data">
+                                <td><strong>Toplam: </strong></td>
+                                <td>$545</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div class="cart-buttons">
+                        <a href="cart.html" class="boxed-btn">Sepeti Güncelle</a>
+                        <br />
+                        <br />
+                        <a asp-action="GetPayment" asp-controller="Payment" class="boxed-btn black">Ödeme Sayfasına Devam Et</a>
+                    </div>
+                </div>
+
+                <div class="coupon-section">
+                    <h3>Kupon Ekle</h3>
+                    <div class="coupon-form-wrap">
+                        <form asp-action="GetShoppingCart" asp-controller="ShoppingCart">
+                            <p><input type="text" placeholder="Kupon Kodu Giriniz"></p>
+                            <p><input type="submit" value="Ekle"></p>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 <!-- end cart -->

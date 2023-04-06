@@ -19,10 +19,10 @@ namespace MVC
 
             builder.Services.AddIdentity<AppUser, AppRole>().AddEntityFrameworkStores<BurgerContext>();
 
-            //builder.Services.Configure<IdentityOptions>(opt =>
-            //{
-            //    opt.User.RequireUniqueEmail = true;
-            //});
+            builder.Services.Configure<IdentityOptions>(opt =>
+            {
+                opt.User.RequireUniqueEmail = true;
+            });
 
             var app = builder.Build();
 
