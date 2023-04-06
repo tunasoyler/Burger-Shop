@@ -10,8 +10,8 @@ namespace Entity.Concrete
     {
         public int Id { get; set; }
         public string Name { get; set; }
-        public DateTime CreatedTime { get; set; }
-        public DateTime ModifiedTime { get; set; }
+        public DateTime CreatedTime { get; set; } = DateTime.Now;
+        public DateTime ModifiedTime { get; set; } = DateTime.Now;
         public bool State { get; set; }
     }
 }
