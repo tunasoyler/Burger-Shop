@@ -12,8 +12,8 @@ namespace Entity.Concrete
         public ExtraCategory ExtraCategory { get; set; }
         public int ExtraCategoryId { get; set; }
         public decimal Price { get; set; }
-        public string Description { get; set; }
-        public byte[] Image { get; set; }
+        public string? Description { get; set; }
+        public byte[]? Image { get; set; }
         public Extra()
         {
             OrderDetails = new List<OrderDetails>();

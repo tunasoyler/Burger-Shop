@@ -9,7 +9,7 @@ namespace Entity.Concrete
     public class ExtraCategory : BaseEntity
     {
         public ICollection<Extra> Extras { get; set; }
-        public string Description { get; set; }
+        public string? Description { get; set; }
         public ExtraCategory()
         {
             Extras = new HashSet<Extra>();
