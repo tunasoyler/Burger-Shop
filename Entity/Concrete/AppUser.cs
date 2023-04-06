@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace MVC.Models.Context
 {
-    [MetadataType(typeof(AppUserValidation))]
+    //[MetadataType(typeof(AppUserValidation))]
     public class AppUser : IdentityUser<Guid>
     {
         public string FirstName { get; set; }
