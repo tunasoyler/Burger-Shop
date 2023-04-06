@@ -1,4 +1,6 @@
 ﻿using BLL.Concrete;
+using DAL.EntityFramework;
+using Entity.Concrete;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using MVC.Models;
@@ -11,13 +13,13 @@ namespace MVC.Controllers
 	{
 		IHttpContextAccessor httpContextAccessor;
         BurgerContext burgerContext;
-		ExtraManager extraManager;
+		ExtraManager extraManager = new ExtraManager(new EfExtraDal());
 
-        public ShoppingCartController(IHttpContextAccessor httpContextAccessor, BurgerContext burgerContext,ExtraManager extraManager)
+        public ShoppingCartController(IHttpContextAccessor httpContextAccessor, BurgerContext burgerContext)
         {
             this.httpContextAccessor = httpContextAccessor;
             this.burgerContext = burgerContext;
-			this.extraManager = extraManager;
+			
         }
         public IActionResult Index()
 		{
@@ -25,7 +27,7 @@ namespace MVC.Controllers
 		}
 		public IActionResult GetShoppingCart()
 		{
-			var extraList = extraManager.GetList();
+			List<Extra> extraList = extraManager.GetList();
 			//CartDTO cartDTO = new CartDTO();
 			//cartDTO = orderManager.GetOrder(cartDTO);
 			return View(extraList);

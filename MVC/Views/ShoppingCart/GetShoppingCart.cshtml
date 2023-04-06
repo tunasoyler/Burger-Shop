@@ -1,124 +1,128 @@
 ﻿@using Entity.Concrete;
 @using System.Drawing;
-@model IEnumerable<Extra>
+@model List<Extra>
 @{
     ViewData["Title"] = "GetShoppingCart";
     Layout = "~/Views/Shared/_Layout2.cshtml";
 }
 <!-- breadcrumb-section -->
 <div class="breadcrumb-section breadcrumb-bg">
-	<div class="container">
-		<div class="row">
-			<div class="col-lg-8 offset-lg-2 text-center">
-				<div class="breadcrumb-text">
-					<p>Bahar Tadında Hamburger</p>
-					<h1>Sepet</h1>
-				</div>
-			</div>
-		</div>
-	</div>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 offset-lg-2 text-center">
+                <div class="breadcrumb-text">
+                    <p>Bahar Tadında Hamburger</p>
+                    <h1>Sepet</h1>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 <!-- end breadcrumb section -->
 <!-- cart -->
 <div class="cart-section mt-150 mb-150">
-	<div class="container">
-		<div class="row">
-			<div class="col-lg-8 col-md-12">
-				<div class="cart-table-wrap">
-					<table class="cart-table">
-						<thead class="cart-table-head">
-							<tr class="table-head-row">
-								<th class="product-remove"></th>
-								<th class="product-image">Ürün Fotoğrafı</th>
-								<th class="product-name">Ürün Adı</th>
-								<th class="product-price">Fiyat</th>
-								<th class="product-quantity">Miktar</th>
-								<th class="product-total">Toplam Tutar</th>
-							</tr>
-						</thead>
-						<tbody>
-							@*@foreach (var item in Model)*@
-							{								
-							<tr class="table-body-row">
-								<td class="product-remove"><a href="#"><i class="far fa-window-close"></i></a></td>
-								<td class="product-image"><img src="assets/img/products/product-img-1.jpg" alt=""></td>
-								<td class="product-name">Strawberry</td>
-								<td class="product-price">$85</td>
-								<td class="product-quantity"><input type="number" placeholder="0"></td>
-								<td class="product-total">1</td>
-							</tr>
-							}		
-						</tbody>
-					</table>
-				</div>
-			</div>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-md-12">
+                <div class="cart-table-wrap">
+                    <table class="cart-table">
+                        <thead class="cart-table-head">
+                            <tr class="table-head-row">
+                                <th class="product-remove"></th>
+                                <th class="product-image">Ürün Fotoğrafı</th>
+                                <th class="product-name">Ürün Adı</th>
+                                <th class="product-price">Fiyat</th>
+                                <th class="product-quantity">Miktar</th>
+                                <th class="product-total">Toplam Tutar</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @*@foreach (var item in Model)*@
+                            {
+                            <tr class="table-body-row">
+                                <td class="product-remove"><a href="#"><i class="far fa-window-close"></i></a></td>
+                                <td class="product-image"><img src="assets/img/products/product-img-1.jpg" alt=""></td>
+                                <td class="product-name">Strawberry</td>
+                                <td class="product-price">$85</td>
+                                <td class="product-quantity"><input type="number" placeholder="0"></td>
+                                <td class="product-total">1</td>
+                            </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
 
-			<div class="col-lg-4">
-				<div class="total-section">
-					<table class="total-table">
-						<thead class="total-table-head">
-							<tr class="table-total-row">
-								<th>Toplam </th>
-								<th>Fiyat</th>
-							</tr>
-						</thead>
-						<tbody>
-							<tr class="total-data">
-								<td><strong>Ürün Toplam: </strong></td>
-								<td>$500</td>
-							</tr>
-							<tr class="total-data">
-								<td><strong>Teslimat Ücreti: </strong></td>
-								<td>$45</td>
-							</tr>
-							<tr class="total-data">
-								<td><strong>Toplam: </strong></td>
-								<td>$545</td>
-							</tr>
-						</tbody>
-					</table>
-					<div class="cart-buttons">
-						<a href="cart.html" class="boxed-btn">Sepeti Güncelle</a>
-						<br />
-						<br />
-						<a asp-action="GetPayment" asp-controller="Payment" class="boxed-btn black">Siparişi Onayla</a>
-					</div>
-				</div>
+            <div class="col-lg-4">
+                <div class="total-section">
+                    <table class="total-table">
+                        <thead class="total-table-head">
+                            <tr class="table-total-row">
+                                <th>Toplam </th>
+                                <th>Fiyat</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="total-data">
+                                <td><strong>Ürün Toplam: </strong></td>
+                                <td>$500</td>
+                            </tr>
+                            <tr class="total-data">
+                                <td><strong>Teslimat Ücreti: </strong></td>
+                                <td>$45</td>
+                            </tr>
+                            <tr class="total-data">
+                                <td><strong>Toplam: </strong></td>
+                                <td>$545</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div class="cart-buttons">
+                        <a href="cart.html" class="boxed-btn">Sepeti Güncelle</a>
+                        <br />
+                        <br />
+                        <a asp-action="GetPayment" asp-controller="Payment" class="boxed-btn black">Siparişi Onayla</a>
+                    </div>
+                </div>
 
-				<div class="coupon-section">
-					<h3>Kupon Ekle</h3>
-					<div class="coupon-form-wrap">
-						<form asp-action="GetShoppingCart" asp-controller="ShoppingCart">
-							<p><input type="text" placeholder="Kupon Kodu Giriniz"></p>
-							<p><input type="submit" value="Ekle"></p>
-						</form>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
+                <div class="coupon-section">
+                    <h3>Kupon Ekle</h3>
+                    <div class="coupon-form-wrap">
+                        <form asp-action="GetShoppingCart" asp-controller="ShoppingCart">
+                            <p><input type="text" placeholder="Kupon Kodu Giriniz"></p>
+                            <p><input type="submit" value="Ekle"></p>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 <!-- end cart -->
-
-<div class="row product-lists">
-	@foreach (var item in Model)
-	{
-		<div class="col-lg-4 col-md-6 text-center">
-			<div class="single-product-item">
-				<div class="product-image">
-					<a href="single-product.html">
-						@{
-							var base64String = Convert.ToBase64String(item.Image);
-							var imageUrl = $"data:image/png;base64,{base64String}";
-						}
-						<img src="@imageUrl" alt="Image" />
-					</a>
-				</div>
-				<h3>@item.Name</h3>
-				<p class="product-price"> @item.Price TL</p>
-				<p class="product-description"> @item.Description</p>
-				<a href="cart.html" class="cart-btn"><i class="fas fa-shopping-cart"></i> Sepete Ekle</a>
-			</div>
-		</div>
-	}
+<div class="product-section mt-50 mb-50">
+    <div class="container">
+        <div class="row product-lists">
+            @foreach (var item in Model)
+            {
+                <div class="col-lg-2 col-md-1 text-center">
+                    <div class="single-product-item">
+                        <div class="product-image">
+                            <a href="single-product.html">
+                                @{
+                                    var base64String = Convert.ToBase64String(item.Image);
+                                    var imageUrl = $"data:image/png;base64,{base64String}";
+                                }
+                                <img src="@imageUrl" alt="Image" width="300" height="100"/>
+                            </a>
+                        </div>
+                        <h3>@item.Name</h3>
+                        <p class="product-price"> @item.Price TL</p>
+                        <p class="product-description"> @item.Description</p>
+                        <a href="cart.html" class="cart-btn"><i class="fas fa-shopping-cart"></i> Sepete Ekle</a>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
 </div>
+

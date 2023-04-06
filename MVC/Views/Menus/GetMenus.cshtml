@@ -50,7 +50,7 @@
                                     var base64String = Convert.ToBase64String(item.Image);
                                     var imageUrl = $"data:image/png;base64,{base64String}";
                                 }
-                                <img src="@imageUrl" alt="Image" />
+                                <img src="@imageUrl" alt="Image" width="600" height="300"/>
                             </a>
                         </div>
                         <h3>@item.Name</h3>
