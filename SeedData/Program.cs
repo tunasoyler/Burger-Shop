@@ -67,25 +67,25 @@ namespace SeedData
 
             List<Extra> extras = new List<Extra>()
             {
-                new Extra {  Name = "Kola", Price=20,ExtraCategoryId=1},
-                new Extra {  Name = "Sprite", Price=20,ExtraCategoryId=1},
-                new Extra {  Name = "Fanta", Price=20,ExtraCategoryId=1},
+                new Extra {  Name = "Kola",Image = ReadFile("Resources/coke.png"), Price=20,ExtraCategoryId=1},
+                new Extra {  Name = "Sprite",Image = ReadFile("Resources/sprite.png"), Price=20,ExtraCategoryId=1},
+                new Extra {  Name = "Fanta",Image = ReadFile("Resources/fanta.png"), Price=20,ExtraCategoryId=1},
 
-                new Extra {  Name = "Patates Kızartması", Price=25,ExtraCategoryId=2},
-                new Extra {  Name = "Tavuk", Price=40,ExtraCategoryId=2},
-                new Extra {  Name = "Soğan Halkası", Price=30,ExtraCategoryId=2},
+                new Extra {  Name = "Patates Kızartması",Image = ReadFile("Resources/patates.png"),  Price=25,ExtraCategoryId=2},
+                new Extra {  Name = "Tavuk",Image = ReadFile("Resources/chicken.png"),  Price=40,ExtraCategoryId=2},
+                new Extra {  Name = "Soğan Halkası",Image = ReadFile("Resources/onion.png"),  Price=30,ExtraCategoryId=2},
 
-                new Extra {  Name = "Ketçap", Price=5,ExtraCategoryId=3},
-                new Extra {  Name = "Mayonez", Price=5,ExtraCategoryId=3},
-                new Extra {  Name = "Ranch Sos", Price=5,ExtraCategoryId=3},
-                new Extra {  Name = "BBQ Sos", Price=5,ExtraCategoryId=3}
+                new Extra {  Name = "Ketçap",Image = ReadFile("Resources/ketchup.png"),  Price=5,ExtraCategoryId=3},
+                new Extra {  Name = "Mayonez",Image = ReadFile("Resources/mayonnaise.png"),  Price=5,ExtraCategoryId=3},
+                new Extra {  Name = "Ranch Sos",Image = ReadFile("Resources/ranch.png"),  Price=5,ExtraCategoryId=3},
+                new Extra {  Name = "BBQ Sos",Image = ReadFile("Resources/bbqsauce.png"),  Price=5,ExtraCategoryId=3}
             };
 
 
             Console.WriteLine(menus.Count + " items will be added.");
 
             foreach (var item in menus)
-            {    
+            {
                 MenuManager menuManager = new MenuManager(new EfMenuDal());
                 menuManager.MenuAdd(item);
                 Console.WriteLine("process...");
@@ -97,7 +97,7 @@ namespace SeedData
                 Console.WriteLine("process...");
             }
 
-           
+
             Console.WriteLine("DONE");
             Console.ReadKey();
         }

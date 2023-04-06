@@ -8,15 +8,25 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Include="bin\Debug\net6.0\Resources\bbqsauce.png" />
     <Content Include="bin\Debug\net6.0\Resources\bigmac.png" />
     <Content Include="bin\Debug\net6.0\Resources\cheese.png" />
     <Content Include="bin\Debug\net6.0\Resources\bbq.png" />
+    <Content Include="bin\Debug\net6.0\Resources\chicken.png" />
+    <Content Include="bin\Debug\net6.0\Resources\coke.png" />
     <Content Include="bin\Debug\net6.0\Resources\doktor.png" />
     <Content Include="bin\Debug\net6.0\Resources\doubleFish.png" />
     <Content Include="bin\Debug\net6.0\Resources\doyamiyorum.png" />
+    <Content Include="bin\Debug\net6.0\Resources\fanta.png" />
     <Content Include="bin\Debug\net6.0\Resources\fishMenu.png" />
     <Content Include="bin\Debug\net6.0\Resources\ikiliSakura.png" />
+    <Content Include="bin\Debug\net6.0\Resources\ketchup.png" />
     <Content Include="bin\Debug\net6.0\Resources\klasik.png" />
+    <Content Include="bin\Debug\net6.0\Resources\mayonnaise.png" />
+    <Content Include="bin\Debug\net6.0\Resources\onion.png" />
+    <Content Include="bin\Debug\net6.0\Resources\patates.png" />
+    <Content Include="bin\Debug\net6.0\Resources\ranch.png" />
+    <Content Include="bin\Debug\net6.0\Resources\sprite.png" />
     <Content Include="bin\Debug\net6.0\Resources\tavuk.png" />
     <Content Include="bin\Debug\net6.0\Resources\toplu.png" />
     <Content Include="bin\Debug\net6.0\Resources\ucluSakura.png" />
