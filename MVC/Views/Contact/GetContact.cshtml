@@ -1,8 +1,9 @@
-﻿@{
+﻿@using Entity.Concrete;
+@{
     ViewData["Title"] = "GetContact";
     Layout = "~/Views/Shared/_Layout2.cshtml";
 }
-
+@model ComplaintSuggestion
 
 
 @if (TempData["result"] != null)
@@ -39,15 +40,15 @@
 
                     <form asp-action="GetContact" asp-controller="Contact" type="post" id="fruitkha-contact" onSubmit="return valid_datas( this );">
                         <p>
-                            <input type="text" placeholder="İsim" name="name" id="name">
-                            <input type="email" placeholder="Email" name="email" id="email">
+                            <input asp-for="Name" type="text" placeholder="İsim" id="name">
+                            <input asp-for="Email" type="email" placeholder="Email" id="email">
                         </p>
                         <p>
-                            <input type="tel" placeholder="Telefon" name="phone" id="phone">
-                            <input type="text" placeholder="Konu" name="subject" id="subject">
+                            <input asp-for="Phone" type="tel" placeholder="Telefon" id="phone">
+                            <input asp-for="Title" type="text" placeholder="Konu" id="subject">
                         </p>
-                        <p><textarea name="message" id="message" cols="30" rows="10" placeholder="Mesaj"></textarea></p>
-                        <input type="hidden" name="token" @*value="FsWga4&@f6aw"*@ />
+                        <p><textarea asp-for="Comment" id="message" cols="30" rows="10" placeholder="Mesaj"></textarea></p>
+                        @*<input type="hidden" name="token" value="FsWga4&@f6aw" />*@
                         <p><input type="submit" value="Gönder"></p>
                     </form>
                 </div>
