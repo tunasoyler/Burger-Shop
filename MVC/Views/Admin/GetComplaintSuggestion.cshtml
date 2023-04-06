@@ -1,15 +1,12 @@
-﻿@using Entity.Concrete;
-@using MVC.Models;
-@model ComplaintSuggestionVM
-
-
-
-
+﻿
 
 @{
     ViewData["Title"] = "GetComplaintSuggestion";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
+@using Entity.Concrete;
+@using MVC.Models;
+@model ComplaintSuggestionVM
 
 <h1 class="bg-info text-white">Öneri ve Şikayetler</h1>
 @if (TempData["result"] != null)

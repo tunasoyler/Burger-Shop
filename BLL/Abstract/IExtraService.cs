@@ -10,6 +10,10 @@ namespace BLL.Abstract
     public interface IExtraService
     {
         List<Extra> GetList();
-        public void ExtraAdd(Extra extradal);
+        public bool ExtraAdd(Extra extradal);
+        public Extra FindById(int id);
+        public bool ExtraRemove(Extra extradal);
+        public bool ExtraUpdate(Extra extradal);
     }
 }
+

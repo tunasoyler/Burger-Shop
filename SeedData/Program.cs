@@ -87,7 +87,7 @@ namespace SeedData
             foreach (var item in menus)
             {
                 MenuManager menuManager = new MenuManager(new EfMenuDal());
-                menuManager.MenuAdd(item);
+               menuManager.MenuAdd(item);
                 Console.WriteLine("process...");
             }
             Console.WriteLine("All Menus are added.");

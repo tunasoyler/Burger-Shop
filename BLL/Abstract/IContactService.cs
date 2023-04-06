@@ -15,5 +15,6 @@ namespace BLL.Abstract
         public void ContactAdd(ComplaintSuggestion c);
         public ComplaintSuggestion FindById(int id);
         public bool ContactRemove(ComplaintSuggestion c);
+        public bool ContactUpdate(ComplaintSuggestion c);
     }
 }
