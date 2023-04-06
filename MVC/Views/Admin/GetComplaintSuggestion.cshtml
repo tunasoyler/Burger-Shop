@@ -1,0 +1,56 @@
+﻿@using Entity.Concrete;
+@using MVC.Models;
+@model ComplaintSuggestionVM
+
+
+
+
+
+@{
+    ViewData["Title"] = "GetComplaintSuggestion";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h1 class="bg-info text-white">Öneri ve Şikayetler</h1>
+@*@if (TempData["result"] != null)
+{
+    <script>
+        alert("İşlem başarılı");
+    </script>
+}*@
+
+@*<a asp-action="Create" asp-controller="Admin" class="btn btn-secondary">Create</a>*@
+<div class="container">
+    <table class=" table table-sm table-bordered">
+        <tr>
+            <th>ID</th>
+            <th>Last Name</th>
+            <th>Title</th>
+            <th>Comment</th>
+            <th>Email</th>
+            <th>Phone</th>
+            <th>Delete</th>
+        </tr>
+        @foreach (var item in Model.ComplaintSuggestionsList)
+        {
+            <tr>
+                <td>@item.Id</td>
+                <td>@item.Name</td>
+                <td>@item.Title</td>
+                <td>@item.Comment</td>
+                <td>@item.Email</td>
+                <td>@item.Phone</td>    
+                <td>
+                    <a class="btn btn-sm btn-primary" asp-action="DeleteSuggestion" asp-controller="Admin" asp-route-id="@item.Id">Delete</a>
+                </td>
+                <td>
+                 @*   <form asp-action="Delete" asp-controller="Admin" asp-route-id="@user.Id" method="post">
+                         <button type="submit" class="btn btn-sm btn-danger">Delete</button>
+                    </form>*@
+                </td>
+            </tr>
+        }
+
+    </table>
+</div>
+
