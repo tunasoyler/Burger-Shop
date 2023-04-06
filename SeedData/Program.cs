@@ -83,6 +83,7 @@ namespace SeedData
 
 
             Console.WriteLine(menus.Count + " items will be added.");
+
             foreach (var item in menus)
             {    
                 MenuManager menuManager = new MenuManager(new EfMenuDal());
