@@ -58,11 +58,9 @@ namespace MVC.Models.Context
 
 
 
-
             ////Huseyin
             //base.OnConfiguring(optionsBuilder);
             //optionsBuilder.UseSqlServer("Server=DESKTOP-FJAHODS;Database=BurgerMVCDb;Trusted_Connection=True;MultipleActiveResultSets=true");
-
 
 
 
