@@ -23,15 +23,24 @@
 								<a asp-action="GetMenus" asp-controller="Menus">Menüler</a>
 							</li>
 							<li>
+								<a asp-action="ProfileHome" asp-controller="UserProfile">Profilim</a>
+								<ul class="sub-menu">
+									<li><a asp-action="ProfileHome" asp-controller="UserProfile">Kullanıcı Bilgileri</a></li>
+									<li><a asp-action="ProfileHome" asp-controller="UserProfile">Siparişlerim</a></li>
+									<li><a asp-action="ProfileHome" asp-controller="UserProfile">Adreslerim</a></li>
+									<li><a asp-action="ProfileHome" asp-controller="UserProfile">Kartlarım</a></li>
+									<li><a asp-action="ProfileHome" asp-controller="UserProfile">Çıkış Yap</a></li>
+								</ul>
+							</li>
+							<li>
 								<div class="header-icons">
 									<a class="shopping-cart" asp-action="GetShoppingCart" asp-controller="ShoppingCart"><i class="fas fa-shopping-cart"></i></a>
 									<a class="mobile-hide search-bar-icon" href="#"><i class="fas fa-search"></i></a>
-									<a class="mobile-hide" asp-action="Login" asp-controller="User"><i class="fa fa-user" aria-hidden="true"></i></a>
 								</div>
 							</li>
 						</ul>
 					</nav>
-					<a class="mobile-show search-bar-icon" href="#"><i class="fas fa-search"></i></a>
+					<a class="mobile-show search-bar-icon dropdown" href="#"><i class="fas fa-search"></i></a>
 					<div class="mobile-menu"></div>
 					<!-- menu end -->
 				</div>
