@@ -93,17 +93,17 @@ namespace MVC.Controllers
         {
             AppUser _user = await _userManager.GetUserAsync(HttpContext.User);
             var passwordMatched = await _userManager.CheckPasswordAsync(_user, password);
-            //if (_user != null)
-            //{
-            //    //if (!string.IsNullOrEmpty(newPassword) && !string.IsNullOrEmpty(_user.PasswordHash))
-            //    //{
-            //    //    IdentityResult result = await _userManager.ChangePasswordAsync(_user, _user.PasswordHash, newPassword);
-            //    //    if (result.Succeeded)
-            //    //        return RedirectToAction("LogOut");
-            //    //    else
-            //    //        Errors(result);
-            //    //}
-            //}
+            if (_user != null)
+            {
+                if (!string.IsNullOrEmpty(newPassword) && !string.IsNullOrEmpty(_user.PasswordHash))
+                {
+                    IdentityResult result = await _userManager.ChangePasswordAsync(_user, _user.PasswordHash, newPassword);
+                    if (result.Succeeded)
+                        return RedirectToAction("LogOut");
+                    else
+                        Errors(result);
+                }
+            }
             else
                 ModelState.AddModelError("UserNotFound", "Kullanıcı Bulunamadı!");
             return RedirectToAction("ProfileHome");
