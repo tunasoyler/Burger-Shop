@@ -11,8 +11,6 @@ namespace MVC.Models
         [Required(ErrorMessage = "Lütfen kullanıcı adınızı giriniz.")]
         [DataType(DataType.Password, ErrorMessage = "Parolanız gereken değerleri taşımıyor.")]
         public string Password { get; set; }
-
-        
         public string? ReturnUrl { get; set; }
         public bool Remember { get; set; }
     }

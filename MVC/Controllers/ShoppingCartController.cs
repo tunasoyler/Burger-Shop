@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using BLL.Concrete;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using MVC.Models;
 using MVC.Models.Context;
@@ -10,29 +11,24 @@ namespace MVC.Controllers
 	{
 		IHttpContextAccessor httpContextAccessor;
         BurgerContext burgerContext;
+		ExtraManager extraManager;
 
-        public ShoppingCartController(IHttpContextAccessor httpContextAccessor, BurgerContext burgerContext)
+        public ShoppingCartController(IHttpContextAccessor httpContextAccessor, BurgerContext burgerContext,ExtraManager extraManager)
         {
             this.httpContextAccessor = httpContextAccessor;
             this.burgerContext = burgerContext;
+			this.extraManager = extraManager;
         }
-
-
-        
-
-
-
-
-
         public IActionResult Index()
 		{
 			return View();
 		}
 		public IActionResult GetShoppingCart()
 		{
-			CartDTO cartDTO = new CartDTO();
+			var extraList = extraManager.GetList();
+			//CartDTO cartDTO = new CartDTO();
 			//cartDTO = orderManager.GetOrder(cartDTO);
-			return View();
+			return View(extraList);
 		}
 	}
 }

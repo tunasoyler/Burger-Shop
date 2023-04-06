@@ -1,4 +1,6 @@
-﻿@model CartDTO
+﻿@using Entity.Concrete;
+@using System.Drawing;
+@model IEnumerable<Extra>
 @{
     ViewData["Title"] = "GetShoppingCart";
     Layout = "~/Views/Shared/_Layout2.cshtml";
@@ -97,3 +99,26 @@
 	</div>
 </div>
 <!-- end cart -->
+
+<div class="row product-lists">
+	@foreach (var item in Model)
+	{
+		<div class="col-lg-4 col-md-6 text-center">
+			<div class="single-product-item">
+				<div class="product-image">
+					<a href="single-product.html">
+						@{
+							var base64String = Convert.ToBase64String(item.Image);
+							var imageUrl = $"data:image/png;base64,{base64String}";
+						}
+						<img src="@imageUrl" alt="Image" />
+					</a>
+				</div>
+				<h3>@item.Name</h3>
+				<p class="product-price"> @item.Price TL</p>
+				<p class="product-description"> @item.Description</p>
+				<a href="cart.html" class="cart-btn"><i class="fas fa-shopping-cart"></i> Sepete Ekle</a>
+			</div>
+		</div>
+	}
+</div>
