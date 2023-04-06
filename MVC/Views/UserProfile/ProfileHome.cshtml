@@ -1,8 +1,72 @@
-﻿
+﻿@using MVC.Models.Context;
+@model AppUser
 @{
     ViewData["Title"] = "ProfileHome";
     Layout = "~/Views/Shared/_Layout2.cshtml";
 }
 
-
-
+<!-- breadcrumb-section -->
+<div class="breadcrumb-section breadcrumb-bg">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 offset-lg-2 text-center">
+                <div class="breadcrumb-text">
+                    <h1>Kullanıcı Bilgilerim</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- end breadcrumb section -->
+<!-- Form Start -->
+<div class="container-fluid pt-4 px-4">
+    <div class="row g-4">
+        <div class="col-sm-12 col-xl-6">
+            <div class="bg-light rounded h-100 p-4">
+                <h6 class="mb-4">Üyelik Bilgilerim</h6>
+                <form asp-action="ProfileHome">
+                    <div class="mb-3">
+                        <label asp-for="FirstName" class="form-label">İsim</label>
+                        <input asp-for="FirstName" type="text" class="form-control">
+                    </div>
+                    <div class="mb-3">
+                        <label asp-for="LastName" class="form-label">Soyisim</label>
+                        <input asp-for="LastName" type="text" class="form-control">
+                    </div>
+                    <div class="mb-3">
+                        <label asp-for="UserName" class="form-label">Kullanıcı Adı</label>
+                        <input asp-for="UserName" type="text" class="form-control">
+                    </div>
+                    <div class="mb-3">
+                        <label asp-for="Email" class="form-label">E-posta Adresi</label>
+                        <input asp-for="Email" type="email" class="form-control"
+                               aria-describedby="emailHelp">
+                        <div id="emailHelp" class="form-text">
+                            E-posta adresinizi asla kimse ile paylaşmıyoruz.
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-warning">Güncelle</button>
+                </form>
+            </div>
+        </div>
+        <div class="col-sm-12 col-xl-6">
+            <div class="bg-light rounded h-100 p-4">
+                <h6 class="mb-4">Şifre İşlemleri</h6>
+                <form>
+                    <div class="row mb-3">
+                        <label asp-for="PasswordHash" class="col-sm-2 col-form-label">Eski Şifreniz</label>
+                        <div class="col-sm-10">
+                            <input asp-for="PasswordHash" class="form-control" id="inputPassword3">
+                        </div>
+                    </div>
+                     <div class="row mb-3">
+                        <label name="newPassword" class="col-sm-2 col-form-label">Yeni Şifreniz</label>
+                        <div class="col-sm-10">
+                            <input type="password" class="form-control" id="newPassword">
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-warning">Güncelle</button>
+                </form>
+                </div>
+                </div>
+                <!-- Form End -->
