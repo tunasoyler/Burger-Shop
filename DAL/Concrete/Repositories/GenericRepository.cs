@@ -19,7 +19,7 @@ namespace DAL.Concrete.Repositories
         //     _object = _db.Set<T>();
         // }
 
-
+        
 
 
         public bool Delete(T p)
@@ -39,11 +39,15 @@ namespace DAL.Concrete.Repositories
            return c.Find<T>(id);
         }
 
-        public void Insert(T p)
+        public bool Insert(T p)
         {
             using var c = new BurgerContext();
             c.Add(p);
-            c.SaveChanges();
+            int IsTrue = c.SaveChanges();
+            if (IsTrue == 0)
+                return false;
+            else
+                return true;
         }
 
 
@@ -63,10 +67,14 @@ namespace DAL.Concrete.Repositories
 
 
 
-        public void Update(T p)
+        public bool Update(T p)
         {
             using var c = new BurgerContext();
-            c.SaveChanges();
+            int IsTrue = c.SaveChanges();
+            if (IsTrue == 0)
+                return false;
+            else
+                return true;
         }
     }
 }

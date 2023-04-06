@@ -31,6 +31,12 @@ namespace BLL.Concrete
             return IsTrue;
         }
 
+        public bool ContactUpdate(ComplaintSuggestion c)
+        {
+            bool IsTrue = _s.Update(c);
+            return IsTrue;
+        }
+
         public ComplaintSuggestion FindById(int id)
         {
            return _s.Find(id);

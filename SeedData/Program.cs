@@ -48,7 +48,7 @@ namespace SeedData
 
             List<Menu> menus = new List<Menu>() {
                 new Menu {  Name = "BBQ Burger", Price = 80, Image = ReadFile("Resources/bbq.png"), Description="180 gr. dana burger köftesi, kıtır soğan, sotelenmiş mantar, dana bacon, cheddar peyniri, BBQ sos, patates kızartması.", MenuCategory="etmenu" },
-                new Menu {  Name = "Big Mac", Price = 90, Image = ReadFile("Resources/bigmac.png"), Description="İki katmanlı özel hamburger ekmeği arasında közde marine edilmiş sığır eti köftesi, çedar peyniri, turşu, soğan, turşulu mayonez ve marul ile servis edilir.", MenuCategory="etmenu" },
+                new Menu {  Name = "Double Burger", Price = 90, Image = ReadFile("Resources/bigmac.png"), Description="İki katmanlı özel hamburger ekmeği arasında közde marine edilmiş sığır eti köftesi, çedar peyniri, turşu, soğan, turşulu mayonez ve marul ile servis edilir.", MenuCategory="etmenu" },
                 new Menu {  Name = "Sakura 2'li Burger", Price = 100, Image = ReadFile("Resources/ikiliSakura.png"), Description="İki adet köftesiyle özel bir lezzet sunan burger. Dana köftesi, hardal, soya sosu, teriyaki sos, cheddar peyniri, marul, domates ve turşu eşliğinde servis edilir." , MenuCategory="etmenu"},
                 new Menu {  Name = "Sakura 3'lü Burger", Price = 120, Image = ReadFile("Resources/ucluSakura.png"), Description="Üç adet köftesiyle özel bir lezzet sunan burger. Dana köftesi, hardal, soya sosu, teriyaki sos, cheddar peyniri, marul, domates ve turşu eşliğinde servis edilir." , MenuCategory="etmenu"},
                 new Menu {  Name = "Doktor Burger", Price = 100, Image = ReadFile("Resources/doktor.png"), Description="Dana burger köftesi, mantar, hardal, ketchup, cheddar peyniri, marul, domates, turşu, tursu suyu ve ketçaplı özel sos ile servis edilir.", MenuCategory="etmenu" },
@@ -87,7 +87,7 @@ namespace SeedData
             foreach (var item in menus)
             {
                 MenuManager menuManager = new MenuManager(new EfMenuDal());
-                menuManager.MenuAdd(item);
+               menuManager.MenuAdd(item);
                 Console.WriteLine("process...");
             }
             foreach (var item in extras)

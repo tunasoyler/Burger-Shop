@@ -13,6 +13,7 @@ namespace MVC.Controllers
         private UserManager<AppUser> userManager;
         private IPasswordHasher<AppUser> passwordHasher;
         ContactManager contactManager = new ContactManager(new EfComplaintSuggestionDal());
+        CouponManager couponManager = new CouponManager(new EfCouponDal());
         public AdminController(UserManager<AppUser> _userManager, IPasswordHasher<AppUser> _passwordHasher)
         {
             userManager = _userManager;
@@ -85,15 +86,9 @@ namespace MVC.Controllers
             complaintSuggestionVM.ComplaintSuggestionsList = contactManager.GetList();
             return View(complaintSuggestionVM);
         }
-        private void Errors(IdentityResult result)
-        {
-            foreach (IdentityError error in result.Errors)
-            {
-                ModelState.AddModelError($"{error.Code}-{error.Description}", error.Description);
-            }
-        }
+     
        
-        public async Task<IActionResult> DeleteSuggestion(int id)
+        public IActionResult DeleteSuggestion(int id)
         {
             //AppUser user = await userManager.FindByIdAsync(id);
             ComplaintSuggestion complaintSuggestion =  contactManager.FindById(id);
@@ -112,6 +107,96 @@ namespace MVC.Controllers
                 ModelState.AddModelError("ComplaintSuggestionNotFound_Delete", "ComplaintSuggestion Not Found");
 
             return View("GetComplaintSuggestion");
+        }
+        public IActionResult GetCoupon()
+        {
+            CouponVM couponVM = new CouponVM();
+            couponVM.CouponList = couponManager.GetList();
+            return View(couponVM);
+        }
+        public IActionResult CreateCoupon()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult CreateCoupon(Coupon coupon)
+        {
+            if (ModelState.IsValid)
+            {
+                Coupon Coupon = new Coupon()
+                {
+                    Name = coupon.Name,
+                    CouponCode=coupon.CouponCode,
+                    State=coupon.State
+                };
+                bool result = couponManager.CouponAdd(coupon);
+                if (result)
+                {
+                    TempData["result"] = "Your create has been  successfully.";
+                    return RedirectToAction("GetCoupon");
+                }
+                else
+                {
+                    TempData["resultError"] = "Your create has been not successfully.";
+                }
+
+            }
+            return View(coupon);
+        }
+        public IActionResult UpdateCoupon(int id)
+        {
+            Coupon coupon = couponManager.FindById(id);
+            if (coupon != null)
+            {
+                return View(coupon);
+            }
+            else
+            {
+                return RedirectToAction("GetCoupon", "Admin");
+            }
+        }
+        [HttpPost]
+        public IActionResult UpdateCoupon(int id, string name, string couponcode,bool state)
+        {
+            Coupon coupon = couponManager.FindById(id);
+            if (coupon != null)
+            {
+                if (!string.IsNullOrEmpty(name) && !string.IsNullOrEmpty(couponcode))
+                {
+                    coupon.Name = name;
+                    coupon.CouponCode = couponcode;
+                    coupon.State = state;
+                }
+                else
+                {
+                    ModelState.AddModelError("UdateCoupon", "Kupon ismi ve kupon kodu boş geçilemez");
+                }
+
+                if (!string.IsNullOrEmpty(name) && !string.IsNullOrEmpty(couponcode))
+                {
+                    bool result = couponManager.CouponUpdate(coupon);
+                    if (result)
+                    {
+                        TempData["result"] = "Kayıt Başarılı.";
+                        return RedirectToAction("GetCoupon");
+
+                    }
+
+                    else
+                        TempData["resultError"] = "Kayıt Başarısız.";
+                }
+            }
+            else
+                ModelState.AddModelError("CouponNotFound", "Kupon Bulunamadı.");
+            return View(coupon);
+        }
+        private void Errors(IdentityResult result)
+        {
+            foreach (IdentityError error in result.Errors)
+            {
+                ModelState.AddModelError($"{error.Code}-{error.Description}", error.Description);
+            }
         }
     }
 }

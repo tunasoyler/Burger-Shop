@@ -24,9 +24,29 @@ namespace BLL.Concrete
             return _extradal.List();
         }
 
-        public void ExtraAdd(Extra extradal)
+        public bool ExtraAdd(Extra extradal)
         {
-            _extradal.Insert(extradal);
+            bool IsTrue = _extradal.Insert(extradal);
+            return IsTrue;
+        }
+
+       
+
+        public Extra FindById(int id)
+        {
+            return _extradal.Find(id);
+        }
+
+        public bool ExtraRemove(Extra extradal)
+        {
+            bool IsTrue = _extradal.Delete(extradal);
+            return IsTrue;
+        }
+
+        public bool ExtraUpdate(Extra extradal)
+        {
+            bool IsTrue = _extradal.Update(extradal);
+            return IsTrue;
         }
     }
 }
