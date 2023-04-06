@@ -28,9 +28,8 @@
                                 @if (User?.Identity?.IsAuthenticated ?? false)
                                 {
                                     <ul class="sub-menu">
+                                        <li><a asp-action="ProfileHome" asp-controller="UserProfile">Kullanıcı Bilgilerim</a></li>
                                         <li><a asp-action="GetOrders" asp-controller="UserProfile">Siparişlerim</a></li>
-                                        <li><a asp-action="GetOrders" asp-controller="UserProfile">Adreslerim</a></li>
-                                        <li><a asp-action="GetOrders" asp-controller="UserProfile">Kartlarım</a></li>
                                         <li><a asp-action="GetOrders" asp-controller="UserProfile">Çıkış Yap</a></li>
                                     </ul>
                                 }
