@@ -27,6 +27,13 @@ namespace MVC
                 opt.LoginPath = "/User/Login";
             });
 
+            builder.Services.ConfigureApplicationCookie(opt =>
+            {
+                opt.Cookie.Name = "ShoppingCartCookie";
+                opt.ExpireTimeSpan = TimeSpan.FromMinutes(10);
+                opt.SlidingExpiration = true;
+            });
+
             builder.Services.Configure<IdentityOptions>(opt =>
             {
                 opt.User.RequireUniqueEmail = true;

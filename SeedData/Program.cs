@@ -87,14 +87,14 @@ namespace SeedData
             foreach (var item in menus)
             {
                 MenuManager menuManager = new MenuManager(new EfMenuDal());
-               menuManager.MenuAdd(item);
+              bool result= menuManager.MenuAdd(item);
                 Console.WriteLine("process...");
             }
             Console.WriteLine("All Menus are added.");
             foreach (var item in extras)
             {
                 ExtraManager extraManager = new ExtraManager(new EfExtraDal());
-                extraManager.ExtraAdd(item);
+               bool result= extraManager.ExtraAdd(item);
                 Console.WriteLine("process...");
             }
             Console.WriteLine("All Extras are added.");
