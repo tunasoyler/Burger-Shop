@@ -1,9 +1,11 @@
 ﻿using Entity.Concrete;
+using Entity.Validations;
 using Microsoft.AspNetCore.Identity;
+using System.ComponentModel.DataAnnotations;
 
 namespace MVC.Models.Context
 {
-
+    [MetadataType(typeof(AppUserValidation))]
     public class AppUser : IdentityUser<Guid>
     {
         public string FirstName { get; set; }
