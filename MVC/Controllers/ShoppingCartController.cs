@@ -17,8 +17,6 @@ namespace MVC.Controllers
         ExtraManager extraManager = new ExtraManager(new EfExtraDal());
         MenuManager menuManager = new MenuManager(new EfMenuDal());
         OrderDetailsManager orderDetailsManager = new OrderDetailsManager(new EfOrderDetailsDal());
-        private const string OrderSessionKey = "order";
-        private const string OrderDetailsSessionKey = "orderDetails";
 
 
         private readonly IHttpContextAccessor _httpContextAccessor;
