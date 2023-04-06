@@ -1,71 +1,80 @@
 ﻿
 <!-- header -->
 <div class="top-header-area" id="sticker">
-	<div class="container">
-		<div class="row">
-			<div class="col-lg-12 col-sm-12 text-center">
-				<div class="main-menu-wrap">
-					<!-- logo -->
-					<div class="site-logo">
-						<a asp-action="GetHome" asp-controller="Home">
-							<img src="~/fruitkha-1.0.0/assets/img/hamburger.png" alt="">
-						</a>
-					</div>
-					<!-- logo -->
-					<!-- menu start -->
-					<nav class="main-menu ">
-						<ul>
-							<li>
-								<a asp-action="GetHome" asp-controller="Home">Anasayfa</a>
-							</li>
-							<li><a asp-action="GetAbout" asp-controller="About">Hakkımızda</a></li>
-							<li><a asp-action="GetContact" asp-controller="Contact">İletişim</a></li>
-							<li>
-								<a asp-action="GetMenus" asp-controller="Menus">Menüler</a>
-							</li>
-							
-							<li>
-								<a asp-action="ProfileHome" asp-controller="UserProfile">Profilim</a>
-								<ul class="sub-menu">
-									<li><a asp-action="ProfileHome" asp-controller="UserProfile">Kullanıcı Bilgileri</a></li>
-									<li><a asp-action="ProfileHome" asp-controller="UserProfile">Siparişlerim</a></li>
-									<li><a asp-action="ProfileHome" asp-controller="UserProfile">Adreslerim</a></li>
-									<li><a asp-action="ProfileHome" asp-controller="UserProfile">Kartlarım</a></li>
-									<li><a asp-action="ProfileHome" asp-controller="UserProfile">Çıkış Yap</a></li>
-								</ul>
-							</li>
-							<li>
-								<div class="header-icons">
-									<a class="shopping-cart" asp-action="GetShoppingCart" asp-controller="ShoppingCart"><i class="fas fa-shopping-cart"></i></a>
-									<a class="mobile-hide search-bar-icon" href="#"><i class="fas fa-search"></i></a>
-								</div>
-							</li>
-						</ul>
-					</nav>
-					<a class="mobile-show search-bar-icon dropdown" href="#"><i class="fas fa-search"></i></a>
-					<div class="mobile-menu"></div>
-					<!-- menu end -->
-				</div>
-			</div>
-		</div>
-	</div>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 col-sm-12 text-center">
+                <div class="main-menu-wrap">
+                    <!-- logo -->
+                    <div class="site-logo">
+                        <a asp-action="GetHome" asp-controller="Home">
+                            <img src="~/fruitkha-1.0.0/assets/img/hamburger.png" alt="">
+                        </a>
+                    </div>
+                    <!-- logo -->
+                    <!-- menu start -->
+                    <nav class="main-menu ">
+                        <ul>
+                            <li>
+                                <a asp-action="GetHome" asp-controller="Home">Anasayfa</a>
+                            </li>
+                            <li><a asp-action="GetAbout" asp-controller="About">Hakkımızda</a></li>
+                            <li><a asp-action="GetContact" asp-controller="Contact">İletişim</a></li>
+                            <li>
+                                <a asp-action="GetMenus" asp-controller="Menus">Menüler</a>
+                            </li>
+                            <li>
+                                <a asp-action="ProfileHome" asp-controller="UserProfile">Profilim</a>
+                                @if (User?.Identity?.IsAuthenticated ?? false)
+                                {
+                                    <ul class="sub-menu">
+                                        <li><a asp-action="GetOrders" asp-controller="UserProfile">Siparişlerim</a></li>
+                                        <li><a asp-action="GetOrders" asp-controller="UserProfile">Adreslerim</a></li>
+                                        <li><a asp-action="GetOrders" asp-controller="UserProfile">Kartlarım</a></li>
+                                        <li><a asp-action="GetOrders" asp-controller="UserProfile">Çıkış Yap</a></li>
+                                    </ul>
+                                }
+                                else
+                                {
+                                    <ul class="sub-menu">
+                                        <li><a asp-action="Login" asp-controller="User">Giriş Yap</a></li>
+                                        <li><a asp-action="Register" asp-controller="User">Üye Ol</a></li>
+                                    </ul>
+                                }
+
+                            </li>
+                            <li>
+                                <div class="header-icons">
+                                    <a class="shopping-cart" asp-action="GetShoppingCart" asp-controller="ShoppingCart"><i class="fas fa-shopping-cart"></i></a>
+                                    <a class="mobile-hide search-bar-icon" href="#"><i class="fas fa-search"></i></a>
+                                </div>
+                            </li>
+                        </ul>
+                    </nav>
+                    <a class="mobile-show search-bar-icon" href="#"><i class="fas fa-search"></i></a>
+                    <div class="mobile-menu"></div>
+                    <!-- menu end -->
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 <!-- end header -->
 <!-- search area -->
 <div class="search-area">
-	<div class="container">
-		<div class="row">
-			<div class="col-lg-12">
-				<span class="close-btn"><i class="fas fa-window-close"></i></span>
-				<div class="search-bar">
-					<div class="search-bar-tablecell">
-						<h3>Arama:</h3>
-						<input type="text" placeholder="Anahtar Kelime"
-						<button type="submit">Arama <i class="fas fa-search"></i></button>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <span class="close-btn"><i class="fas fa-window-close"></i></span>
+                <div class="search-bar">
+                    <div class="search-bar-tablecell">
+                        <h3>Arama:</h3>
+                        <input type="text" placeholder="Anahtar Kelime"
+                        <button type="submit">Arama <i class="fas fa-search"></i></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 <!-- end search area -->

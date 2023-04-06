@@ -19,6 +19,13 @@ namespace MVC
             builder.Services.AddHttpContextAccessor();
 
             builder.Services.AddIdentity<AppUser, AppRole>().AddEntityFrameworkStores<BurgerContext>();
+            builder.Services.ConfigureApplicationCookie(opt =>
+            {
+                opt.Cookie.Name = "IdentityCookie";
+                opt.ExpireTimeSpan = TimeSpan.FromMinutes(30);
+                opt.SlidingExpiration = true;
+                opt.LoginPath = "/User/Login";
+            });
 
             builder.Services.Configure<IdentityOptions>(opt =>
             {
@@ -37,7 +44,7 @@ namespace MVC
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();
-
+            //app.UseSession();
             app.UseRouting();
 
             app.UseAuthentication();

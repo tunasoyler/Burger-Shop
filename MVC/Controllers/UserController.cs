@@ -10,8 +10,6 @@ namespace MVC.Controllers
 	{
 		private readonly UserManager<AppUser> _usermanager;
 		private readonly SignInManager<AppUser> _signInManager;
-		
-		
 
         public UserController(UserManager<AppUser> usermanager, SignInManager<AppUser> signInManager)
         {
@@ -29,8 +27,8 @@ namespace MVC.Controllers
 		}
 		public IActionResult Login(string returnUrl)
 		{
-			returnUrl = returnUrl is null ? "/Home/GetHome" : returnUrl;
-			return View(new LoginVM() { ReturnUrl=returnUrl});
+                returnUrl = returnUrl is null ? "/Home/GetHome" : returnUrl;
+                return View(new LoginVM() { ReturnUrl = returnUrl });
 		}
 		[HttpPost]
 		public async Task<IActionResult> Login(LoginVM loginVM)
@@ -41,14 +39,10 @@ namespace MVC.Controllers
 				if(appUser != null)
 				{
 					await _signInManager.SignOutAsync();
-                    SignInResult result =await _signInManager.PasswordSignInAsync(appUser, loginVM.Password,false,false);
+                    SignInResult result =await _signInManager.PasswordSignInAsync(appUser, loginVM.Password,loginVM.Remember,false);
 					if(result.Succeeded)
 					{
-						
-						CookieOptions option = new CookieOptions();
-						option.Expires=DateTime.Now.AddMinutes(30);
-						//Response.Cookies.Append((Cookie_Key, loginVM, option);
-						return Redirect(loginVM.ReturnUrl ?? "/");
+						return RedirectToAction("ProfileHome","UserProfile");
 					}
 					ModelState.AddModelError("", "Wrong Credantion Information!");
 				}
