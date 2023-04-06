@@ -7,6 +7,12 @@
 }
 
 <h1 class="bg-info text-white">Tüm Kullanıcılar </h1>
+@if (TempData["result"] != null)
+{
+    <script>
+        alert("İşlem başarılı");
+    </script>
+}
 
 @*<a asp-action="Create" asp-controller="Admin" class="btn btn-secondary">Create</a>*@
 <div class="container">
