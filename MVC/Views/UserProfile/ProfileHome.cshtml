@@ -54,15 +54,15 @@
                 <h6 class="mb-4">Şifre İşlemleri</h6>
                 <form>
                     <div class="row mb-3">
-                        <label asp-for="PasswordHash" class="col-sm-2 col-form-label">Eski Şifreniz</label>
+                        <label for="password" class="col-sm-2 col-form-label">Eski Şifreniz</label>
                         <div class="col-sm-10">
-                            <input asp-for="PasswordHash" class="form-control" id="inputPassword3">
+                            <input name="password" class="form-control" >
                         </div>
                     </div>
                      <div class="row mb-3">
-                        <label name="newPassword" class="col-sm-2 col-form-label">Yeni Şifreniz</label>
+                        <label for="newPassword" class="col-sm-2 col-form-label">Yeni Şifreniz</label>
                         <div class="col-sm-10">
-                            <input type="password" class="form-control" id="newPassword">
+                            <input type="password" class="form-control" name="newPassword">
                         </div>
                     </div>
                     <button type="submit" class="btn btn-warning">Güncelle</button>
