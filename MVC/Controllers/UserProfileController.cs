@@ -1,4 +1,6 @@
 ﻿
+using BLL.Concrete;
+using DAL.EntityFramework;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -13,6 +15,7 @@ namespace MVC.Controllers
         private readonly UserManager<AppUser> _userManager;
         private readonly SignInManager<AppUser> _signInManager;
         private readonly IPasswordHasher<AppUser> _passwordHasher;
+        OrderManager _orderManager = new OrderManager(new EfOrderDal());
 
         public UserProfileController(UserManager<AppUser> usermanager, SignInManager<AppUser> signInManager, IPasswordHasher<AppUser> passwordHasher)
         {
@@ -106,5 +109,12 @@ namespace MVC.Controllers
                 ModelState.AddModelError("UserNotFound", "Kullanıcı Bulunamadı!");
             return RedirectToAction("ProfileHome");
         }
+        public async Task<IActionResult> GetOrders()
+        {
+            AppUser _user = await _userManager.GetUserAsync(HttpContext.User);
+            _orderManager.GetList(_user);
+            return View(); 
+        }
+
     }
 }
