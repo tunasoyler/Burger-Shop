@@ -9,7 +9,7 @@ namespace Entity.Concrete
     public class Extra : BaseEntity
     {
         public ICollection<OrderDetails> OrderDetails { get; set; }
-        public ExtraCategory ExtraCategory { get; set; }
+        public ExtraCategory? ExtraCategory { get; set; }
         public int ExtraCategoryId { get; set; }
         public decimal Price { get; set; }
         public string? Description { get; set; }

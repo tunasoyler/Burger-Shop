@@ -48,7 +48,7 @@ namespace SeedData
 
             List<Menu> menus = new List<Menu>() {
                 new Menu {  Name = "BBQ Burger", Price = 80, Image = ReadFile("Resources/bbq.png"), Description="180 gr. dana burger köftesi, kıtır soğan, sotelenmiş mantar, dana bacon, cheddar peyniri, BBQ sos, patates kızartması.", MenuCategory="etmenu" },
-                new Menu {  Name = "Big Mac", Price = 90, Image = ReadFile("Resources/bigmac.png"), Description="İki katmanlı özel hamburger ekmeği arasında közde marine edilmiş sığır eti köftesi, çedar peyniri, turşu, soğan, turşulu mayonez ve marul ile servis edilir.", MenuCategory="etmenu" },
+                new Menu {  Name = "Double Burger", Price = 90, Image = ReadFile("Resources/bigmac.png"), Description="İki katmanlı özel hamburger ekmeği arasında közde marine edilmiş sığır eti köftesi, çedar peyniri, turşu, soğan, turşulu mayonez ve marul ile servis edilir.", MenuCategory="etmenu" },
                 new Menu {  Name = "Sakura 2'li Burger", Price = 100, Image = ReadFile("Resources/ikiliSakura.png"), Description="İki adet köftesiyle özel bir lezzet sunan burger. Dana köftesi, hardal, soya sosu, teriyaki sos, cheddar peyniri, marul, domates ve turşu eşliğinde servis edilir." , MenuCategory="etmenu"},
                 new Menu {  Name = "Sakura 3'lü Burger", Price = 120, Image = ReadFile("Resources/ucluSakura.png"), Description="Üç adet köftesiyle özel bir lezzet sunan burger. Dana köftesi, hardal, soya sosu, teriyaki sos, cheddar peyniri, marul, domates ve turşu eşliğinde servis edilir." , MenuCategory="etmenu"},
                 new Menu {  Name = "Doktor Burger", Price = 100, Image = ReadFile("Resources/doktor.png"), Description="Dana burger köftesi, mantar, hardal, ketchup, cheddar peyniri, marul, domates, turşu, tursu suyu ve ketçaplı özel sos ile servis edilir.", MenuCategory="etmenu" },
@@ -67,13 +67,13 @@ namespace SeedData
 
             List<Extra> extras = new List<Extra>()
             {
-                new Extra {  Name = "Kola",Image = ReadFile("Resources/coke.png"), Price=20,ExtraCategoryId=1},
-                new Extra {  Name = "Sprite",Image = ReadFile("Resources/sprite.png"), Price=20,ExtraCategoryId=1},
-                new Extra {  Name = "Fanta",Image = ReadFile("Resources/fanta.png"), Price=20,ExtraCategoryId=1},
+                new Extra {  Name = "Kola",Image = ReadFile("Resources/coke.png"), Price=20, ExtraCategoryId=1},
+                new Extra {  Name = "Sprite",Image = ReadFile("Resources/sprite.png"), Price=20, ExtraCategoryId=1},
+                new Extra {  Name = "Fanta",Image = ReadFile("Resources/fanta.png"), Price=20, ExtraCategoryId=1},
 
-                new Extra {  Name = "Patates Kızartması",Image = ReadFile("Resources/patates.png"),  Price=25,ExtraCategoryId=2},
-                new Extra {  Name = "Tavuk",Image = ReadFile("Resources/chicken.png"),  Price=40,ExtraCategoryId=2},
-                new Extra {  Name = "Soğan Halkası",Image = ReadFile("Resources/onion.png"),  Price=30,ExtraCategoryId=2},
+                new Extra {  Name = "Patates Kızartması",Image = ReadFile("Resources/patates.png"),  Price=25, ExtraCategoryId=2},
+                new Extra {  Name = "Tavuk",Image = ReadFile("Resources/chicken.png"),  Price=40, ExtraCategoryId=2},
+                new Extra {  Name = "Soğan Halkası",Image = ReadFile("Resources/onion.png"),  Price=30, ExtraCategoryId=2},
 
                 new Extra {  Name = "Ketçap",Image = ReadFile("Resources/ketchup.png"),  Price=5,ExtraCategoryId=3},
                 new Extra {  Name = "Mayonez",Image = ReadFile("Resources/mayonnaise.png"),  Price=5,ExtraCategoryId=3},
@@ -90,15 +90,17 @@ namespace SeedData
                 menuManager.MenuAdd(item);
                 Console.WriteLine("process...");
             }
+            Console.WriteLine("All Menus are added.");
             foreach (var item in extras)
             {
                 ExtraManager extraManager = new ExtraManager(new EfExtraDal());
                 extraManager.ExtraAdd(item);
                 Console.WriteLine("process...");
             }
+            Console.WriteLine("All Extras are added.");
 
 
-            Console.WriteLine("DONE");
+            Console.WriteLine("ALL DONE");
             Console.ReadKey();
         }
     }

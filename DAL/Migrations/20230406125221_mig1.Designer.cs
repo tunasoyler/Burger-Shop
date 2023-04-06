@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DAL.Migrations
 {
     [DbContext(typeof(BurgerContext))]
-    [Migration("20230406091443_mig1")]
+    [Migration("20230406125221_mig1")]
     partial class mig1
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -101,9 +101,6 @@ namespace DAL.Migrations
                     b.Property<string>("Email")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("LastName")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<DateTime>("ModifiedTime")
                         .HasColumnType("datetime2");
 
@@ -167,23 +164,21 @@ namespace DAL.Migrations
                     b.Property<DateTime>("CreatedTime")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2023, 4, 6, 12, 14, 42, 928, DateTimeKind.Local).AddTicks(6627));
+                        .HasDefaultValue(new DateTime(2023, 4, 6, 15, 52, 21, 392, DateTimeKind.Local).AddTicks(7222));
 
                     b.Property<string>("Description")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("ExtraCategoryId")
                         .HasColumnType("int");
 
                     b.Property<byte[]>("Image")
-                        .IsRequired()
                         .HasColumnType("varbinary(max)");
 
                     b.Property<DateTime>("ModifiedTime")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2023, 4, 6, 12, 14, 42, 928, DateTimeKind.Local).AddTicks(7013));
+                        .HasDefaultValue(new DateTime(2023, 4, 6, 15, 52, 21, 392, DateTimeKind.Local).AddTicks(7439));
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -215,7 +210,6 @@ namespace DAL.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Description")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("ModifiedTime")
@@ -244,7 +238,7 @@ namespace DAL.Migrations
                     b.Property<DateTime>("CreatedTime")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2023, 4, 6, 12, 14, 42, 928, DateTimeKind.Local).AddTicks(9195));
+                        .HasDefaultValue(new DateTime(2023, 4, 6, 15, 52, 21, 392, DateTimeKind.Local).AddTicks(9461));
 
                     b.Property<string>("Description")
                         .IsRequired()
@@ -262,7 +256,7 @@ namespace DAL.Migrations
                     b.Property<DateTime>("ModifiedTime")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2023, 4, 6, 12, 14, 42, 928, DateTimeKind.Local).AddTicks(9379));
+                        .HasDefaultValue(new DateTime(2023, 4, 6, 15, 52, 21, 392, DateTimeKind.Local).AddTicks(9646));
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -321,7 +315,7 @@ namespace DAL.Migrations
 
             modelBuilder.Entity("Entity.Concrete.OrderDetails", b =>
                 {
-                    b.Property<int>("MenuId")
+                    b.Property<int?>("MenuId")
                         .HasColumnType("int");
 
                     b.Property<int>("OrderId")
@@ -343,6 +337,9 @@ namespace DAL.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<decimal>("OrderDetailPrice")
+                        .HasColumnType("decimal(18,2)");
+
                     b.Property<int>("Quantity")
                         .HasColumnType("int");
 
@@ -351,9 +348,6 @@ namespace DAL.Migrations
 
                     b.Property<bool>("State")
                         .HasColumnType("bit");
-
-                    b.Property<decimal>("UnitPrice")
-                        .HasColumnType("decimal(18,2)");
 
                     b.HasKey("MenuId", "OrderId", "ExtraId");
 
@@ -534,7 +528,7 @@ namespace DAL.Migrations
                     b.Property<DateTime>("MemberSince")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2023, 4, 6, 12, 14, 42, 928, DateTimeKind.Local).AddTicks(3136));
+                        .HasDefaultValue(new DateTime(2023, 4, 6, 15, 52, 21, 392, DateTimeKind.Local).AddTicks(3435));
 
                     b.Property<string>("NormalizedEmail")
                         .HasMaxLength(256)

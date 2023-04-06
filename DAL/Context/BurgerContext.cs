@@ -45,7 +45,7 @@ namespace MVC.Models.Context
             base.OnModelCreating(modelBuilder);
             modelBuilder.ApplyConfiguration(new AppUserConfig())
             .ApplyConfiguration(new CouponConfig()).ApplyConfiguration(new ExtraConfig())
-            .ApplyConfiguration(new MenuConfig()).ApplyConfiguration(new OrderConfig()).ApplyConfiguration(new OrderDetailsConfig()).ApplyConfiguration(new ComplaintSuggestionConfig());
+            .ApplyConfiguration(new MenuConfig()).ApplyConfiguration(new OrderConfig()).ApplyConfiguration(new OrderDetailsConfig()).ApplyConfiguration(new ComplaintSuggestionConfig()).ApplyConfiguration(new ExtraCategoryConfig());
         }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
