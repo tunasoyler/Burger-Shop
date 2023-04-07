@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace DAL.Migrations
 {
-    public partial class mig1 : Migration
+    public partial class Init2 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -70,9 +70,9 @@ namespace DAL.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    CreatedTime = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    ModifiedTime = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
+                    CreatedTime = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValue: new DateTime(2023, 4, 7, 12, 33, 21, 642, DateTimeKind.Local).AddTicks(491)),
+                    ModifiedTime = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValue: new DateTime(2023, 4, 7, 12, 33, 21, 642, DateTimeKind.Local).AddTicks(735)),
                     State = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
@@ -91,8 +91,8 @@ namespace DAL.Migrations
                     Price = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     MenuCategory = table.Column<string>(type: "nvarchar(30)", maxLength: 30, nullable: false),
                     Name = table.Column<string>(type: "nvarchar(30)", maxLength: 30, nullable: false),
-                    CreatedTime = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValue: new DateTime(2023, 4, 6, 15, 52, 21, 392, DateTimeKind.Local).AddTicks(9461)),
-                    ModifiedTime = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValue: new DateTime(2023, 4, 6, 15, 52, 21, 392, DateTimeKind.Local).AddTicks(9646)),
+                    CreatedTime = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValue: new DateTime(2023, 4, 7, 12, 33, 21, 641, DateTimeKind.Local).AddTicks(5541)),
+                    ModifiedTime = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValue: new DateTime(2023, 4, 7, 12, 33, 21, 641, DateTimeKind.Local).AddTicks(5732)),
                     State = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
@@ -123,7 +123,7 @@ namespace DAL.Migrations
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     FirstName = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     LastName = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
-                    MemberSince = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValue: new DateTime(2023, 4, 6, 15, 52, 21, 392, DateTimeKind.Local).AddTicks(3435)),
+                    MemberSince = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValue: new DateTime(2023, 4, 7, 12, 33, 21, 640, DateTimeKind.Local).AddTicks(9749)),
                     UserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     NormalizedUserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     Email = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
@@ -176,8 +176,8 @@ namespace DAL.Migrations
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Image = table.Column<byte[]>(type: "varbinary(max)", nullable: true),
                     Name = table.Column<string>(type: "nvarchar(30)", maxLength: 30, nullable: false),
-                    CreatedTime = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValue: new DateTime(2023, 4, 6, 15, 52, 21, 392, DateTimeKind.Local).AddTicks(7222)),
-                    ModifiedTime = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValue: new DateTime(2023, 4, 6, 15, 52, 21, 392, DateTimeKind.Local).AddTicks(7439)),
+                    CreatedTime = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValue: new DateTime(2023, 4, 7, 12, 33, 21, 641, DateTimeKind.Local).AddTicks(3154)),
+                    ModifiedTime = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValue: new DateTime(2023, 4, 7, 12, 33, 21, 641, DateTimeKind.Local).AddTicks(3381)),
                     State = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
@@ -371,6 +371,21 @@ namespace DAL.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
+
+            migrationBuilder.InsertData(
+                table: "ExtraCategories",
+                columns: new[] { "Id", "CreatedTime", "Description", "ModifiedTime", "Name", "State" },
+                values: new object[] { 1, new DateTime(2023, 4, 7, 12, 33, 21, 642, DateTimeKind.Local).AddTicks(812), null, new DateTime(2023, 4, 7, 12, 33, 21, 642, DateTimeKind.Local).AddTicks(812), "Beverage", false });
+
+            migrationBuilder.InsertData(
+                table: "ExtraCategories",
+                columns: new[] { "Id", "CreatedTime", "Description", "ModifiedTime", "Name", "State" },
+                values: new object[] { 2, new DateTime(2023, 4, 7, 12, 33, 21, 642, DateTimeKind.Local).AddTicks(826), null, new DateTime(2023, 4, 7, 12, 33, 21, 642, DateTimeKind.Local).AddTicks(827), "Snack", false });
+
+            migrationBuilder.InsertData(
+                table: "ExtraCategories",
+                columns: new[] { "Id", "CreatedTime", "Description", "ModifiedTime", "Name", "State" },
+                values: new object[] { 3, new DateTime(2023, 4, 7, 12, 33, 21, 642, DateTimeKind.Local).AddTicks(829), null, new DateTime(2023, 4, 7, 12, 33, 21, 642, DateTimeKind.Local).AddTicks(830), "Sauce", false });
 
             migrationBuilder.CreateIndex(
                 name: "IX_appUserAddress_AppUserId",

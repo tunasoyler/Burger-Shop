@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DAL.Migrations
 {
     [DbContext(typeof(BurgerContext))]
-    [Migration("20230406191800_InitBeste060423")]
-    partial class InitBeste060423
+    [Migration("20230407093321_Init2")]
+    partial class Init2
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -164,7 +164,7 @@ namespace DAL.Migrations
                     b.Property<DateTime>("CreatedTime")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2023, 4, 6, 22, 17, 59, 445, DateTimeKind.Local).AddTicks(4522));
+                        .HasDefaultValue(new DateTime(2023, 4, 7, 12, 33, 21, 641, DateTimeKind.Local).AddTicks(3154));
 
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
@@ -178,7 +178,7 @@ namespace DAL.Migrations
                     b.Property<DateTime>("ModifiedTime")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2023, 4, 6, 22, 17, 59, 445, DateTimeKind.Local).AddTicks(4770));
+                        .HasDefaultValue(new DateTime(2023, 4, 7, 12, 33, 21, 641, DateTimeKind.Local).AddTicks(3381));
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -209,7 +209,7 @@ namespace DAL.Migrations
                     b.Property<DateTime>("CreatedTime")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2023, 4, 6, 22, 17, 59, 446, DateTimeKind.Local).AddTicks(4396));
+                        .HasDefaultValue(new DateTime(2023, 4, 7, 12, 33, 21, 642, DateTimeKind.Local).AddTicks(491));
 
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
@@ -217,7 +217,7 @@ namespace DAL.Migrations
                     b.Property<DateTime>("ModifiedTime")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2023, 4, 6, 22, 17, 59, 446, DateTimeKind.Local).AddTicks(4618));
+                        .HasDefaultValue(new DateTime(2023, 4, 7, 12, 33, 21, 642, DateTimeKind.Local).AddTicks(735));
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -235,24 +235,24 @@ namespace DAL.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedTime = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            ModifiedTime = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            CreatedTime = new DateTime(2023, 4, 7, 12, 33, 21, 642, DateTimeKind.Local).AddTicks(812),
+                            ModifiedTime = new DateTime(2023, 4, 7, 12, 33, 21, 642, DateTimeKind.Local).AddTicks(812),
                             Name = "Beverage",
                             State = false
                         },
                         new
                         {
                             Id = 2,
-                            CreatedTime = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            ModifiedTime = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            CreatedTime = new DateTime(2023, 4, 7, 12, 33, 21, 642, DateTimeKind.Local).AddTicks(826),
+                            ModifiedTime = new DateTime(2023, 4, 7, 12, 33, 21, 642, DateTimeKind.Local).AddTicks(827),
                             Name = "Snack",
                             State = false
                         },
                         new
                         {
                             Id = 3,
-                            CreatedTime = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            ModifiedTime = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            CreatedTime = new DateTime(2023, 4, 7, 12, 33, 21, 642, DateTimeKind.Local).AddTicks(829),
+                            ModifiedTime = new DateTime(2023, 4, 7, 12, 33, 21, 642, DateTimeKind.Local).AddTicks(830),
                             Name = "Sauce",
                             State = false
                         });
@@ -269,7 +269,7 @@ namespace DAL.Migrations
                     b.Property<DateTime>("CreatedTime")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2023, 4, 6, 22, 17, 59, 445, DateTimeKind.Local).AddTicks(7134));
+                        .HasDefaultValue(new DateTime(2023, 4, 7, 12, 33, 21, 641, DateTimeKind.Local).AddTicks(5541));
 
                     b.Property<string>("Description")
                         .IsRequired()
@@ -287,7 +287,7 @@ namespace DAL.Migrations
                     b.Property<DateTime>("ModifiedTime")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2023, 4, 6, 22, 17, 59, 445, DateTimeKind.Local).AddTicks(7385));
+                        .HasDefaultValue(new DateTime(2023, 4, 7, 12, 33, 21, 641, DateTimeKind.Local).AddTicks(5732));
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -559,7 +559,7 @@ namespace DAL.Migrations
                     b.Property<DateTime>("MemberSince")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2023, 4, 6, 22, 17, 59, 445, DateTimeKind.Local).AddTicks(376));
+                        .HasDefaultValue(new DateTime(2023, 4, 7, 12, 33, 21, 640, DateTimeKind.Local).AddTicks(9749));
 
                     b.Property<string>("NormalizedEmail")
                         .HasMaxLength(256)
