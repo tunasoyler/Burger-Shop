@@ -2,6 +2,8 @@
 using DAL.Abstract;
 using DAL.EntityFramework;
 using Entity.Concrete;
+using Microsoft.EntityFrameworkCore;
+using MVC.Models.Context;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,6 +24,15 @@ namespace BLL.Concrete
         public OrderDetails FindById(int id)
         {
             return _orderDetailsdal.Find(id);
+        }
+
+        public List<OrderDetails> FindByUserId(Guid Id)
+        {
+           
+                using var c = new BurgerContext();
+                List<OrderDetails> list = c.OrderDetails.Where(x => x.Order.AppUserId == Id).ToList();
+                return list;
+            
         }
 
         public List<OrderDetails> GetList()

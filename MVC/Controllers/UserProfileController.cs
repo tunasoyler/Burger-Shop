@@ -16,7 +16,7 @@ namespace MVC.Controllers
         private readonly UserManager<AppUser> _userManager;
         private readonly SignInManager<AppUser> _signInManager;
         private readonly IPasswordHasher<AppUser> _passwordHasher;
-        OrderManager _orderManager = new OrderManager(new EfOrderDal());
+        OrderDetailsManager _orderDetailManager = new OrderDetailsManager(new EfOrderDetailsDal());
 
         public UserProfileController(UserManager<AppUser> usermanager, SignInManager<AppUser> signInManager, IPasswordHasher<AppUser> passwordHasher)
         {
@@ -113,7 +113,7 @@ namespace MVC.Controllers
         public async Task<IActionResult> GetOrders()
         {
             AppUser _user = await _userManager.GetUserAsync(HttpContext.User);
-             = _orderManager.FindById(_user.Id);
+            List<OrderDetails> orders= _orderDetailManager.FindByUserId(_user.Id);
             return View(orders);
         }
 
