@@ -440,6 +440,8 @@ namespace MVC.Controllers
 
 
 
+
+
         private void Errors(IdentityResult result)
         {
             foreach (IdentityError error in result.Errors)
