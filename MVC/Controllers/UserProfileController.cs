@@ -1,6 +1,7 @@
 ﻿
 using BLL.Concrete;
 using DAL.EntityFramework;
+using Entity.Concrete;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -92,19 +93,19 @@ namespace MVC.Controllers
             return RedirectToAction("ProfileHome");
         }
         [HttpPost]
-        public async Task<IActionResult> ChangePassword(string newPassword,string password)
+        public async Task<IActionResult> ChangePassword(string newPassword, string password)
         {
             AppUser _user = await _userManager.GetUserAsync(HttpContext.User);
             var passwordMatched = await _userManager.CheckPasswordAsync(_user, password);
-            if(passwordMatched)
+            if (passwordMatched)
             {
-                        IdentityResult result = await _userManager.ChangePasswordAsync(_user, password, newPassword);
-                        if (result.Succeeded)
-                            return RedirectToAction("LogOut");
-                        else
-                            Errors(result);
+                IdentityResult result = await _userManager.ChangePasswordAsync(_user, password, newPassword);
+                if (result.Succeeded)
+                    return RedirectToAction("LogOut");
+                else
+                    Errors(result);
             }
-           
+
             else
                 ModelState.AddModelError("UserNotFound", "Kullanıcı Bulunamadı!");
             return RedirectToAction("ProfileHome");
@@ -112,8 +113,8 @@ namespace MVC.Controllers
         public async Task<IActionResult> GetOrders()
         {
             AppUser _user = await _userManager.GetUserAsync(HttpContext.User);
-            _orderManager.GetList(_user);
-            return View(); 
+             = _orderManager.FindById(_user.Id);
+            return View(orders);
         }
 
     }
