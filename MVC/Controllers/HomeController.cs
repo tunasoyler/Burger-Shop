@@ -1,6 +1,7 @@
 ﻿using BLL.Concrete;
 using DAL.EntityFramework;
 using Microsoft.AspNetCore.Mvc;
+using MVC.Extension;
 using MVC.Models;
 using System.Diagnostics;
 
@@ -31,8 +32,12 @@ namespace MVC.Controllers
         {
             return View(new ErrorViewDto { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
-       public IActionResult GetHome()
+
+        List<CartItemDTO> cartList = new List<CartItemDTO>();
+
+        public IActionResult GetHome()
         {
+            HttpContext.Session.SetObject("cartList", cartList);
             var menuList = menuManager.GetList().Take(3).ToList();
             return View(menuList);
         }

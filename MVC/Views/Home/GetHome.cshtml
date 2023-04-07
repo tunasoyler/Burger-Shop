@@ -77,7 +77,7 @@
                         <h3>@item.Name</h3>
                         <p class="product-price"> @item.Price TL</p>
                         <p class="product-description"> @item.Description</p>
-                        <a href="cart.html" class="cart-btn"><i class="fas fa-shopping-cart"></i> Sepete Ekle</a>
+                        <a asp-controller="ShoppingCart" asp-action="AddMenuToCart" asp-route-id="@item.Id" class="cart-btn"><i class="fas fa-shopping-cart"></i> Sepete Ekle</a>
                     </div>
                 </div>
             }
