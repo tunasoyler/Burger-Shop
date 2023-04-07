@@ -26,14 +26,13 @@ namespace BLL.Concrete
             return _orderDetailsdal.Find(id);
         }
 
-        public List<OrderDetails> FindByUserId(Guid Id)
-        {
+        //public List<OrderDetails> FindByUserId(Guid Id)
+        //{
            
-                using var c = new BurgerContext();
-                List<OrderDetails> list = c.OrderDetails.Where(x => x.Order.AppUserId == Id).ToList();
-                return list;
-            
-        }
+        //        using var c = new BurgerContext();
+        //        List<OrderDetails> list = c.OrderDetails.Where(x => x.Order.AppUserId == Id).ToList();
+        //        return list;
+        //}
 
         public List<OrderDetails> GetList()
         {

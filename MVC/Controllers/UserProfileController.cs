@@ -5,6 +5,7 @@ using Entity.Concrete;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using MVC.Models;
 using MVC.Models.Context;
 
@@ -13,16 +14,19 @@ namespace MVC.Controllers
     [Authorize]
     public class UserProfileController : Controller
     {
+        BurgerContext _db;
         private readonly UserManager<AppUser> _userManager;
         private readonly SignInManager<AppUser> _signInManager;
         private readonly IPasswordHasher<AppUser> _passwordHasher;
+        OrderDetailVM orderDetailVm = new OrderDetailVM();
         OrderDetailsManager _orderDetailManager = new OrderDetailsManager(new EfOrderDetailsDal());
 
-        public UserProfileController(UserManager<AppUser> usermanager, SignInManager<AppUser> signInManager, IPasswordHasher<AppUser> passwordHasher)
+        public UserProfileController(UserManager<AppUser> usermanager, SignInManager<AppUser> signInManager, IPasswordHasher<AppUser> passwordHasher, BurgerContext db)
         {
             _userManager = usermanager;
             _signInManager = signInManager;
             _passwordHasher = passwordHasher;
+            _db = db;
         }
         public IActionResult Index()
         {
@@ -113,9 +117,33 @@ namespace MVC.Controllers
         public async Task<IActionResult> GetOrders()
         {
             AppUser _user = await _userManager.GetUserAsync(HttpContext.User);
-            List<OrderDetails> orders= _orderDetailManager.FindByUserId(_user.Id);
-            return View(orders);
+            orderDetailVm.orders = _db.OrderDetails.Where(x => x.Order.AppUserId == _user.Id).Select(x => new OrderDetailDto()
+            {
+                Id= x.OrderId,
+                MenuImage = x.Menu.Image,
+                MenuName = x.Menu.Name,
+                ExtraImage = x.Extra.Image,
+                ExtraName = x.Extra.Name,
+                Status = x.State,
+                ModifiedTime = x.ModifiedTime,
+                TotalPrice = x.Order.OrderTotal
+            }).ToList();
+            return View(orderDetailVm);
         }
-
+        public IActionResult EditOrder(int id)
+        {
+            AppUser _user = await _userManager.GetUserAsync(HttpContext.User);
+            orderDetailVm.orderDetails= _db.OrderDetails.FirstOrDefault(x => x.OrderId == id && x.Order.AppUserId == _user.Id);
+            return View(orderDetailVm);
+        }
+        public async Task<IActionResult> DeleteOrder(int id)
+        {
+            AppUser _user = await _userManager.GetUserAsync(HttpContext.User);
+            OrderDetails orderDetails = _db.OrderDetails.FirstOrDefault(x => x.OrderId == id && x.Order.AppUserId == _user.Id);
+            _db.OrderDetails.Remove(orderDetails);
+            _db.SaveChanges();
+            TempData["result"] = "İşlem Başarıyla Gerçekleştirilmiştir!";
+            return RedirectToAction("GetOrders");
+        }
     }
 }
