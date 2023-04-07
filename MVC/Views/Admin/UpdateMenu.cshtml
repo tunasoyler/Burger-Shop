@@ -1,0 +1,42 @@
+﻿@{
+    ViewData["Title"] = "GetUser";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+@using Entity.Concrete;
+@model Menu
+
+<h1 class="bg-info text-white">Menü Güncelleme</h1>
+<a asp-action="GetMenu" asp-controller="Admin" class="btn btn-secondary">Menü Listesi</a>
+<div asp-validation-summary="All" class="text-danger"></div>
+
+<form asp-action="UpdateMenu" asp-controller="Admin" method="post">
+    <div class="form-group">
+        <label asp-for="Name"></label>
+        <input asp-for="Name" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="Description"></label>
+        <input asp-for="Description" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="Price"></label>
+        <input asp-for="Price" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="MenuCategory"></label>
+        <input asp-for="MenuCategory" class="form-control" />
+    </div>
+    <div class="form-group form-check">
+        <label asp-for="State" class="form-check-label"></label>
+        <input class="form-check-input" asp-for="State" />
+    </div>
+    @*    <div class="form-group">
+    <label asp-for="State"></label>
+    <input asp-for="State" class="form-control" />
+    </div>*@
+    <button type="submit" class="btn btn-primary">Kaydet</button>
+
+</form>
+
+

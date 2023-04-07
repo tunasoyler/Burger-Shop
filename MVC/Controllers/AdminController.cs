@@ -17,6 +17,7 @@ namespace MVC.Controllers
         CouponManager couponManager = new CouponManager(new EfCouponDal());
         ExtraManager extraManager = new ExtraManager(new EfExtraDal());
         ExtraCategoryManager extracategoryManager = new ExtraCategoryManager(new EfExtraCategoryDal());
+        MenuManager menuManager = new MenuManager(new EfMenuDal());
         public AdminController(UserManager<AppUser> _userManager, IPasswordHasher<AppUser> _passwordHasher)
         {
             userManager = _userManager;
@@ -437,6 +438,129 @@ namespace MVC.Controllers
 
             return View("GetExtraCategory");
         }
+
+
+
+
+
+
+
+
+
+
+
+        public IActionResult GetMenu()
+        {
+            MenuVM menuVM = new MenuVM();
+            menuVM.MenuList = menuManager.GetList();
+            return View(menuVM);
+        }
+        public IActionResult CreateMenu()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult CreateMenu(Menu menu)
+        {
+            if (ModelState.IsValid)
+            {
+
+                bool result = menuManager.MenuAdd(menu);
+                if (result)
+                {
+                    TempData["result"] = "Kayıt İşlemi Başarılı.";
+                    return RedirectToAction("GetMenu");
+                }
+                else
+                {
+                    TempData["resultError"] = "Kayıt İşlemi Başarısız.";
+                }
+
+            }
+            return View(menu);
+        }
+        public IActionResult UpdateMenu(int id)
+        {
+            Menu menu = menuManager.FindById(id);
+            if (menu != null)
+            {
+                return View(menu);
+            }
+            else
+            {
+                return RedirectToAction("GetMenu", "Admin");
+            }
+        }
+        [HttpPost]
+        public IActionResult UpdateMenu(int id, string name, string description,decimal price,string menucategory, bool state)
+        {
+            Menu menu = menuManager.FindById(id);
+            if (menu != null)
+            {
+                if (!string.IsNullOrEmpty(name) && !string.IsNullOrEmpty(description) && !string.IsNullOrEmpty(menucategory))
+                {
+                    menu.Name = name;
+                    menu.Description = description;
+                    menu.Price = price;
+                    menu.MenuCategory=menucategory;
+                    menu.State = state;
+                }
+                else
+                {
+                    ModelState.AddModelError("UdateMenu", "Menu İsmi,Menu Açıklaması ve Manu Kategorisi boş geçilemez");
+                }
+
+                if (!string.IsNullOrEmpty(name) && !string.IsNullOrEmpty(description) && !string.IsNullOrEmpty(menucategory))
+                {
+                    bool result = menuManager.MenuUpdate(menu);
+                    if (result)
+                    {
+                        TempData["result"] = "Kayıt Başarılı.";
+                        return RedirectToAction("Getmenu");
+
+                    }
+
+                    else
+                        TempData["resultError"] = "Kayıt Başarısız.";
+                }
+            }
+            else
+                ModelState.AddModelError("MenuNotFound", "Menu Bulunamadı.");
+            return View(menu);
+        }
+        public IActionResult DeleteMenu(int id)
+        {
+            //AppUser user = await userManager.FindByIdAsync(id);
+            Menu menu = menuManager.FindById(id);
+            if (menu != null)
+            {
+                bool result = menuManager.MenuRemove(menu);
+                if (result)
+                {
+                    TempData["result"] = "Silme İşlemi Başarılı.";
+                    return RedirectToAction("GetMenu");
+                }
+                else
+                    TempData["resultError"] = "Silme İşlemi Başarısız.";
+            }
+            else
+                ModelState.AddModelError("MenuNotFound_Delete", "Menü Bulunamadı.");
+
+            return View("GetMenu");
+        }
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
