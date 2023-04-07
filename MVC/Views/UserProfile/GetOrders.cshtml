@@ -1,15 +1,36 @@
 ﻿@using Entity.Concrete;
-@model List<OrderDetails>
+@model OrderDetailVM
 @{
     ViewData["Title"] = "Siparişlerim";
     Layout = "~/Views/Shared/_Layout2.cshtml";
 }
+@if (TempData["result"] != null)
+{
+    <script>
+        alert(@TempData["result"]);
+    </script>
+}
+<!-- breadcrumb-section -->
+<div class="breadcrumb-section breadcrumb-bg">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 offset-lg-2 text-center">
+                <div class="breadcrumb-text">
+                    <p>Bahar Tadında Hamburger</p>
+                    <h1>Siparişlerim</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- end breadcrumb section -->
+
 <div class="container-fluid py-4">
     <div class="row">
         <div class="col-12">
             <div class="card my-4">
                 <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
-                    <div class="bg-gradient-primary shadow-warning border-radius-lg pt-4 pb-3">
+                    <div class="bg-gradient-warning shadow-warning border-radius-lg pt-4 pb-3">
                         <h6 class="text-white text-capitalize ps-3">Siparişlerim</h6>
                     </div>
                 </div>
@@ -23,37 +44,48 @@
                                     <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Toplam Tutar</th>
                                     <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Durum</th>
                                     <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Tarih</th>
-                                    <th class="text-secondary opacity-7"></th> 
+                                    <th class="text-secondary opacity-7"></th>
                                     <th class="text-secondary opacity-7"></th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach(var item in Model)
+                                @foreach (var item in Model.orders)
                                 {
                                     <tr>
                                         <td>
                                             <div class="d-flex px-2 py-1">
                                                 <div>
-                                                    <img src="@item.Menu.Image" class="avatar avatar-sm me-3 border-radius-lg" alt="user1">
+                                                    @if (item.MenuImage != null)
+                                                    {
+                                                        var base64StringMenu = Convert.ToBase64String(item.MenuImage);
+                                                        var imageUrlMenu = $"data:image/png;base64,{base64StringMenu}";
+                                                        <img src="@imageUrlMenu" alt="Image" width="300" height="100" class="avatar avatar-sm me-3 border-radius-lg" />
+                                                    }
                                                 </div>
                                                 <div class="d-flex flex-column justify-content-center">
-                                                    <h6 class="mb-0 text-sm">@item.Menu.Name</h6>
-                                                    <p class="text-xs text-secondary mb-0">@item.Quantity</p>
+                                                    <h6 class="mb-0 text-sm">@item.MenuName</h6>
                                                 </div>
                                             </div>
                                         </td>
                                         <td>
                                             <div class="d-flex px-2 py-1">
                                                 <div>
-                                                    <img src="@item.Extra.Image" class="avatar avatar-sm me-3 border-radius-lg" alt="user1">
+                                                    @if (item.MenuImage != null)
+                                                    {
+                                                            var base64StringExtra = Convert.ToBase64String(item.ExtraImage);
+                                                            var imageUrlExtra = $"data:image/png;base64,{base64StringExtra}";
+                                                        <img src="@imageUrlExtra" alt="Image" width="300" height="100" class="avatar avatar-sm me-3 border-radius-lg" />
+                                                    }
                                                 </div>
                                                 <div class="d-flex flex-column justify-content-center">
-                                                    <h6 class="mb-0 text-sm">@item.Extra.Name</h6>
-                                                    <p class="text-xs text-secondary mb-0">@item.Quantity</p>
+                                                    <h6 class="mb-0 text-sm">@item.ExtraName</h6>
                                                 </div>
                                             </div>
                                         </td>
-                                        @if(item.State)
+                                        <td class="align-middle text-center">
+                                            <span class="text-secondary text-xs font-weight-bold">@item.TotalPrice</span>
+                                        </td>
+                                        @if (item.Status)
                                         {
                                             <td class="align-middle text-center text-sm">
                                                 <span class="badge badge-sm bg-gradient-success">Devam Ediyor</span>
@@ -69,19 +101,19 @@
                                         <td class="align-middle text-center">
                                             <span class="text-secondary text-xs font-weight-bold">@item.ModifiedTime</span>
                                         </td>
-                                        @if (item.State)
+                                        @if (item.Status)
                                         {
                                             <td class="align-middle">
-                                                <a asp-action="EditOrder" asp-controller="UserProfile" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user">
+                                                <a asp-route-id="@item.Id" asp-action="EditOrder" asp-controller="UserProfile" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user">
                                                     Güncelle
                                                 </a>
                                             </td>
                                         }
-                                         <td class="align-middle">
-                                                <a asp-action="DeleteOrder" asp-controller="UserProfile" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user">
-                                                    Sil
-                                                </a>
-                                            </td>
+                                        <td class="align-middle">
+                                            <a asp-route-id="@item.Id" asp-action="DeleteOrder" asp-controller="UserProfile" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user">
+                                                Sil
+                                            </a>
+                                        </td>
                                     </tr>
                                 }
                             </tbody>
@@ -91,3 +123,4 @@
             </div>
         </div>
     </div>
+

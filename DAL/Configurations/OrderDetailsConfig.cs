@@ -14,8 +14,6 @@ namespace DAL.Configurations
     {
         public void Configure(EntityTypeBuilder<OrderDetails> builder)
         {
-            builder.HasKey(x => x.Id);
-
             builder.HasKey(od => new { od.MenuId, od.OrderId, od.ExtraId });
 
             
