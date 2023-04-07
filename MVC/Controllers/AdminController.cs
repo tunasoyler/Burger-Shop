@@ -6,6 +6,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using MVC.Models;
 using MVC.Models.Context;
+using System.Web;
+
 
 namespace MVC.Controllers
 {
@@ -17,6 +19,7 @@ namespace MVC.Controllers
         CouponManager couponManager = new CouponManager(new EfCouponDal());
         ExtraManager extraManager = new ExtraManager(new EfExtraDal());
         ExtraCategoryManager extracategoryManager = new ExtraCategoryManager(new EfExtraCategoryDal());
+        MenuManager menuManager = new MenuManager(new EfMenuDal());
         public AdminController(UserManager<AppUser> _userManager, IPasswordHasher<AppUser> _passwordHasher)
         {
             userManager = _userManager;
@@ -71,9 +74,9 @@ namespace MVC.Controllers
                     {
                         TempData["result"] = "Your message has been sent successfully.";
                         return RedirectToAction("GetUser");
-                      
+
                     }
-                        
+
                     else
                         Errors(result);
                 }
@@ -89,12 +92,12 @@ namespace MVC.Controllers
             complaintSuggestionVM.ComplaintSuggestionsList = contactManager.GetList();
             return View(complaintSuggestionVM);
         }
-     
-       
+
+
         public IActionResult DeleteSuggestion(int id)
         {
             //AppUser user = await userManager.FindByIdAsync(id);
-            ComplaintSuggestion complaintSuggestion =  contactManager.FindById(id);
+            ComplaintSuggestion complaintSuggestion = contactManager.FindById(id);
             if (User != null)
             {
                 bool result = contactManager.ContactRemove(complaintSuggestion);
@@ -130,8 +133,8 @@ namespace MVC.Controllers
                 Coupon Coupon = new Coupon()
                 {
                     Name = coupon.Name,
-                    CouponCode=coupon.CouponCode,
-                    State=coupon.State
+                    CouponCode = coupon.CouponCode,
+                    State = coupon.State
                 };
                 bool result = couponManager.CouponAdd(coupon);
                 if (result)
@@ -160,7 +163,7 @@ namespace MVC.Controllers
             }
         }
         [HttpPost]
-        public IActionResult UpdateCoupon(int id, string name, string couponcode,bool state)
+        public IActionResult UpdateCoupon(int id, string name, string couponcode, bool state)
         {
             Coupon coupon = couponManager.FindById(id);
             if (coupon != null)
@@ -223,7 +226,7 @@ namespace MVC.Controllers
 
         public IActionResult GetExtra()
         {
-            
+
             ExtraVM extraVM = new ExtraVM();
             extraVM.Extras = extraManager.GetList();
             return View(extraVM);
@@ -236,20 +239,30 @@ namespace MVC.Controllers
         }
 
         [HttpPost]
-        public IActionResult CreateExtra(ExtraVM extraVm)
+        public IActionResult CreateExtra(ExtraVM extraVm, IFormFile imageFile)
         {
             //if (ModelState.IsValid)
-            //{
 
-                bool result = extraManager.ExtraAdd(extraVm.ExtraDb);
-                if (result)
+            Extra extra = new Extra();
+            extra = extraVm.ExtraDb;
+            if (imageFile != null && imageFile.Length > 0)
+            {
+                using (var ms = new MemoryStream())
                 {
-                    TempData["result"] = "Kayıt Başarılı.";
-                    return RedirectToAction("GetExtra");
+                    imageFile.CopyTo(ms);
+                    extra.Image = ms.ToArray();
                 }
-                else
-                {
-                    TempData["resultError"] = "Kayıt Başarısız.";
+            }
+
+            bool result = extraManager.ExtraAdd(extraVm.ExtraDb);
+            if (result)
+            {
+                TempData["result"] = "Kayıt Başarılı.";
+                return RedirectToAction("GetExtra");
+            }
+            else
+            {
+                TempData["resultError"] = "Kayıt Başarısız.";
                 return RedirectToAction("GetExtra");
             }
 
@@ -275,19 +288,28 @@ namespace MVC.Controllers
             }
         }
         [HttpPost]
-        public IActionResult UpdateExtra(int id,ExtraVM extraVM)
+        public IActionResult UpdateExtra(int id, ExtraVM extraVM, IFormFile imageFile)
         {
             Extra extra = extraManager.FindById(id);
             if (extra != null)
             {
+                if (imageFile != null && imageFile.Length > 0)
+                {
+                    using (var stream = new MemoryStream())
+                    {
+                        imageFile.CopyTo(stream);
+                        extra.Image = stream.ToArray();
+                    }
+                }
+
                 if (!string.IsNullOrEmpty(extraVM.ExtraDb.Name) && !string.IsNullOrEmpty(extraVM.ExtraDb.Price.ToString()) && !string.IsNullOrEmpty(extraVM.ExtraDb.ExtraCategoryId.ToString()))
                 {
                     extra.Name = extraVM.ExtraDb.Name;
                     extra.ExtraCategoryId = extraVM.ExtraDb.ExtraCategoryId;
                     extra.Price = extraVM.ExtraDb.Price;
-                    extra.Description=extraVM.ExtraDb.Description;
+                    extra.Description = extraVM.ExtraDb.Description;
                     extra.Image = extraVM.ExtraDb.Image;
-                    extra.State= extraVM.ExtraDb.State;
+                    extra.State = extraVM.ExtraDb.State;
                 }
                 else
                 {
@@ -355,7 +377,7 @@ namespace MVC.Controllers
         {
             if (ModelState.IsValid)
             {
-             
+
                 bool result = extracategoryManager.ExtraCategoryAdd(extraCategory);
                 if (result)
                 {
@@ -437,6 +459,152 @@ namespace MVC.Controllers
 
             return View("GetExtraCategory");
         }
+
+
+
+
+        public IActionResult GetMenu()
+        {
+            MenuVM menuVM = new MenuVM();
+            menuVM.MenuList = menuManager.GetList();
+            return View(menuVM);
+        }
+        public IActionResult CreateMenu()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult CreateMenu(Menu menu, IFormFile imageFile)
+        {
+
+            if (ModelState.IsValid)
+            {
+                if (imageFile != null && imageFile.Length > 0)
+                {
+                    using (var ms = new MemoryStream())
+                    {
+                        imageFile.CopyTo(ms);
+                        menu.Image = ms.ToArray();
+                    }
+                }
+                bool result = menuManager.MenuAdd(menu);
+                if (result)
+                {
+                    TempData["result"] = "Kayıt İşlemi Başarılı.";
+                    return RedirectToAction("GetMenu");
+                }
+                else
+                {
+                    TempData["resultError"] = "Kayıt İşlemi Başarısız.";
+                }
+            }
+            return View(menu);
+
+
+            //if (ModelState.IsValid)
+            //{
+
+            //    bool result = menuManager.MenuAdd(menu);
+            //    if (result)
+            //    {
+            //        TempData["result"] = "Kayıt İşlemi Başarılı.";
+            //        return RedirectToAction("GetMenu");
+            //    }
+            //    else
+            //    {
+            //        TempData["resultError"] = "Kayıt İşlemi Başarısız.";
+            //    }
+
+            //}
+            //return View(menu);
+        }
+        public IActionResult UpdateMenu(int id)
+        {
+            Menu menu = menuManager.FindById(id);
+            if (menu != null)
+            {
+                return View(menu);
+            }
+            else
+            {
+                return RedirectToAction("GetMenu", "Admin");
+            }
+        }
+        [HttpPost]
+        public IActionResult UpdateMenu(int id, string name, string description, IFormFile imageFile, decimal price, string menucategory, bool state)
+        {
+            Menu menu = menuManager.FindById(id);
+            if (menu != null)
+            {
+                if (imageFile != null && imageFile.Length > 0)
+                {
+                    using (var stream = new MemoryStream())
+                    {
+                        imageFile.CopyTo(stream);
+                        menu.Image = stream.ToArray();
+                    }
+                }
+
+                if (!string.IsNullOrEmpty(name) && !string.IsNullOrEmpty(description) && !string.IsNullOrEmpty(menucategory))
+                {
+                    menu.Name = name;
+                    menu.Description = description;
+                    menu.Price = price;
+                    menu.MenuCategory = menucategory;
+                    menu.State = state;
+                }
+                else
+                {
+                    ModelState.AddModelError("UdateMenu", "Menu İsmi,Menu Açıklaması ve Manu Kategorisi boş geçilemez");
+                }
+
+                if (!string.IsNullOrEmpty(name) && !string.IsNullOrEmpty(description) && !string.IsNullOrEmpty(menucategory))
+                {
+                    bool result = menuManager.MenuUpdate(menu);
+                    if (result)
+                    {
+                        TempData["result"] = "Kayıt Başarılı.";
+                        return RedirectToAction("Getmenu");
+
+                    }
+
+                    else
+                        TempData["resultError"] = "Kayıt Başarısız.";
+                }
+            }
+            else
+                ModelState.AddModelError("MenuNotFound", "Menu Bulunamadı.");
+            return View(menu);
+        }
+        public IActionResult DeleteMenu(int id)
+        {
+            //AppUser user = await userManager.FindByIdAsync(id);
+            Menu menu = menuManager.FindById(id);
+            if (menu != null)
+            {
+                bool result = menuManager.MenuRemove(menu);
+                if (result)
+                {
+                    TempData["result"] = "Silme İşlemi Başarılı.";
+                    return RedirectToAction("GetMenu");
+                }
+                else
+                    TempData["resultError"] = "Silme İşlemi Başarısız.";
+            }
+            else
+                ModelState.AddModelError("MenuNotFound_Delete", "Menü Bulunamadı.");
+
+            return View("GetMenu");
+        }
+
+
+
+
+
+
+
+
 
 
 
