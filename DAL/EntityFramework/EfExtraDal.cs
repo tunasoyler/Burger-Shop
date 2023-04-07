@@ -1,6 +1,7 @@
 ﻿using DAL.Abstract;
 using DAL.Concrete.Repositories;
 using Entity.Concrete;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using MVC.Models.Context;
 using System;
 using System.Collections.Generic;
@@ -10,8 +11,8 @@ using System.Threading.Tasks;
 
 namespace DAL.EntityFramework
 {
-    public class EfExtraDal:GenericRepository<Extra>,IExtra
+    public class EfExtraDal : GenericRepository<Extra>, IExtra
     {
-       
+        
     }
 }

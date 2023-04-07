@@ -17,6 +17,7 @@ namespace MVC
             builder.Services.AddControllersWithViews();
             builder.Services.AddDbContext<BurgerContext>();
             builder.Services.AddHttpContextAccessor();
+            builder.Services.AddSession();
 
             builder.Services.AddIdentity<AppUser, AppRole>().AddEntityFrameworkStores<BurgerContext>();
             builder.Services.ConfigureApplicationCookie(opt =>
@@ -51,11 +52,12 @@ namespace MVC
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();
-            //app.UseSession();
+            
             app.UseRouting();
 
             app.UseAuthentication();
             app.UseAuthorization();
+            app.UseSession();
 
             app.MapAreaControllerRoute(
                 name: "Admin",

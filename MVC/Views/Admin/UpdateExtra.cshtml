@@ -1,0 +1,46 @@
+﻿@using MVC.Models;
+@model ExtraVM
+@{
+    ViewData["Title"] = "UpdateExtra";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h1 class="bg-info text-white">Extra Güncelleme</h1>
+<a asp-action="GetUpdate" asp-controller="Admin" class="btn btn-secondary">Extra Listesi</a>
+<div asp-validation-summary="All" class="text-danger"></div>
+
+<form asp-action="UpdateExtra" asp-controller="Admin" method="post">
+    <div class="form-group">
+        <label asp-for="ExtraDb.Name"></label>
+        <input asp-for="ExtraDb.Name" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="ExtraDb.ExtraCategory.Name" class="control-label"></label>
+        <select asp-for="ExtraDb.ExtraCategoryId" class="form-select">
+            <option>Kategori Seçiniz</option>
+            @foreach (var item in Model.ExtraCategoryForDropDown)
+            {
+                <option value="@item.Value">@item.Text</option>
+            }
+        </select>
+    </div>
+    <div class="form-group">
+        <label asp-for="ExtraDb.Price"></label>
+        <input asp-for="ExtraDb.Price" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="ExtraDb.Description"></label>
+        <input asp-for="ExtraDb.Description" class="form-control" />
+    </div>
+    <div class="form-group form-check">
+        <label asp-for="ExtraDb.State" class="form-check-label"></label>
+        <input class="form-check-input" asp-for="ExtraDb.State" />
+    </div>
+    @*    <div class="form-group">
+    <label asp-for="State"></label>
+    <input asp-for="State" class="form-control" />
+    </div>*@
+    <button type="submit" class="btn btn-primary">Kaydet</button>
+
+</form>
+

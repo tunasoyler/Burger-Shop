@@ -3,6 +3,7 @@ using DAL.EntityFramework;
 using Entity.Concrete;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using MVC.Models;
 using MVC.Models.Context;
 
@@ -14,6 +15,8 @@ namespace MVC.Controllers
         private IPasswordHasher<AppUser> passwordHasher;
         ContactManager contactManager = new ContactManager(new EfComplaintSuggestionDal());
         CouponManager couponManager = new CouponManager(new EfCouponDal());
+        ExtraManager extraManager = new ExtraManager(new EfExtraDal());
+        ExtraCategoryManager extracategoryManager = new ExtraCategoryManager(new EfExtraCategoryDal());
         public AdminController(UserManager<AppUser> _userManager, IPasswordHasher<AppUser> _passwordHasher)
         {
             userManager = _userManager;
@@ -220,110 +223,220 @@ namespace MVC.Controllers
 
         public IActionResult GetExtra()
         {
-            CouponVM couponVM = new CouponVM();
-            couponVM.CouponList = couponManager.GetList();
-            return View(couponVM);
+            
+            ExtraVM extraVM = new ExtraVM();
+            extraVM.Extras = extraManager.GetList();
+            return View(extraVM);
         }
-        //public IActionResult CreateCoupon()
-        //{
-        //    return View();
-        //}
+        public IActionResult CreateExtra()
+        {
+            ExtraVM extraVM = new ExtraVM();
+            extraVM.ExtraCategoryForDropDown = extraManager.FillExtraCategory();
+            return View(extraVM);
+        }
 
-        //[HttpPost]
-        //public IActionResult CreateCoupon(Coupon coupon)
-        //{
-        //    if (ModelState.IsValid)
-        //    {
-        //        Coupon Coupon = new Coupon()
-        //        {
-        //            Name = coupon.Name,
-        //            CouponCode = coupon.CouponCode,
-        //            State = coupon.State
-        //        };
-        //        bool result = couponManager.CouponAdd(coupon);
-        //        if (result)
-        //        {
-        //            TempData["result"] = "Your create has been  successfully.";
-        //            return RedirectToAction("GetCoupon");
-        //        }
-        //        else
-        //        {
-        //            TempData["resultError"] = "Your create has been not successfully.";
-        //        }
+        [HttpPost]
+        public IActionResult CreateExtra(ExtraVM extraVm)
+        {
+            //if (ModelState.IsValid)
+            //{
 
-        //    }
-        //    return View(coupon);
-        //}
-        //public IActionResult UpdateCoupon(int id)
-        //{
-        //    Coupon coupon = couponManager.FindById(id);
-        //    if (coupon != null)
-        //    {
-        //        return View(coupon);
-        //    }
-        //    else
-        //    {
-        //        return RedirectToAction("GetCoupon", "Admin");
-        //    }
-        //}
-        //[HttpPost]
-        //public IActionResult UpdateCoupon(int id, string name, string couponcode, bool state)
-        //{
-        //    Coupon coupon = couponManager.FindById(id);
-        //    if (coupon != null)
-        //    {
-        //        if (!string.IsNullOrEmpty(name) && !string.IsNullOrEmpty(couponcode))
-        //        {
-        //            coupon.Name = name;
-        //            coupon.CouponCode = couponcode;
-        //            coupon.State = state;
-        //        }
-        //        else
-        //        {
-        //            ModelState.AddModelError("UdateCoupon", "Kupon ismi ve kupon kodu boş geçilemez");
-        //        }
+                bool result = extraManager.ExtraAdd(extraVm.ExtraDb);
+                if (result)
+                {
+                    TempData["result"] = "Kayıt Başarılı.";
+                    return RedirectToAction("GetExtra");
+                }
+                else
+                {
+                    TempData["resultError"] = "Kayıt Başarısız.";
+                return RedirectToAction("GetExtra");
+            }
 
-        //        if (!string.IsNullOrEmpty(name) && !string.IsNullOrEmpty(couponcode))
-        //        {
-        //            bool result = couponManager.CouponUpdate(coupon);
-        //            if (result)
-        //            {
-        //                TempData["result"] = "Kayıt Başarılı.";
-        //                return RedirectToAction("GetCoupon");
-
-        //            }
-
-        //            else
-        //                TempData["resultError"] = "Kayıt Başarısız.";
-        //        }
-        //    }
-        //    else
-        //        ModelState.AddModelError("CouponNotFound", "Kupon Bulunamadı.");
-        //    return View(coupon);
-        //}
-        //public IActionResult DeleteCoupon(int id)
-        //{
-        //    //AppUser user = await userManager.FindByIdAsync(id);
-        //    Coupon coupon = couponManager.FindById(id);
-        //    if (coupon != null)
-        //    {
-        //        bool result = couponManager.CouponRemove(coupon);
-        //        if (result)
-        //        {
-        //            TempData["result"] = "Silme İşlemi Başarılı.";
-        //            return RedirectToAction("GetCoupon");
-        //        }
-        //        else
-        //            TempData["resultError"] = "Silme İşlemi Başarısız.";
-        //    }
-        //    else
-        //        ModelState.AddModelError("CouponNotFound_Delete", "Kupon Bulunamadı.");
-
-        //    return View("GetCoupon");
-        //}
+            //}
+            //return View(extraVm);
+        }
 
 
 
+        public IActionResult UpdateExtra(int id)
+        {
+            Extra extra = extraManager.FindById(id);
+            ExtraVM extraVM = new ExtraVM();
+            extraVM.ExtraDb = extra;
+            if (extraVM != null)
+            {
+                extraVM.ExtraCategoryForDropDown = extraManager.FillExtraCategory();
+                return View(extraVM);
+            }
+            else
+            {
+                return RedirectToAction("GetExtra", "Admin");
+            }
+        }
+        [HttpPost]
+        public IActionResult UpdateExtra(int id,ExtraVM extraVM)
+        {
+            Extra extra = extraManager.FindById(id);
+            if (extra != null)
+            {
+                if (!string.IsNullOrEmpty(extraVM.ExtraDb.Name) && !string.IsNullOrEmpty(extraVM.ExtraDb.Price.ToString()) && !string.IsNullOrEmpty(extraVM.ExtraDb.ExtraCategoryId.ToString()))
+                {
+                    extra.Name = extraVM.ExtraDb.Name;
+                    extra.ExtraCategoryId = extraVM.ExtraDb.ExtraCategoryId;
+                    extra.Price = extraVM.ExtraDb.Price;
+                    extra.Description=extraVM.ExtraDb.Description;
+                    extra.Image = extraVM.ExtraDb.Image;
+                    extra.State= extraVM.ExtraDb.State;
+                }
+                else
+                {
+                    ModelState.AddModelError("UdateExtra", "Extra ismi,Extra Fiyatı ve Extra Kategorisi boş geçilemez");
+                }
+
+                if (!string.IsNullOrEmpty(extraVM.ExtraDb.Name) && !string.IsNullOrEmpty(extraVM.ExtraDb.Price.ToString()) && !string.IsNullOrEmpty(extraVM.ExtraDb.ExtraCategoryId.ToString()))
+                {
+                    bool result = extraManager.ExtraUpdate(extra);
+                    if (result)
+                    {
+                        TempData["result"] = "Kayıt Başarılı.";
+                        return RedirectToAction("GetExtra");
+
+                    }
+
+                    else
+                        TempData["resultError"] = "Kayıt Başarısız.";
+                }
+            }
+            else
+                ModelState.AddModelError("ExtraNotFound", "Kupon Bulunamadı.");
+            return View(extra);
+        }
+        public IActionResult DeleteExtra(int id)
+        {
+            //AppUser user = await userManager.FindByIdAsync(id);
+            Extra extra = extraManager.FindById(id);
+            if (extra != null)
+            {
+                bool result = extraManager.ExtraRemove(extra);
+                if (result)
+                {
+                    TempData["result"] = "Silme İşlemi Başarılı.";
+                    return RedirectToAction("GetExtra");
+                }
+                else
+                    TempData["resultError"] = "Silme İşlemi Başarısız.";
+            }
+            else
+                ModelState.AddModelError("ExtraNotFound_Delete", "Extra Bulunamadı.");
+
+            return View("GetExtra");
+        }
+
+
+
+
+
+
+
+        public IActionResult GetExtraCategory()
+        {
+            ExtraCategoryVM extraCategoryVM = new ExtraCategoryVM();
+            extraCategoryVM.ExtraCategoryList = extracategoryManager.GetList();
+            return View(extraCategoryVM);
+        }
+        public IActionResult CreateExtraCategory()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult CreateExtraCategory(ExtraCategory extraCategory)
+        {
+            if (ModelState.IsValid)
+            {
+             
+                bool result = extracategoryManager.ExtraCategoryAdd(extraCategory);
+                if (result)
+                {
+                    TempData["result"] = "Kayıt İşlemi Başarılı.";
+                    return RedirectToAction("GetExtraCategory");
+                }
+                else
+                {
+                    TempData["resultError"] = "Kayıt İşlemi Başarısız.";
+                }
+
+            }
+            return View(extraCategory);
+        }
+        public IActionResult UpdateExtraCategory(int id)
+        {
+            ExtraCategory extraCategory = extracategoryManager.FindById(id);
+            if (extraCategory != null)
+            {
+                return View(extraCategory);
+            }
+            else
+            {
+                return RedirectToAction("GetExtraCategory", "Admin");
+            }
+        }
+        [HttpPost]
+        public IActionResult UpdateExtraCategory(int id, string name, string description, bool state)
+        {
+            ExtraCategory extraCategory = extracategoryManager.FindById(id);
+            if (extraCategory != null)
+            {
+                if (!string.IsNullOrEmpty(name) && !string.IsNullOrEmpty(description))
+                {
+                    extraCategory.Name = name;
+                    extraCategory.Description = description;
+                    extraCategory.State = state;
+                }
+                else
+                {
+                    ModelState.AddModelError("UdateExtraCategory", "Kategory ismi ve Kategori açıklamsı boş geçilemez");
+                }
+
+                if (!string.IsNullOrEmpty(name) && !string.IsNullOrEmpty(description))
+                {
+                    bool result = extracategoryManager.ExtraCategoryUpdate(extraCategory);
+                    if (result)
+                    {
+                        TempData["result"] = "Kayıt Başarılı.";
+                        return RedirectToAction("GetExtraCategory");
+
+                    }
+
+                    else
+                        TempData["resultError"] = "Kayıt Başarısız.";
+                }
+            }
+            else
+                ModelState.AddModelError("ExtraCategoryNotFound", "Kategori Bulunamadı.");
+            return View(extraCategory);
+        }
+        public IActionResult DeleteExtraCategory(int id)
+        {
+            //AppUser user = await userManager.FindByIdAsync(id);
+            ExtraCategory extraCategory = extracategoryManager.FindById(id);
+            if (extraCategory != null)
+            {
+                bool result = extracategoryManager.ExtraCategoryRemove(extraCategory);
+                if (result)
+                {
+                    TempData["result"] = "Silme İşlemi Başarılı.";
+                    return RedirectToAction("GetExtraCategory");
+                }
+                else
+                    TempData["resultError"] = "Silme İşlemi Başarısız.";
+            }
+            else
+                ModelState.AddModelError("ExtraCategoryNotFound_Delete", "Kategori Bulunamadı.");
+
+            return View("GetExtraCategory");
+        }
 
 
 

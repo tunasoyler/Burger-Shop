@@ -2,48 +2,43 @@
 using DAL.Abstract;
 using DAL.EntityFramework;
 using Entity.Concrete;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace BLL.Concrete
+namespace MVC.Controllers
 {
     public class OrderManager : IOrderService
     {
-        IOrder _orderDal;
+        IOrder _orderdal;
 
-        public OrderManager(IOrder orderDal)
+        public OrderManager(IOrder orderdal)
         {
-            _orderDal = orderDal;
+            _orderdal = orderdal;
         }
 
         public Order FindById(int id)
         {
-           return _orderDal.Find(id);
+            return _orderdal.Find(id);
         }
 
         public List<Order> GetList()
         {
-            return _orderDal.List();
+            return _orderdal.List();
         }
 
-        public bool OrderAdd(Order c)
+        public bool OrderAdd(Order orderdal)
         {
-            bool IsTrue =_orderDal.Insert(c);
+            bool IsTrue = _orderdal.Insert(orderdal);
             return IsTrue;
         }
 
-        public bool OrderRemove(Order c)
+        public bool OrderRemove(Order orderdal)
         {
-            bool IsTrue = _orderDal.Delete(c);
+            bool IsTrue = _orderdal.Delete(orderdal);
             return IsTrue;
         }
 
-        public bool OrderUpdate(Order c)
+        public bool OrderUpdate(Order orderdal)
         {
-            bool IsTrue = _orderDal.Update(c);
+            bool IsTrue = _orderdal.Update(orderdal);
             return IsTrue;
         }
     }

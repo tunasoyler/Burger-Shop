@@ -45,18 +45,20 @@
                 <div class="col-lg-4 col-md-6 text-center @item.MenuCategory">
                     <div class="single-product-item">
                         <div class="product-image">
-                            <a href="single-product.html">
+                            <a href="">
                                 @{
                                     var base64String = Convert.ToBase64String(item.Image);
                                     var imageUrl = $"data:image/png;base64,{base64String}";
                                 }
-                                <img src="@imageUrl" alt="Image" width="600" height="300"/>
+                                <img src="@imageUrl" alt="Image" width="600" height="300" />
                             </a>
                         </div>
                         <h3>@item.Name</h3>
                         <p class="product-price"> @item.Price TL</p>
                         <p class="product-description"> @item.Description</p>
-                        <a href="cart.html" class="cart-btn"><i class="fas fa-shopping-cart"></i> Sepete Ekle</a>
+                        <a asp-controller="ShoppingCart" asp-action="AddToCart" asp-route-id="@item.Id" class="cart-btn"><i class="fas fa-shopping-cart"></i> Sepete Ekle</a>
+
+
                     </div>
                 </div>
             }
