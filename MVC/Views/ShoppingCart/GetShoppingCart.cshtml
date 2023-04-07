@@ -5,6 +5,18 @@
 @{
     ViewData["Title"] = "GetShoppingCart";
     Layout = "~/Views/Shared/_Layout2.cshtml";
+
+    decimal totalPrice = 0;
+    decimal discount = 0;
+    decimal cartTotal = totalPrice - discount;
+
+    foreach (var item in ViewBag.cartList1)
+    {
+        if (item.Price != null)
+        {
+            totalPrice += item.Price;
+        }
+    }
 }
 <!-- breadcrumb-section -->
 <div class="breadcrumb-section breadcrumb-bg">
@@ -23,125 +35,133 @@
 <!-- cart -->
 @if (ViewBag.cartList1 != null)
 {
-<div class="cart-section mt-150 mb-150">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-8 col-md-12">
-                <div class="cart-table-wrap">
-                    <table class="cart-table">
-                        <thead class="cart-table-head">
-                            <tr class="table-head-row">
-                                <th class="product-remove"></th>
-                                <th class="product-image">Ürün Fotoğrafı</th>
-                                <th class="product-name">Ürün Adı</th>
-                                <th class="product-price">Fiyat</th>
-                                <th class="product-quantity">Miktar</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach (var item in ViewBag.cartList1)
-                            {
+    <div class="cart-section mt-150 mb-150">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-md-12">
+                    <div class="cart-table-wrap">
+                        <table class="cart-table">
+                            <thead class="cart-table-head">
+                                <tr class="table-head-row">
+                                    <th class="product-remove"></th>
+                                    <th class="product-image">Ürün Fotoğrafı</th>
+                                    <th class="product-name">Ürün Adı</th>
+                                    <th class="product-price">Fiyat</th>
+                                    <th class="product-quantity">Miktar</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in ViewBag.cartList1)
+                                {
 
-                                <tr class="table-body-row">
-                                    <td class="product-remove"><a href="#"><i class="far fa-window-close"></i></a></td>
-                                    <td class="product-image">
-                                        @if (item.Image != null)
-                                        {
-                                            <a href="">
-                                                @{
-                                                    var base64String = Convert.ToBase64String(item.Image);
-                                                    var imageUrl = $"data:image/png;base64,{base64String}";
-                                                }
-                                                <img src="@imageUrl" alt="Image" width="100" height="100" />
-                                            </a>
-                                        }
-                                    </td>
-                                    <td class="product-name">@item.Name</td>
-                                    <td class="product-price">@item.Price</td>
-                                    <td class="product-quantity"><input type="number" placeholder=@item.Quantity></td>
+                                    <tr class="table-body-row">
+                                        <td class="product-remove"><a asp-action="RemoveFromCart" asp-controller="ShoppingCart" asp-route-id="@item.Id"><i class="far fa-window-close"></i></a></td>
+                                        <td class="product-image">
+                                            @if (item.Image != null)
+                                            {
+                                                <a href="">
+                                                    @{
+                                                        var base64String = Convert.ToBase64String(item.Image);
+                                                        var imageUrl = $"data:image/png;base64,{base64String}";
+                                                    }
+                                                    <img src="@imageUrl" alt="Image" width="100" height="100" />
+                                                </a>
+                                            }
+                                        </td>
+                                        <td class="product-name">@item.Name</td>
+                                        <td class="product-price">@item.Price TL @item.Id</td>
+                                        <td class="product-quantity"><input type="number" placeholder=@item.Quantity></td>
+                                    </tr>
+
+
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="col-lg-4">
+                    <div class="total-section">
+                        <table class="total-table">
+                            <thead class="total-table-head">
+                                <tr class="table-total-row">
+                                    <th>Toplam </th>
+                                    <th>Fiyat</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="total-data">
+                                    <td><strong>Ürünler Toplam: </strong></td>
+                                    <td>@totalPrice TL</td>
+                                </tr>
+                                <tr class="total-data">
+                                    <td><strong>İndirim: </strong></td>
+                                    @if (ViewBag.discount == null)
+                                    {
+                                        <td>0 TL</td>
+                                    }
+                                    else
+                                    {
+                                        <td>"-@ViewBag.Discount.Discount"</td>
+                                    }
+                                </tr>
+                                <tr class="total-data">
+                                    <td><strong>Sepet Toplam: </strong></td>
+                                    <td>@cartTotal TL</td>
                                 </tr>
 
-
-                            }
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-
-            <div class="col-lg-4">
-                <div class="total-section">
-                    <table class="total-table">
-                        <thead class="total-table-head">
-                            <tr class="table-total-row">
-                                <th>Toplam </th>
-                                <th>Fiyat</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr class="total-data">
-                                <td><strong>Ürün Toplam: </strong></td>
-                                <td>$500</td>
-                            </tr>
-                            <tr class="total-data">
-                                <td><strong>Teslimat Ücreti: </strong></td>
-                                <td>$45</td>
-                            </tr>
-                            <tr class="total-data">
-                                <td><strong>Toplam: </strong></td>
-                                <td>$545</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                    <div class="cart-buttons">
-                        <a href="cart.html" class="boxed-btn">Sepeti Güncelle</a>
-                        <br />
-                        <br />
-                        <a asp-action="GetPayment" asp-controller="Payment" class="boxed-btn black">Siparişi Onayla</a>
-                    </div>
-                </div>
-
-                <div class="coupon-section">
-                    <h3>Kupon Ekle</h3>
-                    <div class="coupon-form-wrap">
-                        <form asp-action="GetShoppingCart" asp-controller="ShoppingCart">
-                            <p><input type="text" placeholder="Kupon Kodu Giriniz"></p>
-                            <p><input type="submit" value="Ekle"></p>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<!-- end cart -->
-<div class="product-section mt-50 mb-50">
-    <div class="container">
-        <div class="row product-lists">
-            @foreach (var item in Model)
-            {
-                <div class="col-lg-2 col-md-1 text-center">
-                    <div class="single-product-item">
-                        <div class="product-image">
-                            @if (item.Image != null)
-                            {
-                                <a href="single-product.html">
-                                    @{
-                                        var base64String = Convert.ToBase64String(item.Image);
-                                        var imageUrl = $"data:image/png;base64,{base64String}";
-                                    }
-                                    <img src="@imageUrl" alt="Image" width="100" height="100" />
-                                </a>
-                            }
+                            </tbody>
+                        </table>
+                        <div class="cart-buttons">
+                            <a href="cart.html" class="boxed-btn">Sepeti Güncelle</a>
+                            <br />
+                            <br />
+                            <a asp-action="GetPayment" asp-controller="Payment" class="boxed-btn black">Siparişi Onayla</a>
                         </div>
-                        <h3>@item.Name</h3>
-                        <p class="product-price"> @item.Price TL</p>
-                        <p class="product-description"> @item.Description</p>
-                        <a asp-controller="ShoppingCart" asp-action="AddExtraToCart" asp-route-id="@item.Id" class="cart-btn"><i class="fas fa-shopping-cart"></i> Sepete Ekle</a>
+                    </div>
+
+                    <div class="coupon-section">
+                        <h3>Kupon Ekle</h3>
+                        <div class="coupon-form-wrap">
+                            <form asp-action="GetShoppingCart" asp-controller="ShoppingCart">
+                                <p><input type="text" placeholder="Kupon Kodu Giriniz"></p>
+                                <p><input type="submit" value="Ekle"></p>
+                            </form>
+                        </div>
                     </div>
                 </div>
-            }
+            </div>
         </div>
     </div>
+    <!-- end cart -->
+    <div class="product-section mt-50 mb-50">
+        <div class="container">
+            <div class="row product-lists">
+                @foreach (var item in Model)
+                {
+                    <div class="col-lg-2 col-md-1 text-center">
+                        <div class="single-product-item">
+                            <div class="product-image">
+                                @if (item.Image != null)
+                                {
+                                    <a href="single-product.html">
+                                        @{
+                                            var base64String = Convert.ToBase64String(item.Image);
+                                            var imageUrl = $"data:image/png;base64,{base64String}";
+                                        }
+                                        <img src="@imageUrl" alt="Image" width="100" height="100" />
+                                    </a>
+                                }
+                            </div>
+                            <h3>@item.Name</h3>
+                            <p class="product-price"> @item.Price TL</p>
+                            <p class="product-description"> @item.Description</p>
+                            <a asp-controller="ShoppingCart" asp-action="AddExtraToCart" asp-route-id="@item.Id" class="cart-btn"><i class="fas fa-shopping-cart"></i> Sepete Ekle</a>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
     </div>
 }
 else

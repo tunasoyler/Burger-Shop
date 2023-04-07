@@ -130,7 +130,7 @@ namespace MVC.Controllers
             }).ToList();
             return View(orderDetailVm);
         }
-        public IActionResult EditOrder(int id)
+        public async Task<IActionResult> EditOrder(int id)
         {
             AppUser _user = await _userManager.GetUserAsync(HttpContext.User);
             orderDetailVm.orderDetails= _db.OrderDetails.FirstOrDefault(x => x.OrderId == id && x.Order.AppUserId == _user.Id);

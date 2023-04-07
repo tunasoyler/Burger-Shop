@@ -2,6 +2,7 @@
 using DAL.EntityFramework;
 using Entity.Concrete;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.CodeAnalysis;
 using Microsoft.EntityFrameworkCore;
 using MVC.Extension;
 using MVC.Models;
@@ -32,23 +33,36 @@ namespace MVC.Controllers
         }
 
 
+
         public IActionResult AddMenuToCart(int id)
-        {     
+        {
             var item = burgerContext.Menus.Find(id);
+            var cartList = HttpContext.Session.GetObject<List<CartItemDTO>>("cartList");
+            int cartId;
+            if (cartList.Count != 0)
+            {
+                cartId = cartList.Last().Id;
+            }
+            else
+            {
+                cartId = 0;
+            }
 
             var cartItem = new CartItemDTO
             {
+                Id = cartId + 1,
                 Name = item.Name,
                 MenuId = item.Id,
                 Quantity = 1,
                 Size = Entity.Enums.Size.Small,
                 Price = item.Price,
-                Image = item.Image
+                Image = item.Image,
+                State = true
             };
 
 
-            HttpContext.Session.SetObject("CartItem", cartItem);
-            
+            HttpContext.Session.SetObject("cartItem", cartItem);
+
 
             return RedirectToAction("GetShoppingCart");
         }
@@ -56,18 +70,44 @@ namespace MVC.Controllers
         {
 
             var item = burgerContext.Extras.Find(id);
+            var cartList = HttpContext.Session.GetObject<List<CartItemDTO>>("cartList");
+            int cartId;
+            if (cartList.Count != 0)
+            {
+                cartId = cartList.Last().Id;
+            }
+            else
+            {
+                cartId = 0;
+            }
+
 
             var cartItem = new CartItemDTO
             {
+                Id = cartId + 1,
                 Name = item.Name,
                 ExtraId = item.Id,
                 Quantity = 1,
                 Price = item.Price,
-                Image = item.Image
+                Image = item.Image,
+                State = true
             };
 
 
-            HttpContext.Session.SetObject("CartItem", cartItem);
+            HttpContext.Session.SetObject("cartItem", cartItem);
+
+            return RedirectToAction("GetShoppingCart");
+        }
+        public IActionResult RemoveFromCart(int id)
+        {
+            var cartList = HttpContext.Session.GetObject<List<CartItemDTO>>("cartList");
+            var removeItem = cartList.FirstOrDefault(x => x.Id == id);
+
+            if (removeItem != null)
+            {
+                removeItem.State = false;
+                HttpContext.Session.SetObject("cartList", cartList);
+            }
 
             return RedirectToAction("GetShoppingCart");
         }
@@ -76,7 +116,7 @@ namespace MVC.Controllers
             List<Extra> extraList = extraManager.GetList();
 
             var cartList = HttpContext.Session.GetObject<List<CartItemDTO>>("cartList");
-            var CartItem = HttpContext.Session.GetObject<CartItemDTO>("CartItem");
+            var CartItem = HttpContext.Session.GetObject<CartItemDTO>("cartItem");
 
             cartList.Add(CartItem);
 
@@ -84,8 +124,12 @@ namespace MVC.Controllers
 
             ViewBag.cartList1 = cartList;
 
+            HttpContext.Session.Remove("cartItem");
+
             return View(extraList);
         }
+
+
 
 
         public IActionResult Index()
