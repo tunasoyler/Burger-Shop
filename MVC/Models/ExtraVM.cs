@@ -15,8 +15,7 @@ namespace MVC.Models
         public decimal price { get; set; }
 
 
-        [System.ComponentModel.DataAnnotations.Required(ErrorMessage = "fotoğraf alanı boş geçilemez.")]
-        public byte[]? ımage { get; set; }
+       
         public List<Extra>? Extras { get; set; }
 
        

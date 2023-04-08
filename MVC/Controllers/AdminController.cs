@@ -247,8 +247,8 @@ namespace MVC.Controllers
         {
             Extra extra = new Extra();
             extra = extraVm.ExtraDb;
-            if (ModelState.IsValid)
-            {
+            //if (ModelState.IsValid)
+            //{
 
                 if (imageFile != null && imageFile.Length > 0)
                 {
@@ -278,13 +278,13 @@ namespace MVC.Controllers
                     TempData["resultError"] = "Kayıt Başarısız.";
                     return RedirectToAction("GetExtra");
                 }
-            }
-            else
-            {
-                ModelState.AddModelError("CreateExtra", "Extra ismi,Extra Fiyatı ve Extra Kategorisi boş geçilemez");
-                extraVm.ExtraCategoryForDropDown = extraManager.FillExtraCategory();
-                return View(extraVm);
-            }
+            //}
+            //else
+            //{
+            //    ModelState.AddModelError("CreateExtra", "Extra ismi,Extra Fiyatı ve Extra Kategorisi boş geçilemez");
+            //    extraVm.ExtraCategoryForDropDown = extraManager.FillExtraCategory();
+            //    return View(extraVm);
+            //}
 
 
 

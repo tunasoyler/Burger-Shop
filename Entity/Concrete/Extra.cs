@@ -22,7 +22,7 @@ namespace Entity.Concrete
         public decimal Price { get; set; }
         
         public string? Description { get; set; }
-        [Required(ErrorMessage = "Fotoğraf alanı boş geçilemez.")]
+      
         public byte[]? Image { get; set; }
         public Extra()
         {
