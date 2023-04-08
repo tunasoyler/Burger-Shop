@@ -162,7 +162,7 @@ namespace DAL.Migrations
                     b.Property<DateTime>("CreatedTime")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2023, 4, 7, 12, 33, 21, 641, DateTimeKind.Local).AddTicks(3154));
+                        .HasDefaultValue(new DateTime(2023, 4, 8, 14, 54, 56, 723, DateTimeKind.Local).AddTicks(5701));
 
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
@@ -176,7 +176,7 @@ namespace DAL.Migrations
                     b.Property<DateTime>("ModifiedTime")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2023, 4, 7, 12, 33, 21, 641, DateTimeKind.Local).AddTicks(3381));
+                        .HasDefaultValue(new DateTime(2023, 4, 8, 14, 54, 56, 723, DateTimeKind.Local).AddTicks(5956));
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -207,7 +207,7 @@ namespace DAL.Migrations
                     b.Property<DateTime>("CreatedTime")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2023, 4, 7, 12, 33, 21, 642, DateTimeKind.Local).AddTicks(491));
+                        .HasDefaultValue(new DateTime(2023, 4, 8, 14, 54, 56, 724, DateTimeKind.Local).AddTicks(1265));
 
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
@@ -215,7 +215,7 @@ namespace DAL.Migrations
                     b.Property<DateTime>("ModifiedTime")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2023, 4, 7, 12, 33, 21, 642, DateTimeKind.Local).AddTicks(735));
+                        .HasDefaultValue(new DateTime(2023, 4, 8, 14, 54, 56, 724, DateTimeKind.Local).AddTicks(1448));
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -233,24 +233,24 @@ namespace DAL.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedTime = new DateTime(2023, 4, 7, 12, 33, 21, 642, DateTimeKind.Local).AddTicks(812),
-                            ModifiedTime = new DateTime(2023, 4, 7, 12, 33, 21, 642, DateTimeKind.Local).AddTicks(812),
+                            CreatedTime = new DateTime(2023, 4, 8, 14, 54, 56, 724, DateTimeKind.Local).AddTicks(1521),
+                            ModifiedTime = new DateTime(2023, 4, 8, 14, 54, 56, 724, DateTimeKind.Local).AddTicks(1522),
                             Name = "Beverage",
                             State = false
                         },
                         new
                         {
                             Id = 2,
-                            CreatedTime = new DateTime(2023, 4, 7, 12, 33, 21, 642, DateTimeKind.Local).AddTicks(826),
-                            ModifiedTime = new DateTime(2023, 4, 7, 12, 33, 21, 642, DateTimeKind.Local).AddTicks(827),
+                            CreatedTime = new DateTime(2023, 4, 8, 14, 54, 56, 724, DateTimeKind.Local).AddTicks(1536),
+                            ModifiedTime = new DateTime(2023, 4, 8, 14, 54, 56, 724, DateTimeKind.Local).AddTicks(1536),
                             Name = "Snack",
                             State = false
                         },
                         new
                         {
                             Id = 3,
-                            CreatedTime = new DateTime(2023, 4, 7, 12, 33, 21, 642, DateTimeKind.Local).AddTicks(829),
-                            ModifiedTime = new DateTime(2023, 4, 7, 12, 33, 21, 642, DateTimeKind.Local).AddTicks(830),
+                            CreatedTime = new DateTime(2023, 4, 8, 14, 54, 56, 724, DateTimeKind.Local).AddTicks(1538),
+                            ModifiedTime = new DateTime(2023, 4, 8, 14, 54, 56, 724, DateTimeKind.Local).AddTicks(1538),
                             Name = "Sauce",
                             State = false
                         });
@@ -267,7 +267,7 @@ namespace DAL.Migrations
                     b.Property<DateTime>("CreatedTime")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2023, 4, 7, 12, 33, 21, 641, DateTimeKind.Local).AddTicks(5541));
+                        .HasDefaultValue(new DateTime(2023, 4, 8, 14, 54, 56, 723, DateTimeKind.Local).AddTicks(8022));
 
                     b.Property<string>("Description")
                         .IsRequired()
@@ -285,7 +285,7 @@ namespace DAL.Migrations
                     b.Property<DateTime>("ModifiedTime")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2023, 4, 7, 12, 33, 21, 641, DateTimeKind.Local).AddTicks(5732));
+                        .HasDefaultValue(new DateTime(2023, 4, 8, 14, 54, 56, 723, DateTimeKind.Local).AddTicks(8385));
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -314,7 +314,7 @@ namespace DAL.Migrations
                     b.Property<Guid>("AppUserId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<int>("CouponId")
+                    b.Property<int?>("CouponId")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("CreatedTime")
@@ -344,19 +344,19 @@ namespace DAL.Migrations
 
             modelBuilder.Entity("Entity.Concrete.OrderDetails", b =>
                 {
-                    b.Property<int?>("MenuId")
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    b.Property<int>("OrderId")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("ExtraId")
-                        .HasColumnType("int");
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<DateTime>("CreatedTime")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("Id")
+                    b.Property<int?>("ExtraId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("MenuId")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("ModifiedTime")
@@ -369,6 +369,9 @@ namespace DAL.Migrations
                     b.Property<decimal>("OrderDetailPrice")
                         .HasColumnType("decimal(18,2)");
 
+                    b.Property<int>("OrderId")
+                        .HasColumnType("int");
+
                     b.Property<int>("Quantity")
                         .HasColumnType("int");
 
@@ -378,9 +381,11 @@ namespace DAL.Migrations
                     b.Property<bool>("State")
                         .HasColumnType("bit");
 
-                    b.HasKey("MenuId", "OrderId", "ExtraId");
+                    b.HasKey("Id");
 
                     b.HasIndex("ExtraId");
+
+                    b.HasIndex("MenuId");
 
                     b.HasIndex("OrderId");
 
@@ -557,7 +562,7 @@ namespace DAL.Migrations
                     b.Property<DateTime>("MemberSince")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2023, 4, 7, 12, 33, 21, 640, DateTimeKind.Local).AddTicks(9749));
+                        .HasDefaultValue(new DateTime(2023, 4, 8, 14, 54, 56, 723, DateTimeKind.Local).AddTicks(2115));
 
                     b.Property<string>("NormalizedEmail")
                         .HasMaxLength(256)
@@ -640,8 +645,7 @@ namespace DAL.Migrations
                     b.HasOne("Entity.Concrete.Coupon", "Coupon")
                         .WithMany("Orders")
                         .HasForeignKey("CouponId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
+                        .OnDelete(DeleteBehavior.Restrict);
 
                     b.Navigation("AppUser");
 
@@ -653,14 +657,12 @@ namespace DAL.Migrations
                     b.HasOne("Entity.Concrete.Extra", "Extra")
                         .WithMany("OrderDetails")
                         .HasForeignKey("ExtraId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
+                        .OnDelete(DeleteBehavior.Restrict);
 
                     b.HasOne("Entity.Concrete.Menu", "Menu")
                         .WithMany("OrderDetails")
                         .HasForeignKey("MenuId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
+                        .OnDelete(DeleteBehavior.Restrict);
 
                     b.HasOne("Entity.Concrete.Order", "Order")
                         .WithMany("OrderDetails")
