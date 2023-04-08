@@ -9,6 +9,7 @@ namespace BLL.Abstract
         public Order FindById(int id);
         public bool OrderRemove(Order orderdal);
         public bool OrderUpdate(Order orderdal);
+        public List<Order> GetActiveOrders();
        
 
     }

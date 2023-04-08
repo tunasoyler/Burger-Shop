@@ -20,6 +20,7 @@ namespace MVC.Controllers
         ExtraManager extraManager = new ExtraManager(new EfExtraDal());
         ExtraCategoryManager extracategoryManager = new ExtraCategoryManager(new EfExtraCategoryDal());
         MenuManager menuManager = new MenuManager(new EfMenuDal());
+        OrderManager orderManager = new OrderManager(new EfOrderDal());
         public AdminController(UserManager<AppUser> _userManager, IPasswordHasher<AppUser> _passwordHasher)
         {
             userManager = _userManager;
@@ -308,7 +309,7 @@ namespace MVC.Controllers
                     extra.ExtraCategoryId = extraVM.ExtraDb.ExtraCategoryId;
                     extra.Price = extraVM.ExtraDb.Price;
                     extra.Description = extraVM.ExtraDb.Description;
-                    extra.Image = extraVM.ExtraDb.Image;
+                   
                     extra.State = extraVM.ExtraDb.State;
                 }
                 else
@@ -500,24 +501,6 @@ namespace MVC.Controllers
                 }
             }
             return View(menu);
-
-
-            //if (ModelState.IsValid)
-            //{
-
-            //    bool result = menuManager.MenuAdd(menu);
-            //    if (result)
-            //    {
-            //        TempData["result"] = "Kayıt İşlemi Başarılı.";
-            //        return RedirectToAction("GetMenu");
-            //    }
-            //    else
-            //    {
-            //        TempData["resultError"] = "Kayıt İşlemi Başarısız.";
-            //    }
-
-            //}
-            //return View(menu);
         }
         public IActionResult UpdateMenu(int id)
         {
@@ -598,6 +581,112 @@ namespace MVC.Controllers
             return View("GetMenu");
         }
 
+
+
+
+        public IActionResult GetActiveOrder()
+        {//Id
+            //Name
+            //AppUserId
+            //CreatedTime
+            //State
+            //CouponId
+            //OrderTotal
+            //MenuVM menuVM = new MenuVM();
+            //menuVM.MenuList = menuManager.GetList();
+            BurgerContext _db = new BurgerContext();
+            OrderVM orderVM = new OrderVM();
+            orderVM.OrderList = _db.Orders.Where(x=>x.State==true).Select(x => new OrderDto()
+            {
+                Id = x.Id,
+                FirstName = x.AppUser.FirstName,
+                LastName = x.AppUser.LastName,
+                CreatedTime = x.CreatedTime,
+                State = x.State,
+                CouponName = x.Coupon.Name,
+                OrderTotal = x.OrderTotal
+
+            }).ToList();
+           
+
+
+            return View(orderVM);
+        }
+
+
+        public IActionResult UpdateOrder(int id)
+        {
+            Order order = orderManager.FindById(id);
+            if (order != null)
+            {
+                return View(order);
+            }
+            else
+            {
+                return RedirectToAction("GetActiveOrder", "Admin");
+            }
+        }
+        [HttpPost]
+        public IActionResult UpdateOrder(int id,Order Order)
+        {
+            Order order = orderManager.FindById(id);
+            if (order != null)
+            {
+                
+
+                if (Order != null)
+                {
+                    order.AppUserId = Order.AppUserId;
+                    order.CreatedTime= Order.CreatedTime;
+                    order.State = Order.State;
+                    order.OrderTotal = Order.OrderTotal;
+                }
+                else
+                {
+                    ModelState.AddModelError("UpdateActiveOrder", "Menu İsmi,Menu Açıklaması ve Manu Kategorisi boş geçilemez");
+                }
+
+                if (Order != null)
+                {
+                    bool result = orderManager.OrderUpdate(order);
+                    if (result)
+                    {
+                        TempData["result"] = "Kayıt Başarılı.";
+                        return RedirectToAction("GetActiveOrder");
+
+                    }
+
+                    else
+                        TempData["resultError"] = "Kayıt Başarısız.";
+                }
+            }
+            else
+                ModelState.AddModelError("ActiveOrderNotFound", "Sipariş Bulunamadı.");
+            return View(Order);
+        }
+
+
+
+        public IActionResult GetAllOrder()
+        {
+            BurgerContext _db = new BurgerContext();
+            OrderVM orderVM = new OrderVM();
+            orderVM.OrderList = _db.Orders.Select(x => new OrderDto()
+            {
+                Id = x.Id,
+                FirstName = x.AppUser.FirstName,
+                LastName = x.AppUser.LastName,
+                CreatedTime = x.CreatedTime,
+                State = x.State,
+                CouponName = x.Coupon.Name,
+                OrderTotal = x.OrderTotal
+
+            }).ToList();
+
+
+
+            return View(orderVM);
+        }
 
 
 
