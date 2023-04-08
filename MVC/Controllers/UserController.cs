@@ -45,14 +45,15 @@ namespace MVC.Controllers
                     SignInResult result =await _signInManager.PasswordSignInAsync(appUser, loginVM.Password,loginVM.Remember,false);
 					if(result.Succeeded)
 					{
+						if (appUser.Email == "huseyingulerman.1997@gmail.com")
+						{
+							return RedirectToAction("Index", "Admin");
+						}
 						return Redirect(loginVM.ReturnUrl ?? "/");
 					}
-					ModelState.AddModelError("", "Wrong Credantion Information!");
+					ModelState.AddModelError("", "Hatalı kullanıcı adı veya şifre.");
 				}
-                if (appUser.UserName=="huseyingulerman.1997@gmail.com")
-                {
-					return RedirectToAction("Index", "Admin");
-                }
+               
             }
 			
 			return View(loginVM);
@@ -100,22 +101,49 @@ namespace MVC.Controllers
 		{
 			return View(new ResetPasswordModel());
 		}
-		//[HttpPost]
-		//public async Task<IActionResult> Reset(ResetPasswordModel password)
-		//{
-		//	AppUser user = await _usermanager.FindByEmailAsync(password.Email);
-		//	if(user != null)
-		//	{
-		//		string resetToken=await _usermanager.GeneratePasswordResetTokenAsync(user);
-		//		string passwordResetLink=Url.Action("UpdatePassword","User",new {userId=user.Id, token=resetToken },HttpContext.Request.Scheme);
-		//		MailHelper.ResetPassword.PasswordSendMail(passwordResetLink);
-		//		ViewBag.state = true;
-		//	}
-		//	else
-		//	{
-		//		ViewBag.state = false;
-		//	}
-		//	return View(password);
-		//}
+		[HttpPost]
+		public async Task<IActionResult> Reset(ResetPasswordModel password)
+		{
+			AppUser user = await _usermanager.FindByEmailAsync(password.Email);
+			if (user != null)
+			{
+				string resetToken = await _usermanager.GeneratePasswordResetTokenAsync(user);
+				string passwordResetLink = Url.Action("UpdatePassword", "User", new { userId = user.Id, token = resetToken }, HttpContext.Request.Scheme);
+				MailHelper.ResetPassword.PasswordSendMail(passwordResetLink);
+				ViewBag.state = true;
+			}
+			else
+			{
+				ViewBag.state = false;
+			}
+			return View(password);
+		}
+		public IActionResult UpdatePassword(string userId,string token)
+		{
+			TempData["userId"]=userId;
+			TempData["token"]=token;
+			return View();
+		}
+		[HttpPost]
+		public async Task<IActionResult> UpdatePassword([Bind("NewPassword")] ResetPasswordModel model)
+		{
+			string token = TempData["token"].ToString();
+			string userId = TempData["userId"].ToString();
+			AppUser user=await _usermanager.FindByIdAsync(userId);
+			if(user != null)
+			{
+				IdentityResult result = await _usermanager.ResetPasswordAsync(user, token, model.NewPassword);
+				if(result.Succeeded)
+				{
+					await _usermanager.UpdateSecurityStampAsync(user);
+					TempData["Success"] = "Başarıyla güncellenmiştir.";
+				}
+			}
+			else
+			{
+				ModelState.AddModelError("", "Böyle bir kullanıcı bulunamadı.");
+			}
+			return View();
+		}
 	}
 }

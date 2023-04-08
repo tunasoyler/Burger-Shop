@@ -27,11 +27,23 @@
                                 <a asp-action="ProfileHome" asp-controller="UserProfile">Profilim</a>
                                 @if (User?.Identity?.IsAuthenticated ?? false)
                                 {
-                                    <ul class="sub-menu">
-                                        <li><a asp-action="ProfileHome" asp-controller="UserProfile">Kullanıcı Bilgilerim</a></li>
-                                        <li><a asp-action="GetOrders" asp-controller="UserProfile">Siparişlerim</a></li>
-                                        <li><a asp-action="LogOut" asp-controller="UserProfile">Çıkış Yap</a></li>
-                                    </ul>
+                                    @if (User.IsInRole("Admin"))
+                                    {
+                                         <ul class="sub-menu">
+                                            <li><a asp-action="ProfileHome" asp-controller="UserProfile">Kullanıcı Bilgilerim</a></li>
+                                            <li><a asp-action="GetOrders" asp-controller="UserProfile">Siparişlerim</a></li>
+                                            <li><a asp-action="Index" asp-controller="Admin">Admin Sayfası</a></li>
+                                            <li><a asp-action="LogOut" asp-controller="UserProfile">Çıkış Yap</a></li>
+                                        </ul>
+                                    }
+                                    else
+                                    {
+                                        <ul class="sub-menu">
+                                            <li><a asp-action="ProfileHome" asp-controller="UserProfile">Kullanıcı Bilgilerim</a></li>
+                                            <li><a asp-action="GetOrders" asp-controller="UserProfile">Siparişlerim</a></li>
+                                            <li><a asp-action="LogOut" asp-controller="UserProfile">Çıkış Yap</a></li>
+                                        </ul>
+                                    }
                                 }
                                 else
                                 {
