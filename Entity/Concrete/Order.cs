@@ -11,7 +11,7 @@ namespace Entity.Concrete
     {
         public ICollection<OrderDetails> OrderDetails { get; set; }        
         public Coupon? Coupon { get; set; }
-        public int CouponId { get; set; }
+        public int? CouponId { get; set; }
         public AppUser AppUser { get; set; }
         public Guid AppUserId { get; set; }
         public decimal OrderTotal { get; set; }

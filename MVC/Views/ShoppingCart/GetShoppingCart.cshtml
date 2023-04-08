@@ -16,8 +16,15 @@
         {
             totalPrice += item.Price;
         }
-    }
+    }   
 }
+@if (TempData["result"] != null)
+{
+    <script>
+        alert(@TempData["result"]);
+    </script>
+}
+
 <!-- breadcrumb-section -->
 <div class="breadcrumb-section breadcrumb-bg">
     <div class="container">

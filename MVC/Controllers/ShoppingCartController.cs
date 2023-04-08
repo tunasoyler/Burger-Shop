@@ -1,6 +1,7 @@
 ﻿using BLL.Concrete;
 using DAL.EntityFramework;
 using Entity.Concrete;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.CodeAnalysis;
 using Microsoft.EntityFrameworkCore;
@@ -13,23 +14,24 @@ namespace MVC.Controllers
 {
     public class ShoppingCartController : Controller
     {
-        IHttpContextAccessor httpContextAccessor;
         BurgerContext burgerContext;
+        private readonly UserManager<AppUser> _userManager;
         ExtraManager extraManager = new ExtraManager(new EfExtraDal());
         MenuManager menuManager = new MenuManager(new EfMenuDal());
         OrderDetailsManager orderDetailsManager = new OrderDetailsManager(new EfOrderDetailsDal());
+        OrderManager orderManager = new OrderManager(new EfOrderDal());
 
 
         private readonly IHttpContextAccessor _httpContextAccessor;
 
         Order order = new Order();
         CartItemDTO cartItem;
+        OrderDetails orderDetails;
 
-        public ShoppingCartController(IHttpContextAccessor httpContextAccessor, BurgerContext burgerContext)
+        public ShoppingCartController(BurgerContext burgerContext, UserManager<AppUser> userManager)
         {
-            this.httpContextAccessor = httpContextAccessor;
             this.burgerContext = burgerContext;
-
+            _userManager = userManager;
         }
 
 
@@ -51,7 +53,7 @@ namespace MVC.Controllers
             var cartItem = new CartItemDTO
             {
                 Id = cartId + 1,
-                Name = item.Name,
+                Name = item.Name,                
                 MenuId = item.Id,
                 Quantity = 1,
                 Size = Entity.Enums.Size.Small,
@@ -133,15 +135,81 @@ namespace MVC.Controllers
             return View(extraList);
         }
 
-        public IActionResult ConfirmCart()
+        public async Task<IActionResult> ConfirmCart()
         {
+            var confirmedList = HttpContext.Session.GetObject<List<CartItemDTO>>("cartList");
+            AppUser appUser = await _userManager.GetUserAsync(HttpContext.User);
 
+            if (appUser == null)
+            {
+                return RedirectToAction("GetOrders", "UserProfile");
+            }
+            else
+            {
+                if (confirmedList.Count() != 0)
+                {
+                    TempData["result"] = "Siparişiniz onaylandı!";
 
-            return View();
+                    decimal orderTotal = 0;
+
+                    foreach (var item in confirmedList)
+                    {
+                        if (item.ExtraId != null)
+                        {
+                            orderDetails = new OrderDetails()
+                            {
+                                Name = $"{DateTime.Now}",
+                                ExtraId = item.ExtraId,
+                                Extra = item.Extra,
+                                Order = order,
+                                OrderId = order.Id,
+                                Quantity = item.Quantity,
+                                OrderDetailPrice = (decimal)item.Price * item.Quantity
+                            };
+                            orderTotal += orderDetails.OrderDetailPrice;
+                            order.OrderDetails.Add(orderDetails);
+                        }
+                        if (item.MenuId != null)
+                        {
+                            orderDetails = new OrderDetails()
+                            {
+                                Name = $"{DateTime.Now}",
+                                MenuId = item.MenuId,
+                                Menu = item.Menu,
+                                Order = order,
+                                OrderId = order.Id,
+                                Quantity = item.Quantity,
+                                OrderDetailPrice = (decimal)item.Price * item.Quantity
+                            };
+                            orderTotal += orderDetails.OrderDetailPrice;
+                            order.OrderDetails.Add(orderDetails);
+                        }
+                    }
+                    order.AppUserId = appUser.Id;
+                    order.AppUser = appUser;
+                    //order.Coupon = HttpContext.Session.GetObject<Coupon>("coupon");
+                    //order.CouponId = HttpContext.Session.GetObject<int>("couponId");
+                    order.OrderTotal = orderTotal;
+                    order.Name = $"{appUser.UserName} + {DateTime.Now}";
+                    order.State = true;
+
+                    burgerContext.Add(order);
+                    burgerContext.SaveChanges();
+
+                    return RedirectToAction("GetOrders", "UserProfile");
+                }
+                else
+                {
+                    TempData["result"] = "Sepetiniz Boş!";
+                    return RedirectToAction("GetShoppingCart");
+                }
+            }
         }
 
         public IActionResult ApplyCoupon()
         {
+
+
             return RedirectToAction("GetShoppingCart");
         }
 
