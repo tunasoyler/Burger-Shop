@@ -128,12 +128,7 @@ namespace MVC.Controllers
                 ModifiedTime = x.ModifiedTime,
                 TotalPrice = x.Order.OrderTotal
             }).ToList();
-            return View(orderDetailVm);
-        }
-        public async Task<IActionResult> EditOrder(int id)
-        {
-            AppUser _user = await _userManager.GetUserAsync(HttpContext.User);
-            orderDetailVm.orderDetails= _db.OrderDetails.FirstOrDefault(x => x.OrderId == id && x.Order.AppUserId == _user.Id);
+          
             return View(orderDetailVm);
         }
         public async Task<IActionResult> DeleteOrder(int id)
