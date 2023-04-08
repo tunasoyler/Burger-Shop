@@ -23,6 +23,7 @@ namespace MVC.Controllers
 		{
 			return View();
 		}
+
 		public IActionResult GetOrders()
 		{ 
 			return View(); 
@@ -92,7 +93,24 @@ namespace MVC.Controllers
 
         public IActionResult Reset()
 		{
-			return View();
+			return View(new ResetPasswordModel());
 		}
+		//[HttpPost]
+		//public async Task<IActionResult> Reset(ResetPasswordModel password)
+		//{
+		//	AppUser user = await _usermanager.FindByEmailAsync(password.Email);
+		//	if(user != null)
+		//	{
+		//		string resetToken=await _usermanager.GeneratePasswordResetTokenAsync(user);
+		//		string passwordResetLink=Url.Action("UpdatePassword","User",new {userId=user.Id, token=resetToken },HttpContext.Request.Scheme);
+		//		MailHelper.ResetPassword.PasswordSendMail(passwordResetLink);
+		//		ViewBag.state = true;
+		//	}
+		//	else
+		//	{
+		//		ViewBag.state = false;
+		//	}
+		//	return View(password);
+		//}
 	}
 }
