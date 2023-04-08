@@ -48,7 +48,12 @@ namespace MVC.Controllers
 					}
 					ModelState.AddModelError("", "Wrong Credantion Information!");
 				}
-			}
+                if (appUser.UserName=="huseyingulerman.1997@gmail.com")
+                {
+					return RedirectToAction("Index", "Admin");
+                }
+            }
+			
 			return View(loginVM);
 		}
 		public IActionResult Register()

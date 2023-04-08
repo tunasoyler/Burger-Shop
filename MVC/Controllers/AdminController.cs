@@ -1,6 +1,8 @@
 ﻿using BLL.Concrete;
 using DAL.EntityFramework;
 using Entity.Concrete;
+using Grpc.Core;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -11,6 +13,7 @@ using System.Web;
 
 namespace MVC.Controllers
 {
+    [Authorize(Roles ="Admin")]
     public class AdminController : Controller
     {
         private UserManager<AppUser> userManager;
@@ -253,6 +256,14 @@ namespace MVC.Controllers
                     imageFile.CopyTo(ms);
                     extra.Image = ms.ToArray();
                 }
+            }
+            else
+            {
+                // Varsayılan boş fotoğrafı kullanmak için önceden belirlediğiniz yol veya dosya adını kullanın
+                string defaultImagePath = @"~/dashmin-1.0.0/img/bos.jpg";
+
+                byte[] defaultImage = System.IO.File.ReadAllBytes(defaultImagePath);
+                extra.Image = defaultImage;
             }
 
             bool result = extraManager.ExtraAdd(extraVm.ExtraDb);
