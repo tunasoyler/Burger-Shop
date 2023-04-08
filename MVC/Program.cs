@@ -19,7 +19,7 @@ namespace MVC
             builder.Services.AddHttpContextAccessor();
             builder.Services.AddSession();
 
-            builder.Services.AddIdentity<AppUser, AppRole>().AddEntityFrameworkStores<BurgerContext>();
+            builder.Services.AddIdentity<AppUser, AppRole>().AddEntityFrameworkStores<BurgerContext>().AddDefaultTokenProviders();
             builder.Services.ConfigureApplicationCookie(opt =>
             {
                 opt.Cookie.Name = "IdentityCookie";
@@ -40,7 +40,16 @@ namespace MVC
                 opt.User.RequireUniqueEmail = true;
             });
 
-            var app = builder.Build();
+
+			builder.Services.Configure<DataProtectionTokenProviderOptions>(options =>
+			{
+				options.TokenLifespan = TimeSpan.FromHours(3);
+			});
+
+			builder.Services.AddSingleton<IUserTwoFactorTokenProvider<AppUser>, AuthenticatorTokenProvider<AppUser>>();
+
+
+			var app = builder.Build();
 
             // Configure the HTTP request pipeline.
             if (!app.Environment.IsDevelopment())

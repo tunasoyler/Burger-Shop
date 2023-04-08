@@ -14,7 +14,7 @@ namespace MVC.MailHelper
             MailMessage mail = new MailMessage();
             SmtpClient smtp = new SmtpClient();
             mail.From=new MailAddress("system@mail.com");
-            mail.To.Add("blogproje114@gmail.com");
+            mail.To.Add("sakuraburgerdestek@gmail.com");
             mail.Subject = "Şifre Güncelleme";
             mail.Body = "<h2>Şifrenizi yenilemek için linke tıklayınız.</h2><hr>";
             mail.Body += $"<a href='{link}'> Şifre yenileme bağlantısı";
@@ -23,7 +23,7 @@ namespace MVC.MailHelper
             smtp.Host= "smtp.gmail.com";
             smtp.Port = 587;
             smtp.EnableSsl= true;
-            smtp.Credentials = new System.Net.NetworkCredential("blogproje114@gmail.com", "blogproje123");
+            smtp.Credentials = new System.Net.NetworkCredential("sakuraburgerdestek@gmail.com", "Beste1998.");
             smtp.Send(mail);
         }
     }

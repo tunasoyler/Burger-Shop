@@ -1,6 +1,8 @@
 ﻿using BLL.Concrete;
 using DAL.EntityFramework;
 using Entity.Concrete;
+using Grpc.Core;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -11,6 +13,7 @@ using System.Web;
 
 namespace MVC.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class AdminController : Controller
     {
         private UserManager<AppUser> userManager;
@@ -242,33 +245,49 @@ namespace MVC.Controllers
         [HttpPost]
         public IActionResult CreateExtra(ExtraVM extraVm, IFormFile imageFile)
         {
-            //if (ModelState.IsValid)
-
             Extra extra = new Extra();
             extra = extraVm.ExtraDb;
-            if (imageFile != null && imageFile.Length > 0)
-            {
-                using (var ms = new MemoryStream())
+            //if (ModelState.IsValid)
+            //{
+
+                if (imageFile != null && imageFile.Length > 0)
                 {
-                    imageFile.CopyTo(ms);
-                    extra.Image = ms.ToArray();
+                    using (var ms = new MemoryStream())
+                    {
+                        imageFile.CopyTo(ms);
+                        extra.Image = ms.ToArray();
+                    }
                 }
-            }
+                else
+                {
+                    // Varsayılan boş fotoğrafı kullanmak için önceden belirlediğiniz yol veya dosya adını kullanın
+                    string defaultImagePath = /*@"~/dashmin-1.0.0/img/bos.jpg";*/@"C:\Users\SELİN\Source\Repos\MvcNotları\Uygulamalar\MvcBurgerProject1\MVC\wwwroot\dashmin-1.0.0\img\bos.jpg";
 
-            bool result = extraManager.ExtraAdd(extraVm.ExtraDb);
-            if (result)
-            {
-                TempData["result"] = "Kayıt Başarılı.";
-                return RedirectToAction("GetExtra");
-            }
-            else
-            {
-                TempData["resultError"] = "Kayıt Başarısız.";
-                return RedirectToAction("GetExtra");
-            }
+                    byte[] defaultImage = System.IO.File.ReadAllBytes(defaultImagePath);
+                    extra.Image = defaultImage;
+                }
 
+                bool result = extraManager.ExtraAdd(extraVm.ExtraDb);
+                if (result)
+                {
+                    TempData["result"] = "Kayıt Başarılı.";
+                    return RedirectToAction("GetExtra");
+                }
+                else
+                {
+                    TempData["resultError"] = "Kayıt Başarısız.";
+                    return RedirectToAction("GetExtra");
+                }
             //}
-            //return View(extraVm);
+            //else
+            //{
+            //    ModelState.AddModelError("CreateExtra", "Extra ismi,Extra Fiyatı ve Extra Kategorisi boş geçilemez");
+            //    extraVm.ExtraCategoryForDropDown = extraManager.FillExtraCategory();
+            //    return View(extraVm);
+            //}
+
+
+
         }
 
 
@@ -302,6 +321,14 @@ namespace MVC.Controllers
                         extra.Image = stream.ToArray();
                     }
                 }
+                else
+                {
+                    // Varsayılan boş fotoğrafı kullanmak için önceden belirlediğiniz yol veya dosya adını kullanın
+                    string defaultImagePath = /*@"~/dashmin-1.0.0/img/bos.jpg";*/@"C:\Users\SELİN\Source\Repos\MvcNotları\Uygulamalar\MvcBurgerProject1\MVC\wwwroot\dashmin-1.0.0\img\bos.jpg";
+
+                    byte[] defaultImage = System.IO.File.ReadAllBytes(defaultImagePath);
+                    extra.Image = defaultImage;
+                }
 
                 if (!string.IsNullOrEmpty(extraVM.ExtraDb.Name) && !string.IsNullOrEmpty(extraVM.ExtraDb.Price.ToString()) && !string.IsNullOrEmpty(extraVM.ExtraDb.ExtraCategoryId.ToString()))
                 {
@@ -309,7 +336,7 @@ namespace MVC.Controllers
                     extra.ExtraCategoryId = extraVM.ExtraDb.ExtraCategoryId;
                     extra.Price = extraVM.ExtraDb.Price;
                     extra.Description = extraVM.ExtraDb.Description;
-                   
+
                     extra.State = extraVM.ExtraDb.State;
                 }
                 else
@@ -489,6 +516,14 @@ namespace MVC.Controllers
                         menu.Image = ms.ToArray();
                     }
                 }
+                else
+                {
+                    // Varsayılan boş fotoğrafı kullanmak için önceden belirlediğiniz yol veya dosya adını kullanın
+                    string defaultImagePath = /*@"~/dashmin-1.0.0/img/bos.jpg";*/@"C:\Users\SELİN\Source\Repos\MvcNotları\Uygulamalar\MvcBurgerProject1\MVC\wwwroot\dashmin-1.0.0\img\bos.jpg";
+
+                    byte[] defaultImage = System.IO.File.ReadAllBytes(defaultImagePath);
+                    menu.Image = defaultImage;
+                }
                 bool result = menuManager.MenuAdd(menu);
                 if (result)
                 {
@@ -527,6 +562,14 @@ namespace MVC.Controllers
                         imageFile.CopyTo(stream);
                         menu.Image = stream.ToArray();
                     }
+                }
+                else
+                {
+                    // Varsayılan boş fotoğrafı kullanmak için önceden belirlediğiniz yol veya dosya adını kullanın
+                    string defaultImagePath = /*@"~/dashmin-1.0.0/img/bos.jpg";*/@"C:\Users\SELİN\Source\Repos\MvcNotları\Uygulamalar\MvcBurgerProject1\MVC\wwwroot\dashmin-1.0.0\img\bos.jpg";
+
+                    byte[] defaultImage = System.IO.File.ReadAllBytes(defaultImagePath);
+                    menu.Image = defaultImage;
                 }
 
                 if (!string.IsNullOrEmpty(name) && !string.IsNullOrEmpty(description) && !string.IsNullOrEmpty(menucategory))
@@ -596,7 +639,7 @@ namespace MVC.Controllers
             //menuVM.MenuList = menuManager.GetList();
             BurgerContext _db = new BurgerContext();
             OrderVM orderVM = new OrderVM();
-            orderVM.OrderList = _db.Orders.Where(x=>x.State==true).Select(x => new OrderDto()
+            orderVM.OrderList = _db.Orders.Where(x => x.State == true).Select(x => new OrderDto()
             {
                 Id = x.Id,
                 FirstName = x.AppUser.FirstName,
@@ -607,7 +650,7 @@ namespace MVC.Controllers
                 OrderTotal = x.OrderTotal
 
             }).ToList();
-           
+
 
 
             return View(orderVM);
@@ -627,17 +670,17 @@ namespace MVC.Controllers
             }
         }
         [HttpPost]
-        public IActionResult UpdateOrder(int id,Order Order)
+        public IActionResult UpdateOrder(int id, Order Order)
         {
             Order order = orderManager.FindById(id);
             if (order != null)
             {
-                
+
 
                 if (Order != null)
                 {
                     order.AppUserId = Order.AppUserId;
-                    order.CreatedTime= Order.CreatedTime;
+                    order.CreatedTime = Order.CreatedTime;
                     order.State = Order.State;
                     order.OrderTotal = Order.OrderTotal;
                 }
