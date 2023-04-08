@@ -17,13 +17,12 @@ namespace Entity.Concrete
   
         public ExtraCategory? ExtraCategory { get; set; }
 
-        
         public int ExtraCategoryId { get; set; }
         [Required(ErrorMessage = "Fiyat alanı boş geçilemez.")]
         public decimal Price { get; set; }
-        //[Required(ErrorMessage = "Açıklama alanı boş geçilemez.")]
+        
         public string? Description { get; set; }
-       
+        [Required(ErrorMessage = "Fotoğraf alanı boş geçilemez.")]
         public byte[]? Image { get; set; }
         public Extra()
         {

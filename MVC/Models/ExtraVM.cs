@@ -6,20 +6,22 @@ namespace MVC.Models
 {
     public class ExtraVM
     {
+        [System.ComponentModel.DataAnnotations.Required(ErrorMessage = "İsim alanı boş geçilemez.")]
+        public string Name { get; set; }
 
-       
+        [System.ComponentModel.DataAnnotations.Required(ErrorMessage = "Kategori alanı boş geçilemez.")]
         public int ExtraCategoryId { get; set; }
-        
-        public decimal Price { get; set; }
+        [System.ComponentModel.DataAnnotations.Required(ErrorMessage = "fiyat alanı boş geçilemez.")]
+        public decimal price { get; set; }
 
-       
-      
-        public byte[]? Image { get; set; }
-        public  List<Extra> Extras { get; set; }
+
+        [System.ComponentModel.DataAnnotations.Required(ErrorMessage = "fotoğraf alanı boş geçilemez.")]
+        public byte[]? ımage { get; set; }
+        public List<Extra>? Extras { get; set; }
 
        
         public Extra ExtraDb { get; set; }
-        public List<SelectListItem> ExtraCategoryForDropDown { get; set; }
+        public List<SelectListItem>? ExtraCategoryForDropDown { get; set; }
         public ExtraVM()
         {
             Extras=new List<Extra>();
