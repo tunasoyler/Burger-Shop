@@ -1,0 +1,56 @@
+﻿@model OrderDetailVM
+@{
+    ViewData["Title"] = "Sipariş Güncelle";
+    Layout = "~/Views/Shared/_Layout2.cshtml";
+}
+
+<!-- breadcrumb-section -->
+<div class="breadcrumb-section breadcrumb-bg">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 offset-lg-2 text-center">
+                <div class="breadcrumb-text">
+                    <p>Bahar Tadında Hamburger</p>
+                    <h1>Sipariş Güncelle</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- end breadcrumb section -->
+<div class="container-fluid py-4">
+    <div class="row">
+        <div class="col-12">
+            <div class="card my-4">
+                <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
+                    <div class="bg-gradient-warning shadow-warning border-radius-lg pt-4 pb-3">
+                        <h6 class="text-white text-capitalize ps-3">Sipariş Detaylarım</h6>
+                    </div>
+                </div>
+                <div class="card-body px-0 pb-2">
+                    <div class="table-responsive p-0">
+                        <!-- Form Start -->
+                        <div class="container-fluid pt-4 px-4">
+                            <div class="row g-4">
+                                <div class="col-sm-12 col-xl-6">
+                                    <div class="bg-light rounded h-100 p-4">
+                                        <h6 class="mb-4">Sipariş Detaylarım</h6>
+                                        <div class="col-lg-2 col-md-1 text-center">
+                                            <div class="single-product-item">
+                                                <div class="product-image">
+                                                    <a href="single-product.html">
+                                                        @{
+                                                            var base64String = Convert.ToBase64String(Model.orderDetails.Menu.Image);
+                                                            var imageUrl = $"data:image/png;base64,{base64String}";
+                                                        }
+                                                        <img src="@imageUrl" alt="Image" width="300" height="100" />
+                                                    </a>
+                                                </div>
+                                                <h3>@Model.orderDetails.Menu.Name</h3>
+                                                @*<p class="product-price"> @item.Price TL</p>*@
+                                                @*<p class="product-description"> @item.Description</p>*@
+                                                <a href="cart.html" class="cart-btn"><i class="fas fa-shopping-cart"></i> Sepete Ekle</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>

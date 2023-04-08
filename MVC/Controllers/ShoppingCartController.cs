@@ -2,6 +2,7 @@
 using DAL.EntityFramework;
 using Entity.Concrete;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.CodeAnalysis;
 using Microsoft.EntityFrameworkCore;
 using MVC.Extension;
 using MVC.Models;
@@ -22,7 +23,7 @@ namespace MVC.Controllers
         private readonly IHttpContextAccessor _httpContextAccessor;
 
         Order order = new Order();
-        CartItemDTO cartItem = new CartItemDTO();
+        CartItemDTO cartItem;
 
         public ShoppingCartController(IHttpContextAccessor httpContextAccessor, BurgerContext burgerContext)
         {
@@ -31,22 +32,116 @@ namespace MVC.Controllers
 
         }
 
-        public IActionResult AddToCart(int id)
+
+
+        public IActionResult AddMenuToCart(int id)
         {
             var item = burgerContext.Menus.Find(id);
+            var cartList = HttpContext.Session.GetObject<List<CartItemDTO>>("cartList");
+            int cartId;
+            if (cartList.Count != 0)
+            {
+                cartId = cartList.Last().Id;
+            }
+            else
+            {
+                cartId = 0;
+            }
+
+            var cartItem = new CartItemDTO
+            {
+                Id = cartId + 1,
+                Name = item.Name,
+                MenuId = item.Id,
+                Quantity = 1,
+                Size = Entity.Enums.Size.Small,
+                Price = item.Price,
+                Image = item.Image,
+                State = true
+            };
 
 
-
-            cartItem.Name = item.Name;
-            cartItem.MenuId = item.Id;
-            cartItem.Quantity = 1;
-            cartItem.Size = Entity.Enums.Size.Small;
-            cartItem.Price = item.Price;
+            HttpContext.Session.SetObject("cartItem", cartItem);
 
 
-            HttpContext.Session.SetObject("CartItem", cartItem);
+            return RedirectToAction("GetShoppingCart");
+        }
+        public IActionResult AddExtraToCart(int id)
+        {
+
+            var item = burgerContext.Extras.Find(id);
+            var cartList = HttpContext.Session.GetObject<List<CartItemDTO>>("cartList");
+            int cartId;
+            if (cartList.Count != 0)
+            {
+                cartId = cartList.Last().Id;
+            }
+            else
+            {
+                cartId = 0;
+            }
 
 
+            var cartItem = new CartItemDTO
+            {
+                Id = cartId + 1,
+                Name = item.Name,
+                ExtraId = item.Id,
+                Quantity = 1,
+                Price = item.Price,
+                Image = item.Image,
+                State = true
+            };
+
+
+            HttpContext.Session.SetObject("cartItem", cartItem);
+
+            return RedirectToAction("GetShoppingCart");
+        }
+
+        public IActionResult RemoveFromCart(int id)
+        {
+            var cartList = HttpContext.Session.GetObject<List<CartItemDTO>>("cartList");
+            var removeItem = cartList.FirstOrDefault(x => x.Id == id);
+
+            if (removeItem != null)
+            {
+                removeItem.State = false;
+                HttpContext.Session.SetObject("cartList", cartList);
+            }
+
+            return RedirectToAction("GetShoppingCart");
+        }
+        public IActionResult GetShoppingCart()
+        {
+            List<Extra> extraList = extraManager.GetList();
+
+            var cartList = HttpContext.Session.GetObject<List<CartItemDTO>>("cartList");
+            var CartItem = HttpContext.Session.GetObject<CartItemDTO>("cartItem");
+
+            if (CartItem != null)
+            {
+                cartList.Add(CartItem);
+            }
+
+            HttpContext.Session.SetObject("cartList", cartList);
+
+            ViewBag.cartList1 = cartList.Where(x => x.State == true).ToList();
+
+            HttpContext.Session.Remove("cartItem");
+
+            return View(extraList);
+        }
+
+        public IActionResult ConfirmCart()
+        {
+
+
+            return View();
+        }
+
+        public IActionResult ApplyCoupon()
+        {
             return RedirectToAction("GetShoppingCart");
         }
 
@@ -54,19 +149,6 @@ namespace MVC.Controllers
         public IActionResult Index()
         {
             return View();
-        }
-        public IActionResult GetShoppingCart()
-        {
-            List<Extra> extraList = extraManager.GetList();
-            var CartItem = HttpContext.Session.GetObject<CartItemDTO>("CartItem");
-
-            List<CartItemDTO> cartList = new List<CartItemDTO>();
-
-            cartList.Add(CartItem);
-
-            ViewBag.cartList1 = cartList;
-
-            return View(extraList);
         }
     }
 }
