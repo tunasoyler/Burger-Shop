@@ -1,0 +1,46 @@
+﻿@{
+    ViewData["Title"] = "GetUser";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+@using Entity.Concrete;
+@model Order
+
+<h1 class="bg-info text-white">Sipariş Güncelleme</h1>
+<a asp-action="GetMenu" asp-controller="Admin" class="btn btn-secondary">Aktif Sipariş Listesi</a>
+<div asp-validation-summary="All" class="text-danger"></div>
+
+@*<form asp-action="UpdateMenu" asp-controller="Admin" method="post">*@
+@using (Html.BeginForm("UpdateOrder", "Admin", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-group">
+        <label asp-for="Id"></label>
+        <input asp-for="Id" class="form-control " readonly/>
+    </div>
+    <div class="form-group">
+        <label asp-for="AppUserId"></label>
+        <input asp-for="AppUserId" class="form-control" readonly />
+    </div>
+  
+    <div class="form-group">
+        <label asp-for="CreatedTime"></label>
+        <input asp-for="CreatedTime" class="form-control" readonly />
+    </div>
+    <div class="form-group">
+        <label asp-for="OrderTotal"></label>
+        <input asp-for="OrderTotal" class="form-control" readonly />
+    </div>
+    <div class="form-group form-check">
+        <label asp-for="State" class="form-check-label"></label>
+        <input class="form-check-input" asp-for="State" />
+    </div>
+  
+    @*    <div class="form-group">
+    <label asp-for="State"></label>
+    <input asp-for="State" class="form-control" />
+    </div>*@
+    <button type="submit" class="btn btn-primary">Kaydet</button>
+}
+@*</form>*@

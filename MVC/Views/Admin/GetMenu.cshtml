@@ -1,12 +1,13 @@
-﻿
-@{
-    ViewData["Title"] = "GetExtra";
+﻿@{
+    ViewData["Title"] = "GetUser";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
+
 @using Entity.Concrete;
 @using MVC.Models;
-@model ExtraVM
-<h1 class="bg-info text-white">Extralar</h1>
+@model MenuVM
+
+<h1 class="bg-info text-white">Menüler</h1>
 @if (TempData["result"] != null)
 {
     <script>
@@ -22,7 +23,7 @@
 
 
 
-<a asp-action="CreateExtra" asp-controller="Admin" class="btn btn-secondary">Extra Oluştur</a>
+<a asp-action="CreateMenu" asp-controller="Admin" class="btn btn-secondary">Menü Oluştur</a>
 <br />
 <br />
 <div class="container">
@@ -30,17 +31,17 @@
         <tr>
             <th>Fotoğraf</th>
             <th>ID</th>
-            <th>İsim</th>
-            <th>Kategori</th>
-            <th>Fiyat</th>
+            <th>Menü İsmi</th>
             <th>Açıklama</th>
+            <th>Fiyatı</th>
+            <th>Menü Katagori</th>
             <th>Aktiflik Durumu</th>
             <th>Güncelle</th>
             <th>Sil</th>
 
 
         </tr>
-        @foreach (var item in Model.Extras)
+        @foreach (var item in Model.MenuList)
         {
             <tr>
                 <td>
@@ -49,21 +50,21 @@
                             var base64String = Convert.ToBase64String(item.Image);
                             var imageUrl = $"data:image/png;base64,{base64String}";
                         }
-                        <img src="@imageUrl" alt="Image" width="100" height="100" />
+                        <img src="@imageUrl" alt="Image" width="150" height="150" />
                     </a>
                 </td>
                 <td>@item.Id</td>
                 <td>@item.Name</td>
-                <td>@item.ExtraCategoryId</td>
-                 <td>@item.Price</td>
                 <td>@item.Description</td>
+                <td>@item.Price</td>
+                <td>@item.MenuCategory</td>
                 <td>@item.State</td>
 
                 <td>
-                    <a class="btn btn-sm btn-primary" asp-action="UpdateExtra" asp-controller="Admin" asp-route-id="@item.Id">Güncelle</a>
+                    <a class="btn btn-sm btn-primary" asp-action="UpdateMenu" asp-controller="Admin" asp-route-id="@item.Id">Güncelle</a>
                 </td>
                 <td>
-                    <form asp-action="DeleteExtra" asp-controller="Admin" asp-route-id="@item.Id" method="post">
+                    <form asp-action="DeleteMenu" asp-controller="Admin" asp-route-id="@item.Id" method="post">
                         <button type="submit" class="btn btn-sm btn-danger">Sil</button>
                     </form>
                 </td>
@@ -72,6 +73,3 @@
 
     </table>
 </div>
-
-
-
