@@ -65,8 +65,8 @@ namespace MVC.Models.Context
 
 
             //////Beste
-            base.OnConfiguring(optionsBuilder);
-            optionsBuilder.UseSqlServer("Data Source=DESKTOP-Q56AEMU\\MSSQLKD14;Database=BurgerMVCDb;User ID=sa;Password=Beste1998.");
+            //base.OnConfiguring(optionsBuilder);
+            //optionsBuilder.UseSqlServer("Data Source=DESKTOP-Q56AEMU\\MSSQLKD14;Database=BurgerMVCDb;User ID=sa;Password=Beste1998.");
 
 
 
