@@ -98,6 +98,7 @@ namespace MVC.Controllers
 
             return RedirectToAction("GetShoppingCart");
         }
+
         public IActionResult RemoveFromCart(int id)
         {
             var cartList = HttpContext.Session.GetObject<List<CartItemDTO>>("cartList");
@@ -118,18 +119,31 @@ namespace MVC.Controllers
             var cartList = HttpContext.Session.GetObject<List<CartItemDTO>>("cartList");
             var CartItem = HttpContext.Session.GetObject<CartItemDTO>("cartItem");
 
-            cartList.Add(CartItem);
+            if (CartItem != null)
+            {
+                cartList.Add(CartItem);
+            }
 
             HttpContext.Session.SetObject("cartList", cartList);
 
-            ViewBag.cartList1 = cartList;
+            ViewBag.cartList1 = cartList.Where(x => x.State == true).ToList();
 
             HttpContext.Session.Remove("cartItem");
 
             return View(extraList);
         }
 
+        public IActionResult ConfirmCart()
+        {
 
+
+            return View();
+        }
+
+        public IActionResult ApplyCoupon()
+        {
+            return RedirectToAction("GetShoppingCart");
+        }
 
 
         public IActionResult Index()

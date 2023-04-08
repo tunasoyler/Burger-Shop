@@ -69,7 +69,7 @@
                                             }
                                         </td>
                                         <td class="product-name">@item.Name</td>
-                                        <td class="product-price">@item.Price TL @item.Id</td>
+                                        <td class="product-price">@item.Price TL</td>
                                         <td class="product-quantity"><input type="number" placeholder=@item.Quantity></td>
                                     </tr>
 
@@ -113,17 +113,14 @@
                             </tbody>
                         </table>
                         <div class="cart-buttons">
-                            <a href="cart.html" class="boxed-btn">Sepeti Güncelle</a>
-                            <br />
-                            <br />
-                            <a asp-action="GetPayment" asp-controller="Payment" class="boxed-btn black">Siparişi Onayla</a>
+                            <a asp-action="ConfirmCart" asp-controller="ShoppingCart" class="boxed-btn black">Siparişi Onayla</a>
                         </div>
                     </div>
 
                     <div class="coupon-section">
                         <h3>Kupon Ekle</h3>
                         <div class="coupon-form-wrap">
-                            <form asp-action="GetShoppingCart" asp-controller="ShoppingCart">
+                            <form asp-action="ApplyCoupon" asp-controller="ShoppingCart">
                                 <p><input type="text" placeholder="Kupon Kodu Giriniz"></p>
                                 <p><input type="submit" value="Ekle"></p>
                             </form>
