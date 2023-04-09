@@ -245,10 +245,11 @@ namespace MVC.Controllers
         [HttpPost]
         public IActionResult CreateExtra(ExtraVM extraVm, IFormFile imageFile)
         {
-            if (ModelState.IsValid)
-            {
-                Extra extra = new Extra();
-                extra = extraVm.ExtraDb;
+            Extra extra = new Extra();
+            extra = extraVm.ExtraDb;
+            //if (ModelState.IsValid)
+            //{
+
                 if (imageFile != null && imageFile.Length > 0)
                 {
                     using (var ms = new MemoryStream())
@@ -277,14 +278,16 @@ namespace MVC.Controllers
                     TempData["resultError"] = "Kayıt Başarısız.";
                     return RedirectToAction("GetExtra");
                 }
+            //}
+            //else
+            //{
+            //    ModelState.AddModelError("CreateExtra", "Extra ismi,Extra Fiyatı ve Extra Kategorisi boş geçilemez");
+            //    extraVm.ExtraCategoryForDropDown = extraManager.FillExtraCategory();
+            //    return View(extraVm);
+            //}
 
-            }
-            else
-            {
-                ModelState.AddModelError("CreateExtra", "Extra ismi,Extra Fiyatı ve Extra Kategorisi boş geçilemez");
-                return View(extraVm);
-            }
-       
+
+
         }
 
 
