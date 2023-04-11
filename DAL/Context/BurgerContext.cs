@@ -59,14 +59,14 @@ namespace MVC.Models.Context
 
 
             ////Huseyin
-            //base.OnConfiguring(optionsBuilder);
-            //optionsBuilder.UseSqlServer("Server=DESKTOP-FJAHODS;Database=BurgerMVCDb;Trusted_Connection=True;MultipleActiveResultSets=true");
+            base.OnConfiguring(optionsBuilder);
+            optionsBuilder.UseSqlServer("Server=DESKTOP-FJAHODS;Database=BurgerMVCDb;Trusted_Connection=True;MultipleActiveResultSets=true");
 
 
 
             //////Beste
-            base.OnConfiguring(optionsBuilder);
-            optionsBuilder.UseSqlServer("Data Source=DESKTOP-Q56AEMU\\MSSQLKD14;Database=BurgerMVCDb;User ID=sa;Password=Beste1998.");
+            //base.OnConfiguring(optionsBuilder);
+            //optionsBuilder.UseSqlServer("Data Source=DESKTOP-Q56AEMU\\MSSQLKD14;Database=BurgerMVCDb;User ID=sa;Password=Beste1998.");
 
 
 

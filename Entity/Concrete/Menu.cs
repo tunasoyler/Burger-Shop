@@ -10,7 +10,7 @@ namespace Entity.Concrete
 {
     public class Menu : BaseEntity
     {
-        [Required(ErrorMessage ="Fotoğraf alanı boş geçilemez.")]
+        //[Required(ErrorMessage ="Fotoğraf alanı boş geçilemez.")]
         public byte[]? Image { get; set; }
         [Required(ErrorMessage = "Açıklama alanı boş geçilemez.")]
         public string Description { get; set; }
