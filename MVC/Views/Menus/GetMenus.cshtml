@@ -1,8 +1,10 @@
 ﻿@using Entity.Concrete;
 @using System.Drawing;
 @model IEnumerable<Menu>
+
 @{
     ViewData["Title"] = "GetMenus";
+    var aiText = TempData["AiSuggestion"];
     Layout = "~/Views/Shared/_Layout2.cshtml";
 }
 
@@ -21,6 +23,26 @@
     </div>
 </div>
 <!-- end breadcrumb section -->
+
+<div class="container col-md-4 center-block">
+    <!-- Chat section -->
+
+
+
+    <div>
+        
+    </div>
+
+    <form id="chat-form">
+        <label for="user-input">Yapay Zekaya Danışın:</label>
+        <input type="text" id="user-input" name="user-input">
+        <button class="btn btn-primary" type="submit" id="submit-btn">Gönder</button>
+    </form>
+
+
+</div>
+
+<!-- End Chat section -->
 <!-- products -->
 <div class="product-section mt-150 mb-150">
     <div class="container">
@@ -64,3 +86,6 @@
 
     </div>
     <!-- end products -->
+
+
+

@@ -1,7 +1,9 @@
 using Entity.Concrete;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
 using MVC.Models.Context;
+using OpenAI.GPT3.Extensions;
 using System;
 using static MVC.Models.Context.BurgerContext;
 
@@ -11,7 +13,10 @@ namespace MVC
     {
         public static void Main(string[] args)
         {
+
             var builder = WebApplication.CreateBuilder(args);
+
+            builder.Services.AddOpenAIService(settings => { settings.ApiKey = "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"; });
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
@@ -41,15 +46,15 @@ namespace MVC
             });
 
 
-			builder.Services.Configure<DataProtectionTokenProviderOptions>(options =>
-			{
-				options.TokenLifespan = TimeSpan.FromHours(3);
-			});
+            builder.Services.Configure<DataProtectionTokenProviderOptions>(options =>
+            {
+                options.TokenLifespan = TimeSpan.FromHours(3);
+            });
 
-			builder.Services.AddSingleton<IUserTwoFactorTokenProvider<AppUser>, AuthenticatorTokenProvider<AppUser>>();
+            builder.Services.AddSingleton<IUserTwoFactorTokenProvider<AppUser>, AuthenticatorTokenProvider<AppUser>>();
 
 
-			var app = builder.Build();
+            var app = builder.Build();
 
             // Configure the HTTP request pipeline.
             if (!app.Environment.IsDevelopment())
@@ -61,7 +66,7 @@ namespace MVC
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();
-            
+
             app.UseRouting();
 
             app.UseAuthentication();
@@ -74,8 +79,10 @@ namespace MVC
                 pattern: "{AdminArea}/{controller=Home}/{action=GetHome}/{id?}");
 
             app.MapControllerRoute(
-                name: "default",                
+                name: "default",
                 pattern: "{controller=Home}/{action=GetHome}/{id?}");
+
+
 
             app.Run();
         }
