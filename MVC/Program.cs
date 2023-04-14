@@ -16,7 +16,7 @@ namespace MVC
 
             var builder = WebApplication.CreateBuilder(args);
 
-            builder.Services.AddOpenAIService(settings => { settings.ApiKey = "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"; });
+            builder.Services.AddOpenAIService(settings => { settings.ApiKey = "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"; });
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();

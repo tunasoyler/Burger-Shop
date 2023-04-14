@@ -4,9 +4,10 @@
 
 @{
     ViewData["Title"] = "GetMenus";
-    var aiText = TempData["AiSuggestion"];
     Layout = "~/Views/Shared/_Layout2.cshtml";
 }
+
+    
 
 
 <!-- breadcrumb-section -->
@@ -23,25 +24,52 @@
     </div>
 </div>
 <!-- end breadcrumb section -->
-
-<div class="container col-md-4 center-block">
-    <!-- Chat section -->
-
-
-
-    <div>
-        
+<!-- Chat section -->
+<br />
+<br />
+<div class="row justify-content-center">
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-header">
+                <h5 class="card-title">Ne Sevip/Sevmediğini, Açlık Durumunu Ve Kaç Kişi Olduğunu Yaz. Yapay Zeka Sana Menü Önersin!</h5>
+            </div>
+            <div class="card-body">
+                <div id="message-box" class="form-group">
+                    <label for="user-message">Mesajınızı Girin:</label>
+                    <input id="user-message" type="text" class="form-control" />
+                </div>
+                <div id="response-box" class="form-group">
+                    <label for="system-response">AI Cevabı:</label>
+                    <textarea id="system-response" class="form-control" rows="3" readonly></textarea>
+                </div>
+                <button id="send-button" class="btn btn-primary">Cevap Gönder</button>
+            </div>
+        </div>
     </div>
-
-    <form id="chat-form">
-        <label for="user-input">Yapay Zekaya Danışın:</label>
-        <input type="text" id="user-input" name="user-input">
-        <button class="btn btn-primary" type="submit" id="submit-btn">Gönder</button>
-    </form>
-
-
 </div>
 
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+@section Scripts {
+    <script>
+        $("#send-button").click(function () {
+            var message = $("#user-message").val();
+            $.ajax({
+                type: "POST",
+                url: "/Menus/SendMessageAsync",
+                data: { message: message },
+                success: function (response) {
+                    // Sistem cevabı kutusuna cevabı yerleştirin.
+                    $("#system-response").val(response.response);
+                },
+                error: function (response) {
+                    alert("Bir hata oluştu.");
+                }
+            });
+        });
+
+            
+    </script>
+    }
 <!-- End Chat section -->
 <!-- products -->
 <div class="product-section mt-150 mb-150">
