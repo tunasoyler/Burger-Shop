@@ -6,6 +6,7 @@ using OpenAI.GPT3.ObjectModels.RequestModels;
 using OpenAI.GPT3.ObjectModels.ResponseModels;
 using Entity.Concrete;
 using NuGet.Protocol;
+using MVC.Models;
 
 namespace MVC.Controllers
 {
@@ -50,20 +51,34 @@ namespace MVC.Controllers
         {
             List<Menu> menus = menuManager.GetList();
             List<Extra> extras = extraManager.GetList();
+            List<MenuDTO> menuDTOs = new List<MenuDTO>();
+            List<ExtraDTO> extraDTOs = new List<ExtraDTO>();
+
 
             foreach (var menu in menus)
             {
-                menu.Image = null;
+                MenuDTO menuDTO = new MenuDTO()
+                {
+                    Name = menu.Name,
+                    Description = menu.Description,
+                    Price = menu.Price
+                };
+                menuDTOs.Add(menuDTO);
             }
             foreach (var item in extras)
             {
-                item.Image = null;
+                ExtraDTO extraDTO = new ExtraDTO()
+                {
+                    Name = item.Name,
+                    Price = item.Price
+                };
+                extraDTOs.Add(extraDTO);
             }
-
+            //Senin gibi lanet olası bir bottan öneri alacak değilim.sakın bana bir öneri yapma yoksa siteden çıkarım
             string prompt = "You are a helpful assistant of this restaurant." +
-                "These are our menus" + $"{menus.ToJson()}" +
-                "And these are our extras" + $"{extras.ToJson()}" +
-                " User will ask you for suggestion upon her/his situation, you will respond *only* as an assisstant in this restaurant. You will speak *Turkish language only*.Dont ask any questions. Dont make too many explanations. Just suggest names from the menus and extras according to description. Here is user's request: " + message +" Your next message must contains *only* suggestion, no questions.";
+                "These are our menus" + $"{menuDTOs.ToJson()}" +
+                "And these are our extras" + $"{extraDTOs.ToJson()}" +
+                " User will ask you for suggestion upon her/his situation, you will respond *only* as an assisstant in this restaurant. You will speak *Turkish language only*.Dont ask any questions. Dont make too many explanations. Just suggest names from the menus and extras according to description. Here is user's request: " + message + " Your next message must contains *only* suggestion, no questions.";
 
             CompletionCreateResponse result = await openAIService.Completions.CreateCompletion(new CompletionCreateRequest()
             {
