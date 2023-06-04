@@ -1,12 +1,12 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using Entity.Concrete;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using MVC.Models;
-using MVC.Models.Context;
 using SignInResult = Microsoft.AspNetCore.Identity.SignInResult;
 
 namespace MVC.Controllers
 {
-	public class UserController : Controller
+    public class UserController : Controller
 	{
 		private readonly UserManager<AppUser> _usermanager;
 		private readonly SignInManager<AppUser> _signInManager;

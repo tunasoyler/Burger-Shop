@@ -6,7 +6,7 @@ using Entity.Concrete;
 using Microsoft.EntityFrameworkCore;
 using MVC.Models.Context;
 
-namespace MVC.Controllers
+namespace BLL.Concrete
 {
     public class OrderManager : IOrderService
     {

@@ -1,4 +1,5 @@
 ﻿using BLL.Concrete;
+using DAL.Context;
 using DAL.EntityFramework;
 using Entity.Concrete;
 using Microsoft.AspNetCore.Identity;
@@ -7,7 +8,6 @@ using Microsoft.CodeAnalysis;
 using Microsoft.EntityFrameworkCore;
 using MVC.Extension;
 using MVC.Models;
-using MVC.Models.Context;
 using Newtonsoft.Json;
 
 namespace MVC.Controllers

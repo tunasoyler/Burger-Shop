@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Internal;
 
-namespace MVC.Models.Context
+namespace DAL.Context
 {
 
     public class BurgerContext : IdentityDbContext<AppUser, AppRole, Guid>
@@ -22,7 +22,7 @@ namespace MVC.Models.Context
         public DbSet<ComplaintSuggestion> ComplaintSuggestions { get; set; }
         public DbSet<UserAddress> UserAddresses { get; set; }
         public DbSet<AppUserAddress> appUserAddress { get; set; }
-        
+
 
 
         public BurgerContext(DbContextOptions<BurgerContext> dbContext) : base(dbContext)
@@ -72,7 +72,7 @@ namespace MVC.Models.Context
 
         }
 
-        
+
     }
 }
 

@@ -1,4 +1,5 @@
 ﻿using BLL.Concrete;
+using DAL.Context;
 using DAL.EntityFramework;
 using Entity.Concrete;
 using Grpc.Core;
@@ -7,7 +8,6 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using MVC.Models;
-using MVC.Models.Context;
 using System.Web;
 
 

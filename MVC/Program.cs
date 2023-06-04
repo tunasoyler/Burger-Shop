@@ -1,11 +1,11 @@
+using DAL.Context;
 using Entity.Concrete;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
-using MVC.Models.Context;
 using OpenAI.GPT3.Extensions;
 using System;
-using static MVC.Models.Context.BurgerContext;
+using static DAL.Context.BurgerContext;
 
 namespace MVC
 {

@@ -1,4 +1,4 @@
-﻿using MVC.Models.Context;
+﻿using Entity.Concrete;
 using System.ComponentModel.DataAnnotations;
 
 namespace MVC.Models

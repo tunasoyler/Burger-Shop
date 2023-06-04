@@ -1,7 +1,7 @@
 ﻿using BLL.Concrete;
+using DAL.Context;
 using DAL.EntityFramework;
 using Entity.Concrete;
-using MVC.Models.Context;
 
 namespace SeedData
 {

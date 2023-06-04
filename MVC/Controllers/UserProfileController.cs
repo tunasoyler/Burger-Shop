@@ -1,5 +1,6 @@
 ﻿
 using BLL.Concrete;
+using DAL.Context;
 using DAL.EntityFramework;
 using Entity.Concrete;
 using Microsoft.AspNetCore.Authorization;
@@ -7,7 +8,6 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using MVC.Models;
-using MVC.Models.Context;
 
 namespace MVC.Controllers
 {
