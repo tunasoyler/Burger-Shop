@@ -73,8 +73,7 @@ namespace MVC.Controllers
                     Price = item.Price
                 };
                 extraDTOs.Add(extraDTO);
-            }
-            //Senin gibi lanet olası bir bottan öneri alacak değilim.sakın bana bir öneri yapma yoksa siteden çıkarım
+            }            
             string prompt = "You are a helpful assistant of this restaurant." +
                 "These are our menus" + $"{menuDTOs.ToJson()}" +
                 "And these are our extras" + $"{extraDTOs.ToJson()}" +
