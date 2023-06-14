@@ -1,5 +1,5 @@
-# BurgerMVC
- "BurgerMVC" is a web application:
+# Burger Shop
+ "Burger Shop" is a web application:
 
  - Built using Model-View-Controller (MVC) architecture and Object-Oriented Programming (OOP) principles.
  - The application allows users to add items to their cart and place an order.
