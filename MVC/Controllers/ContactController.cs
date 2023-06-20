@@ -2,8 +2,6 @@
 using DAL.EntityFramework;
 using Entity.Concrete;
 using Microsoft.AspNetCore.Mvc;
-using MVC.Models;
-using MVC.Models.Context;
 
 namespace MVC.Controllers
 {

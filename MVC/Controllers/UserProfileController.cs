@@ -1,12 +1,10 @@
-﻿
-using BLL.Concrete;
+﻿using BLL.Concrete;
 using DAL.Context;
 using DAL.EntityFramework;
 using Entity.Concrete;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using MVC.Models;
 
 namespace MVC.Controllers

@@ -1,10 +1,8 @@
 ﻿
 using BLL.Abstract;
 using DAL.Abstract;
-using DAL.EntityFramework;
+using DAL.Context;
 using Entity.Concrete;
-using Microsoft.EntityFrameworkCore;
-using MVC.Models.Context;
 
 namespace BLL.Concrete
 {

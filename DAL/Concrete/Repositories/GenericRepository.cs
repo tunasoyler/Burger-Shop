@@ -1,12 +1,5 @@
 ﻿using DAL.Abstract;
-using Microsoft.EntityFrameworkCore;
-using MVC.Models.Context;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Linq.Expressions;
-using System.Text;
-using System.Threading.Tasks;
+using DAL.Context;
 
 namespace DAL.Concrete.Repositories
 {

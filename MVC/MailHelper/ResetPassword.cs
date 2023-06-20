@@ -1,8 +1,4 @@
-﻿using Microsoft.AspNetCore.Identity;
-using MVC.Models.Context;
-using System.Net.Mail;
-using MVC.Models.Context;
-using Microsoft.AspNetCore.Mvc;
+﻿using System.Net.Mail;
 
 namespace MVC.MailHelper
 {
